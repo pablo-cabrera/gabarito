@@ -1,0 +1,9 @@
+dist/
+docs/
+test-result/
+coverage.xml
+lcov-report/
+lcov.info
+node_modules/
+.project
+npm-debug.log

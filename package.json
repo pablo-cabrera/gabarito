@@ -1,0 +1,31 @@
+{
+    "name": "gabarito",
+    "version": "0.0.1",
+    "author": "Pablo Cabrera <pablo@chaordicsystems.com>",
+
+    "description" : "JS unit tests",
+    "homepage" : "https://github.com/pablo-cabrera/gabarito",
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/pablo-cabrera/gabarito.git"
+    },
+
+    "license": "MIT",
+    "main": "./lib/gabarito.js",
+
+    "dependencies": {
+        "colors" : "*",
+        "xmlbuilder": "*",
+        "parts": "git+ssh://git@github.com:pablo-cabrera/parts.git"
+    },
+
+    "devDependencies": {
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-yuidoc": "~0.4.0",
+        "grunt": "~0.4.0"
+    },
+
+    "scripts": {
+        "test": "grunt"
+    }
+}
