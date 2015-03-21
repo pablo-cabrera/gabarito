@@ -1,6 +1,6 @@
 dist/
 docs/
-test-result/
+test/result/
 coverage.xml
 lcov-report/
 lcov.info
