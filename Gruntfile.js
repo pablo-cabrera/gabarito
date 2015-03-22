@@ -71,7 +71,7 @@ module.exports = function(grunt) {
     // Local tasks
     grunt.loadTasks("tasks");
 
-    // Defaults
     grunt.registerTask("default", ["jshint", "test", "yuidoc"]);
+    grunt.registerTask("ci", ["jshint", "test"]);
 
 };

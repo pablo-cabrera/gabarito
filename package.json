@@ -12,7 +12,8 @@
   "main": "./lib/gabarito.js",
   "dependencies": {
     "colors": "^1.0.3",
-    "parts": "git+ssh://git@github.com:pablo-cabrera/parts.git",
+
+    "parts": "git://github.com/pablo-cabrera/parts",
     "xmlbuilder": "^2.6.2"
   },
   "devDependencies": {
