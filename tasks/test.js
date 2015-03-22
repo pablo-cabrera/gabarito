@@ -25,6 +25,8 @@ module.exports = function(grunt) {
             });
         });
 
+        grunt.file.mkdir(path.join(cwd, "/test/result"));
+
         runner.addEnvironment(new gabarito.runner.NodeEnvironment(gabarito));
         runner.addReporter(new gabarito.runner.ConsoleReporter());
         runner.addReporter(new gabarito.runner.JUnitXmlReporter(path.join(cwd, "/test/result/results.xml")));
