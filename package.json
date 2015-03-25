@@ -1,6 +1,6 @@
 {
   "name": "gabarito",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "author": "Pablo Cabrera <pablo.cabrera.munoz@gmail.com>",
   "description": "JS unit tests",
   "homepage": "https://github.com/pablo-cabrera/gabarito",
@@ -13,14 +13,14 @@
   "dependencies": {
     "colors": "^1.0.3",
 
-    "parts": "git://github.com/pablo-cabrera/parts",
+    "parts": "0.0.1-alpha",
     "xmlbuilder": "^2.6.2",
-    "selenium-webdriver": "*"
+    "selenium-webdriver": "^2.45.1"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-yuidoc": "~0.4.0",
-    "grunt": "~0.4.0"
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-yuidoc": "^0.4.0",
+    "grunt": "^0.4.0"
   },
   "scripts": {
     "test": "grunt"
