@@ -27,9 +27,25 @@ module.exports = function(grunt) {
 
         grunt.file.mkdir(path.join(cwd, "/test/result"));
 
-        runner.addEnvironment(new gabarito.runner.NodeEnvironment(gabarito));
-        runner.addReporter(new gabarito.runner.ConsoleReporter());
-        runner.addReporter(new gabarito.runner.JUnitXmlReporter(path.join(cwd, "/test/result/results.xml")));
+        var nodeEnv = new gabarito.runner.NodeEnvironment(gabarito);
+        runner.addEnvironment(nodeEnv);
+
+        var seleniumEnv = new gabarito.runner.SeleniumEnvironment("firefox",
+                "http://localhost:4444/wd/hub")
+        runner.addEnvironment(seleniumEnv);
+
+        var seleniumEnv2 = new gabarito.runner.SeleniumEnvironment("chrome",
+                "http://localhost:4444/wd/hub")
+        runner.addEnvironment(seleniumEnv2);
+
+
+        var consoleReporter = new gabarito.runner.ConsoleReporter();
+        runner.addReporter(consoleReporter);
+
+        var jUnitReporter = new gabarito.runner.JUnitXmlReporter(
+                path.join(cwd, "/test/result/results.xml"));
+        runner.addReporter(jUnitReporter);
+
         runner.run(function (results) {
             var hasErrors = results.some(function (r) {
                 return r.results.some(function (r) {

@@ -30,7 +30,7 @@
                 return true;
             };
 
-            assert.areEqual(a, 1, f);
+            assert.areEqual(a, b, f);
         },
 
         "areEqual should throw the error with the given message": function () {

@@ -14,7 +14,8 @@
     "colors": "^1.0.3",
 
     "parts": "git://github.com/pablo-cabrera/parts",
-    "xmlbuilder": "^2.6.2"
+    "xmlbuilder": "^2.6.2",
+    "selenium-webdriver": "*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "*",
