@@ -12,7 +12,6 @@
   "main": "./lib/gabarito.js",
   "dependencies": {
     "colors": "^1.0.3",
-
     "parts": "0.0.1-alpha",
     "xmlbuilder": "^2.6.2",
     "selenium-webdriver": "^2.45.1"
@@ -24,5 +23,12 @@
   },
   "scripts": {
     "test": "grunt"
+  },
+  "bugs": {
+    "url": "https://github.com/pablo-cabrera/gabarito/issues"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
   }
 }
