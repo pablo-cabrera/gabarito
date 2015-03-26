@@ -18,15 +18,12 @@
 
     var g;
 
-    var setup = function (f) {
-        return parts.args(function (args) {
-            g = gabarito.standalone();
-            return f.apply(this, args);
-        });
-    };
-
     var test = {
         "name": "gabarito.GabaritoTest",
+
+        "before": function () {
+            g = gabarito.standalone();
+        },
 
         "should run every clause within the test": function () {
             var a, b, c;
@@ -176,12 +173,6 @@
 
         dummy: 0
     };
-
-    parts.forEach(test, function (v, k) {
-        if (parts.isFunction(v)) {
-            test[k] = setup(v);
-        }
-    });
 
     gabarito.add(test);
 

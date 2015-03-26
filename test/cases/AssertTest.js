@@ -22,7 +22,6 @@
         "areEqual should use the equality function to compare values": function () {
             var a = {};
             var b = {};
-
             var f = function (c, d) {
                 assert.areSame(a, c);
                 assert.areSame(b, d);
