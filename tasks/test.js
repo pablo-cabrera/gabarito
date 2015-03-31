@@ -10,6 +10,13 @@ module.exports = function(grunt) {
 
     var gabarito = require(root + "/gabarito");
 
+    var createSeleniumEnv = function (browser) {
+        return new gabarito.runner.SeleniumEnvironment(browser,
+            "http://localhost:4444/wd/hub",
+            "20.0.0.103");
+//            "192.168.0.165");
+    };
+
     grunt.registerMultiTask("test", "gabarito test runner", function() {
 
         var done = this.async();
@@ -30,14 +37,13 @@ module.exports = function(grunt) {
         var nodeEnv = new gabarito.runner.NodeEnvironment(gabarito);
         runner.addEnvironment(nodeEnv);
 
-        var seleniumEnv = new gabarito.runner.SeleniumEnvironment("firefox",
-                "http://localhost:4444/wd/hub")
-        runner.addEnvironment(seleniumEnv);
+        var firefoxSeleniumEnv = createSeleniumEnv("firefox");
+        var chromeSeleniumEnv = createSeleniumEnv("chrome");
+        var ieSeleniumEnv = createSeleniumEnv("internet explorer");
 
-        var seleniumEnv2 = new gabarito.runner.SeleniumEnvironment("chrome",
-                "http://localhost:4444/wd/hub")
-        runner.addEnvironment(seleniumEnv2);
-
+//        runner.addEnvironment(firefoxSeleniumEnv);
+//        runner.addEnvironment(chromeSeleniumEnv);
+        runner.addEnvironment(ieSeleniumEnv);
 
         var consoleReporter = new gabarito.runner.ConsoleReporter();
         runner.addReporter(consoleReporter);
