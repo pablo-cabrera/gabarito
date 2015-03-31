@@ -64,7 +64,7 @@
             });
         },
 
-        "should return an array containin the results for each test": function () {
+        "should return an array containing the results for each test": function () {
             var test = {
                 name: "some name",
                 a: function () {},
@@ -84,7 +84,8 @@
                 assert.isNumber(r.start);
                 assert.isNumber(r.elapsedTime);
 
-                assert.areSame(3, Object.keys(r.results).length);
+                assert.areSame(3, parts.map(r.results,
+                        function (v, p) { return p; }).length);
 
                 parts.forEach(r.results, function (r) {
                     assert.isNumber(r.start);

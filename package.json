@@ -17,9 +17,10 @@
     "selenium-webdriver": "^2.45.1"
   },
   "devDependencies": {
+    "JSON2": "^0.1.0",
+    "grunt": "^0.4.0",
     "grunt-contrib-jshint": "^0.11.0",
-    "grunt-contrib-yuidoc": "^0.4.0",
-    "grunt": "^0.4.0"
+    "grunt-contrib-yuidoc": "^0.4.0"
   },
   "scripts": {
     "test": "grunt"

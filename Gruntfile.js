@@ -43,7 +43,9 @@ module.exports = function(grunt) {
                 /* environment */
                 node: true,
                 browser: true,
-                globals: { chaordic: true }
+                globals: {
+                    JSON: true
+                }
             },
 
             files: ["Gruntfile.js", "lib/**/*.js", "test/**/*.js"]
