@@ -1,13 +1,13 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     "use strict";
 
     var cwd = process.cwd();
 
     var root = cwd + "/lib";
 
-    var parts = require("parts");
     var path = require("path");
 
+    var parts = require(cwd + "/deps/parts");
     var gabarito = require(root + "/gabarito");
     var plumbing = gabarito.plumbing;
 
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 
     };
 
-    grunt.registerMultiTask("test", "gabarito test runner", function() {
+    grunt.registerMultiTask("test", "gabarito test runner", function () {
         var done = this.async();
         var runner = new plumbing.Runner();
 
