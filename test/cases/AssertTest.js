@@ -8,10 +8,10 @@
 
     if (node) {
         gabarito = require("../../lib/gabarito");
-        parts = require("parts");
+        parts = require("../../deps/parts");
     } else {
         gabarito = main.gabarito;
-        parts = main.parts;
+        parts = gabarito.parts;
     }
 
     var assert = gabarito.assert;

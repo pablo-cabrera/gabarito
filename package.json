@@ -1,34 +1,30 @@
 {
-    "name" : "gabarito",
-    "version" : "0.0.1-alpha.006",
-    "author" : "Pablo Cabrera <pablo.cabrera.munoz@gmail.com>",
-    "description" : "JS unit tests",
-    "homepage" : "https://github.com/pablo-cabrera/gabarito",
-    "license" : "MIT",
-    "repository" : {
-        "type" : "git",
-        "url" : "git://github.com/pablo-cabrera/gabarito.git"
-    },
-    "main" : "./lib/gabarito.js",
-    "dependencies" : {
-        "colors" : "^1.0.3",
-        "parts" : "0.0.1-alpha",
-        "xmlbuilder" : "^2.6.2",
-        "selenium-webdriver" : "^2.45.1"
-    },
-    "devDependencies" : {
-        "grunt" : "^0.4.0",
-        "grunt-contrib-jshint" : "^0.11.0",
-        "grunt-contrib-yuidoc" : "^0.4.0"
-    },
-    "scripts" : {
-        "test" : "grunt"
-    },
-    "bugs" : {
-        "url" : "https://github.com/pablo-cabrera/gabarito/issues"
-    },
-    "directories" : {
-        "doc" : "docs",
-        "test" : "test"
-    }
+  "name": "gabarito",
+  "version": "0.0.1-alpha.006",
+  "author": "Pablo Cabrera <pablo.cabrera.munoz@gmail.com>",
+  "description": "JS unit tests",
+  "homepage": "https://github.com/pablo-cabrera/gabarito",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pablo-cabrera/gabarito.git"
+  },
+  "main": "./lib/gabarito.js",
+  "dependencies": {
+    "colors": "^1.0.3",
+    "parts": "0.0.1-alpha",
+    "phantom": "^2.1.2",
+    "xmlbuilder": "^2.6.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.0",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-yuidoc": "^0.4.0"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "bugs": {
+    "url": "https://github.com/pablo-cabrera/gabarito/issues"
+  }
 }

@@ -25,6 +25,9 @@ module.exports = function(grunt) {
     var setupEnvironments = function (runner) {
         var node = new plumbing.NodeEnvironment(gabarito);
         runner.addEnvironment(node);
+
+        var phantom = new plumbing.PhantomEnvironment();
+        runner.addEnvironment(phantom);
     };
 
     var setupReporters = function (runner) {
