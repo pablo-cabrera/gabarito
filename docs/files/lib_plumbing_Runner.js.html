@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/plumbing/Runner.js - gabarito</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+            gabarito
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-alpha.006</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+            
+                <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
+            
+                <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Environment.html">gabarito.plumbing.Environment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.JUnitXmlReporter.html">gabarito.plumbing.JUnitXmlReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.NodeEnvironment.html">gabarito.plumbing.NodeEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.PhantomEnvironment.html">gabarito.plumbing.PhantomEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Reporter.html">gabarito.plumbing.Reporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+        </ul>
+    </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>lib/plumbing/Runner.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+&quot;use strict&quot;;
+
+var root = &quot;../..&quot;;
+var parts = require(root + &quot;/deps/parts&quot;);
+var ilk = require(root + &quot;/deps/ilk&quot;);
+
+module.exports = ilk.tokens(function (
+    environments,
+    reporters,
+    files,
+
+    nextEnvironment,
+    dispatch
+) {
+
+    /**
+     * The gabarito runner. It needs the reporters in order to receive the
+     * varius events issued by the environments. The environments in which the
+     * test should run, and the files containing the tests themselves.
+     *
+     *
+     * @class gabarito.plumbing.Runner
+     * @constructor
+     */
+    return ilk(function () {
+        environments.mark(this, []);
+        reporters.mark(this, []);
+        files.mark(this, []);
+    }).
+
+    proto(nextEnvironment, parts.that(function (that, done, results) {
+        var env = this[environments].shift();
+        if (env) {
+            this[dispatch](env, function (result) {
+                results.push({
+                    environment: env,
+                    results: result
+                });
+                that[nextEnvironment](done, results);
+            });
+        } else {
+            done(results);
+        }
+    })).
+
+    proto(dispatch, parts.that(function (that, env, done) {
+        this[reporters].forEach(function (r) { r.dispatch(env); });
+        env.dispatch(this[files], this[reporters], function (results) {
+            that[reporters].forEach(function (r) { r.done(env, results); });
+            done(results);
+        });
+    })).
+
+    proto({
+
+        /**
+         * Adds a file within the runner
+         *
+         * @method addFile
+         * @for gabarito.plumbing.Runner
+         *
+         * @param {string} file
+         */
+        addFile: function (file) {
+            this[files].push(file);
+        },
+
+        /**
+         * Adds an environment within the runner
+         *
+         * @method addRunner
+         * @for gabarito.plumbing.Runner
+         *
+         * @param {gabarito.plumbing.Environment} environment
+         */
+        addEnvironment: function (environment) {
+            this[environments].push(environment);
+        },
+
+        /**
+         * Adds a reporter within the runner
+         *
+         * @method addReporter
+         * @for gabarito.plumbing.Runner
+         *
+         * @param {gabarito.plumbing.Reporter} reporter
+         *
+         */
+        addReporter: function (reporter) {
+            this[reporters].push(reporter);
+        },
+
+        /**
+         * Dispatches the runner
+         *
+         * @method run
+         * @for gabarito.plumbing.Runner
+         *
+         * @param {function} done The function that will be called when things
+         *            have finished. It will receive the test results as first
+         *            argument.
+         */
+        run: parts.that(function (that, done) {
+            this[reporters].forEach(function (r) { r.start(); });
+
+            this[nextEnvironment](function (results) {
+                that[reporters].forEach(function (r) { r.finish(results); });
+                done(results);
+            }, []);
+        })
+
+    });
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

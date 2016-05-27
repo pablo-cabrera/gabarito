@@ -1,0 +1,3366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>gabarito.Assert - gabarito</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+            gabarito
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-alpha.006</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+            
+                <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
+            
+                <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Environment.html">gabarito.plumbing.Environment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.JUnitXmlReporter.html">gabarito.plumbing.JUnitXmlReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.NodeEnvironment.html">gabarito.plumbing.NodeEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.PhantomEnvironment.html">gabarito.plumbing.PhantomEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Reporter.html">gabarito.plumbing.Reporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+        </ul>
+    </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>gabarito.Assert</h1>
+</div>
+
+    
+
+    
+
+    
+
+    
+
+
+
+
+<div class="yuidoc-class-description">
+<p>Static class that contains various assertions</p>
+
+</div>
+
+
+<!-- table of contents -->
+
+<div id="class-toc" class="page-section">
+	<h2>Table of Contents</h2>
+    <ul>
+		
+		<li>
+			<strong>Methods</strong>
+			<ul>
+				
+				
+				<li><a href="#method-areEqual"><span class="im">areEqual</span>(<span class="ia">a</span><span class="ia">b</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-areEqual"><span class="im">areEqual</span>(<span class="ia">a</span><span class="ia">b</span><span class="ia">equality</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-areEqual"><span class="im">areEqual</span>(<span class="ia">a</span><span class="ia">b</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-areEqual"><span class="im">areEqual</span>(<span class="ia">a</span><span class="ia">b</span><span class="ia">equality</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-areNotSame"><span class="im">areNotSame</span>(<span class="ia">a</span><span class="ia">b</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-areSame"><span class="im">areSame</span>(<span class="ia">a</span><span class="ia">b</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-hasProperty"><span class="im">hasProperty</span>(<span class="ia">o</span><span class="ia">p</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-hop"><span class="im">hop</span>(<span class="ia">o</span><span class="ia">p</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isArray"><span class="im">isArray</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isBoolean"><span class="im">isBoolean</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isDate"><span class="im">isDate</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isFalse"><span class="im">isFalse</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isFunction"><span class="im">isFunction</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isInstanceOf"><span class="im">isInstanceOf</span>(<span class="ia">o</span><span class="ia">t</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isNaN"><span class="im">isNaN</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isNotNaN"><span class="im">isNotNaN</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isNotNull"><span class="im">isNotNull</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isNotUndefined"><span class="im">isNotUndefined</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isNull"><span class="im">isNull</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isNumber"><span class="im">isNumber</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isObject"><span class="im">isObject</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isRegExp"><span class="im">isRegExp</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isString"><span class="im">isString</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isTrue"><span class="im">isTrue</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-isUndefined"><span class="im">isUndefined</span>(<span class="ia">v</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-that"><span class="im">that</span>(<span class="ia">value</span>)</a></li>
+				
+				
+			</ul>
+		</li>
+		
+
+		
+
+		
+
+		
+	</ul>
+</div>
+
+<!-- details -->
+
+
+
+
+    <div id="methods" class="page-section">
+        <h2 class="off-left">Methods</h2>
+        <div class="item-list">
+       		
+        	
+<div id="method-areEqual" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>areEqual</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>a</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>b</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l69"><code>lib&#x2F;gabarito.js:69</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that both values are equal (using parts.Parts/equals method).</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">a</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>A value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">b</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>A another value</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-areEqual" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>areEqual</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>a</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>b</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>equality</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l79"><code>lib&#x2F;gabarito.js:79</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that both values are equals by using the passed equality
+function.</p>
+<p>The equality function will receive both values as arguments and it
+must returns true if the values are considered equal.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">a</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>A value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">b</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Another value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">equality</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The equality function</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-areEqual" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>areEqual</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>a</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>b</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l94"><code>lib&#x2F;gabarito.js:94</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that both values are equal (using parts.Parts/equals method).</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">a</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>A value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">b</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Another value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">msg</code>
+						<span class="type">String</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-areEqual" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>areEqual</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>a</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>b</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>equality</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l105"><code>lib&#x2F;gabarito.js:105</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that both values are equals by using the passed equality
+function.</p>
+<p>The equality function will receive both values as arguments and it
+must returns true if the values are considered equal.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">a</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>A value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">b</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Another value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">equality</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The equality function</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">msg</code>
+						<span class="type">String</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-areNotSame" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>areNotSame</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>a</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>b</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l57"><code>lib&#x2F;gabarito.js:57</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that both values are not the same (using !==)</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">a</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>A value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">b</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Another value</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-areSame" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>areSame</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>a</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>b</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l45"><code>lib&#x2F;gabarito.js:45</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that both values are the same (using ===)</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">a</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>A value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">b</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Another value</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-hasProperty" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>hasProperty</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>o</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>p</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l329"><code>lib&#x2F;gabarito.js:329</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given object has a property</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">o</code>
+						<span class="type">Object</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The object</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">p</code>
+						<span class="type">String</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The property name</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-hop" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>hop</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>o</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>p</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l342"><code>lib&#x2F;gabarito.js:342</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given object owns a property</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">o</code>
+						<span class="type">Object</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The object</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">p</code>
+						<span class="type">String</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The property name</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isArray" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isArray</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l133"><code>lib&#x2F;gabarito.js:133</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is an array.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isBoolean" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isBoolean</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l144"><code>lib&#x2F;gabarito.js:144</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is a boolean.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isDate" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isDate</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l210"><code>lib&#x2F;gabarito.js:210</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is a Date instance.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isFalse" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isFalse</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l234"><code>lib&#x2F;gabarito.js:234</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is false.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isFunction" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isFunction</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l155"><code>lib&#x2F;gabarito.js:155</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is a function.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isInstanceOf" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isInstanceOf</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>o</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>t</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l221"><code>lib&#x2F;gabarito.js:221</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is an instance of a given type.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">o</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The object</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">t</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The type</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isNaN" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isNaN</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l256"><code>lib&#x2F;gabarito.js:256</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is NaN.</p>
+<p>Note that the value should be the actual NaN and not something that
+converts to NaN.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isNotNaN" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isNotNaN</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l270"><code>lib&#x2F;gabarito.js:270</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is not NaN.</p>
+<p>Note that the value should be the actual NaN and not something that
+converts to NaN.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isNotNull" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isNotNull</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l295"><code>lib&#x2F;gabarito.js:295</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is not null.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isNotUndefined" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isNotUndefined</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l317"><code>lib&#x2F;gabarito.js:317</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is undefined.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isNull" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isNull</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l284"><code>lib&#x2F;gabarito.js:284</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is null.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isNumber" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isNumber</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l166"><code>lib&#x2F;gabarito.js:166</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is a number and is not NaN.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isObject" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isObject</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l177"><code>lib&#x2F;gabarito.js:177</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is an object.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isRegExp" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isRegExp</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l199"><code>lib&#x2F;gabarito.js:199</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is a RegExp instance.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isString" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isString</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l188"><code>lib&#x2F;gabarito.js:188</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is a string.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isTrue" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isTrue</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l245"><code>lib&#x2F;gabarito.js:245</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is true.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-isUndefined" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>isUndefined</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l306"><code>lib&#x2F;gabarito.js:306</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that a given value is undefined.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Value</p>
+</div>
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The error message</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-that" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>that</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>value</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l354"><code>lib&#x2F;gabarito.js:354</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>A nice helper to use asserts in a more expressive way. It has all
+the methods from the assert itself.</p>
+<p>Usage:</p>
+<pre class="code prettyprint"><code>assert.that(someValue).isEqualTo("3");</code></pre>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">value</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+					<p>gabarito.AssertThat</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
+            
+        
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

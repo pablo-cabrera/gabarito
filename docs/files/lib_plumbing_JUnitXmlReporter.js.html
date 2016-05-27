@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/plumbing/JUnitXmlReporter.js - gabarito</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+            gabarito
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-alpha.006</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+            
+                <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
+            
+                <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Environment.html">gabarito.plumbing.Environment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.JUnitXmlReporter.html">gabarito.plumbing.JUnitXmlReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.NodeEnvironment.html">gabarito.plumbing.NodeEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.PhantomEnvironment.html">gabarito.plumbing.PhantomEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Reporter.html">gabarito.plumbing.Reporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+        </ul>
+    </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>lib/plumbing/JUnitXmlReporter.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+&quot;use strict&quot;;
+
+var root = &quot;../..&quot;;
+var parts = require(root + &quot;/deps/parts&quot;);
+var ilk = require(root + &quot;/deps/ilk&quot;);
+var Reporter = require(&quot;./Reporter&quot;);
+
+
+module.exports = ilk.tokens(function (
+    file,
+    name,
+    xmlbuilder,
+    fs,
+    start,
+
+    buildTestSuites,
+    buildTestSuite,
+    buildTestCases
+) {
+
+    /**
+     * The JUnitXmlReporter produces a XML file with the test results that has
+     * the jUnit format. Useful to use along with your favorite CI solution.
+     *
+     * @class gabarito.plumbing.JUnitXmlReporter
+     * @extends gabarito.plumbing.Reporter
+     * @constructor
+     *
+     * @param {string} file The file to write the xml itself
+     * @param {string} name The name of the jUnit report
+     * @param {XmlBuilder} [xmlbuilder]
+     * @param {FileSystem} [fs]
+     */
+    return Reporter.descend(function (pFile, pName, pXmlBuilder, pFs) {
+        file.mark(this, pFile);
+        name.mark(this, pName);
+        xmlbuilder.mark(this, pXmlBuilder || require(&quot;xmlbuilder&quot;));
+        fs.mark(this, pFs || require(&quot;fs&quot;));
+    }).
+
+    proto(buildTestSuites, parts.that(function (that, results) {
+        var testsuites = this[xmlbuilder].create(&quot;testsuites&quot;);
+
+        if (this[name]) {
+            testsuites.att(&quot;name&quot;, this[name]);
+        }
+
+        var tests = 0;
+        var failures = 0;
+
+        testsuites.att(&quot;time&quot;, (Date.now() - this[start]) / 1000);
+        results.forEach(function (results) {
+            that[buildTestSuite](testsuites, results);
+
+            results.results.forEach(function (r) {
+                parts.forEach(r.results, function (r) {
+                    tests += 1;
+                    if (r.error) {
+                        failures += 1;
+                    }
+                });
+            });
+        });
+
+        testsuites.att(&quot;tests&quot;, tests);
+        testsuites.att(&quot;failures&quot;, failures);
+
+        return testsuites;
+    })).
+
+    proto(buildTestSuite, parts.that(function (that, testSuites, results) {
+        var env = results.environment.getName();
+        var testSuite = testSuites.ele(&quot;testsuite&quot;);
+        testSuite.att(&quot;name&quot;, env);
+
+        var tests = 0;
+        var failures = 0;
+        var time = 0;
+
+        results.results.forEach(function (r) {
+            that[buildTestCases](env, testSuite, r);
+
+            time += r.elapsedTime;
+
+            parts.forEach(r.results, function (r) {
+                tests += 1;
+                if (r.error) {
+                    failures += 1;
+                }
+            });
+        });
+
+        testSuite.att(&quot;tests&quot;, tests);
+        testSuite.att(&quot;failures&quot;, failures);
+        testSuite.att(&quot;time&quot;, time / 1000);
+    })).
+
+    proto(buildTestCases, parts.that(function (that, env, testSuite, results) {
+        parts.forEach(results.results, function (r, p) {
+            var testCase = testSuite.ele(&quot;testcase&quot;);
+            testCase.att(
+                    &quot;name&quot;,
+                    &quot;(&quot; + env + &quot;) &quot; + results.test.name + &quot;#&quot; + p);
+            testCase.att(&quot;time&quot;, r.elapsedTime / 1000);
+            testCase.att(&quot;classname&quot;, results.test.name);
+
+            if (r.error) {
+                var failure = testCase.ele(&quot;failure&quot;);
+                failure.att(&quot;message&quot;, r.error.message);
+
+                if (r.error.stack) {
+                    var systemErr = testCase.ele(&quot;system-err&quot;);
+                    systemErr.txt(r.error.stack);
+                }
+            }
+        });
+    })).
+
+    proto({
+        start: function () {
+            this[start] = Date.now();
+        },
+
+        /**
+         * Produces the XML itself
+         *
+         * @method finish
+         * @for gabarito.plumbing.JUnitXmlReporter
+         *
+         * @param {object[]} results
+         */
+        finish: function (results) {
+            var testsuites = this[buildTestSuites](results);
+            this[fs].writeFileSync(
+                    this[file],
+                    testsuites.end({ pretty: true }));
+        }
+    });
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

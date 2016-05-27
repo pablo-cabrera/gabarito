@@ -1,5 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/gabarito.js - gabarito</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+            gabarito
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-alpha.006</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+            
+                <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
+            
+                <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Environment.html">gabarito.plumbing.Environment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.JUnitXmlReporter.html">gabarito.plumbing.JUnitXmlReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.NodeEnvironment.html">gabarito.plumbing.NodeEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.PhantomEnvironment.html">gabarito.plumbing.PhantomEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Reporter.html">gabarito.plumbing.Reporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+        </ul>
+    </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>lib/gabarito.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
 (function (node) {
-    "use strict";
+    &quot;use strict&quot;;
 
     var main;
     var ilk;
@@ -7,8 +110,8 @@
 
     if (node) {
         main = global;
-        parts = require("../deps/parts");
-        ilk = require("../deps/ilk");
+        parts = require(&quot;../deps/parts&quot;);
+        ilk = require(&quot;../deps/ilk&quot;);
     } else {
         main = window;
         parts = main.parts;
@@ -51,7 +154,7 @@
          * @param {mixed} a A value
          * @param {mixed} b Another value
          */
-        areSame: test("Values are not the same",
+        areSame: test(&quot;Values are not the same&quot;,
             function (a, b) { return a === b; }),
 
         /**
@@ -63,7 +166,7 @@
          * @param {mixed} a A value
          * @param {mixed} b Another value
          */
-        areNotSame: test("Values are the same",
+        areNotSame: test(&quot;Values are the same&quot;,
             function (a, b) { return a !== b; }),
 
         /**
@@ -121,7 +224,7 @@
             switch (arguments.length) {
             case 2: return assert.areEqual(a, b, parts.equals);
             case 3: return parts.isFunction(equality)?
-                    assert.areEqual(a, b, equality, "Values should be equal."):
+                    assert.areEqual(a, b, equality, &quot;Values should be equal.&quot;):
                     assert.areEqual(a, b, parts.equals, equality);
             default:
                 if (!equality(a, b)) {
@@ -139,7 +242,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isArray: test("Value should be an array.", parts.isArray),
+        isArray: test(&quot;Value should be an array.&quot;, parts.isArray),
 
         /**
          * Asserts that a given value is a boolean.
@@ -150,7 +253,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isBoolean: test("Value should be a boolean.", parts.isBoolean),
+        isBoolean: test(&quot;Value should be a boolean.&quot;, parts.isBoolean),
 
         /**
          * Asserts that a given value is a function.
@@ -161,7 +264,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isFunction: test("Value should be a function.", parts.isFunction),
+        isFunction: test(&quot;Value should be a function.&quot;, parts.isFunction),
 
         /**
          * Asserts that a given value is a number and is not NaN.
@@ -172,7 +275,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isNumber: test("Value should be a number.", parts.isNumber),
+        isNumber: test(&quot;Value should be a number.&quot;, parts.isNumber),
 
         /**
          * Asserts that a given value is an object.
@@ -183,7 +286,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isObject: test("Value should be an object.", parts.isObject),
+        isObject: test(&quot;Value should be an object.&quot;, parts.isObject),
 
         /**
          * Asserts that a given value is a string.
@@ -194,7 +297,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isString: test("Value should be a string.", parts.isString),
+        isString: test(&quot;Value should be a string.&quot;, parts.isString),
 
         /**
          * Asserts that a given value is a RegExp instance.
@@ -205,7 +308,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isRegExp: test("Value should be a RegExp instance.", parts.isRegExp),
+        isRegExp: test(&quot;Value should be a RegExp instance.&quot;, parts.isRegExp),
 
         /**
          * Asserts that a given value is a Date instance.
@@ -216,7 +319,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isDate: test("Value should be a Date instance.", parts.isDate),
+        isDate: test(&quot;Value should be a Date instance.&quot;, parts.isDate),
 
         /**
          * Asserts that a given value is an instance of a given type.
@@ -228,7 +331,7 @@
          * @param {function} t The type
          * @param {string} [msg] The error message
          */
-        isInstanceOf: test("Value should be an instance of type.",
+        isInstanceOf: test(&quot;Value should be an instance of type.&quot;,
                 function (o, t) { return o instanceof t; }),
 
         /**
@@ -240,7 +343,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isFalse: test("Value should be false.", parts.sameAs(false)),
+        isFalse: test(&quot;Value should be false.&quot;, parts.sameAs(false)),
 
         /**
          * Asserts that a given value is true.
@@ -251,7 +354,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isTrue: test("Value should be true.", parts.sameAs(true)),
+        isTrue: test(&quot;Value should be true.&quot;, parts.sameAs(true)),
 
         /**
          * Asserts that a given value is NaN.
@@ -265,7 +368,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isNaN: test("Value should be NaN.", parts.isNaN),
+        isNaN: test(&quot;Value should be NaN.&quot;, parts.isNaN),
 
         /**
          * Asserts that a given value is not NaN.
@@ -279,7 +382,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isNotNaN: test("Value should not be NaN.", parts.negate(parts.isNaN)),
+        isNotNaN: test(&quot;Value should not be NaN.&quot;, parts.negate(parts.isNaN)),
 
         /**
          * Asserts that a given value is null.
@@ -290,7 +393,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isNull: test("Value should be null.", sameAsNull),
+        isNull: test(&quot;Value should be null.&quot;, sameAsNull),
 
         /**
          * Asserts that a given value is not null.
@@ -301,7 +404,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isNotNull: test("Value should not be null.", parts.negate(sameAsNull)),
+        isNotNull: test(&quot;Value should not be null.&quot;, parts.negate(sameAsNull)),
 
         /**
          * Asserts that a given value is undefined.
@@ -312,7 +415,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isUndefined: test("Value should be undefined.", sameAsUndefined),
+        isUndefined: test(&quot;Value should be undefined.&quot;, sameAsUndefined),
 
         /**
          * Asserts that a given value is undefined.
@@ -323,7 +426,7 @@
          * @param {mixed} v Value
          * @param {string} [msg] The error message
          */
-        isNotUndefined: test("Value should not be undefined.",
+        isNotUndefined: test(&quot;Value should not be undefined.&quot;,
                 parts.negate(sameAsUndefined)),
 
         /**
@@ -336,7 +439,7 @@
          * @param {string} p The property name
          * @param {string} [msg] The error message
          */
-        hasProperty: test("Object should have the property",
+        hasProperty: test(&quot;Object should have the property&quot;,
                 function (o, p) { return p in o; }),
 
         /**
@@ -349,16 +452,16 @@
          * @param {string} p The property name
          * @param {string} [msg] The error message
          */
-        hop: test("Object should own the property", parts.hop),
+        hop: test(&quot;Object should own the property&quot;, parts.hop),
 
         /**
          * A nice helper to use asserts in a more expressive way. It has all
          * the methods from the assert itself.
          *
          * Usage:
-         * ```
-         * assert.that(someValue).isEqualTo("3");
-         * ```
+         * &#x60;&#x60;&#x60;
+         * assert.that(someValue).isEqualTo(&quot;3&quot;);
+         * &#x60;&#x60;&#x60;
          * @method that
          * @for gabarito.Assert
          *
@@ -374,7 +477,7 @@
     var AssertThat = ilk.tokens(function (value) {
         /**
          * A nice helper to use asserts in a more expressive way. It has all
-         * the methods from the {{#crossLink "gabarito.Assert"}}{{/crossLink}}.
+         * the methods from the {{#crossLink &quot;gabarito.Assert&quot;}}{{/crossLink}}.
          *
          * @class gabarito.AssertThat
          * @constructor
@@ -633,12 +736,12 @@
 
 
         parts.forEach(assert, function (v, p) {
-            if (p !== "that") {
+            if (p !== &quot;that&quot;) {
 
                 AssertThat.proto(
-                    p === "areSame"? "isTheSameAs":
-                    p === "areNotSame"? "isNotTheSameAs":
-                    p === "areEqual"? "isEqualTo":
+                    p === &quot;areSame&quot;? &quot;isTheSameAs&quot;:
+                    p === &quot;areNotSame&quot;? &quot;isNotTheSameAs&quot;:
+                    p === &quot;areEqual&quot;? &quot;isEqualTo&quot;:
                     p,
                     parts.args(function (args) {
                         args.unshift(this[value]);
@@ -722,7 +825,7 @@
             this.reset();
         })).
 
-        constant("standalone", function () {
+        constant(&quot;standalone&quot;, function () {
             return new Gabarito();
         }).
 
@@ -750,19 +853,19 @@
 
             var clauses = [];
             parts.forEach(test, function (v, p) {
-                if (p !== "before" && p !== "after" && parts.isFunction(v)) {
+                if (p !== &quot;before&quot; &amp;&amp; p !== &quot;after&quot; &amp;&amp; parts.isFunction(v)) {
                     clauses.push(p);
                 }
             });
 
-            this[emit]("begin", test.name);
+            this[emit](&quot;begin&quot;, test.name);
 
             this[nextClause](test, clauses, function () {
                 that[currentResult].elapsedTime = parts.now() -
                         that[currentResult].start;
 
                 that[results].push(that[currentResult]);
-                that[emit]("end", test.name, that[currentResult]);
+                that[emit](&quot;end&quot;, test.name, that[currentResult]);
                 that[currentResult] = undefined;
                 done();
             });
@@ -789,7 +892,7 @@
                     result.error = error;
                 }
 
-                that[emit](error? "fail": "pass", test.name, clause, result);
+                that[emit](error? &quot;fail&quot;: &quot;pass&quot;, test.name, clause, result);
 
                 if (parts.isFunction(test.after)) {
                     that[runBlock](test.after, function () { done(); });
@@ -800,7 +903,7 @@
 
             this[currentResult].results[clause] = result;
 
-            this[emit]("enter", test.name, clause);
+            this[emit](&quot;enter&quot;, test.name, clause);
 
             if (parts.isFunction(test.before)) {
                 this[runBlock](test.before, function (error) {
@@ -841,11 +944,11 @@
             },
 
             standalone: function () {
-                return this.constant("standalone")();
+                return this.constant(&quot;standalone&quot;)();
             },
 
             /**
-             * Resets the gabarito to it's initial state, removing all listeners
+             * Resets the gabarito to it&#x27;s initial state, removing all listeners
              * as well.
              *
              * @method reset
@@ -864,14 +967,14 @@
                 this[waiting] = false;
                 this[currentResult] = undefined;
                 this[listeners] = {
-                    "init": [],
-                    "begin": [],
-                    "enter": [],
-                    "end": [],
-                    "pass": [],
-                    "fail": [],
-                    "complete": [],
-                    "say": []
+                    &quot;init&quot;: [],
+                    &quot;begin&quot;: [],
+                    &quot;enter&quot;: [],
+                    &quot;end&quot;: [],
+                    &quot;pass&quot;: [],
+                    &quot;fail&quot;: [],
+                    &quot;complete&quot;: [],
+                    &quot;say&quot;: []
                 };
                 this[onResume] = undefined;
             },
@@ -919,14 +1022,14 @@
             stay: parts.that(function (that, timeout) {
                 if (this[waiting]) {
                     this[waiting] = false;
-                    throw new Error("Already waiting.");
+                    throw new Error(&quot;Already waiting.&quot;);
                 }
 
                 this[waiting] = true;
                 this[waitingTimeout] = setTimeout(function () {
                     if (that[waiting]) {
                         that.go(function () {
-                            throw new Error("Timeout reached.");
+                            throw new Error(&quot;Timeout reached.&quot;);
                         });
                     }
                 }, timeout || 10000);
@@ -942,7 +1045,7 @@
              */
             go: function (block) {
                 if (!this[waiting]) {
-                    throw new Error("Go called without stay.");
+                    throw new Error(&quot;Go called without stay.&quot;);
                 }
                 clearTimeout(this[waitingTimeout]);
                 this[waiting] = false;
@@ -989,7 +1092,7 @@
              */
             on: function (event, listener) {
                 if (!(event in this[listeners])) {
-                    throw new TypeError("Unknown event: " + event);
+                    throw new TypeError(&quot;Unknown event: &quot; + event);
                 }
                 this[listeners][event].push(listener);
             },
@@ -1008,10 +1111,10 @@
                             this[tests],
                             function (t) { return test.name; });
 
-                    this[emit]("init", testNames);
+                    this[emit](&quot;init&quot;, testNames);
                     this[nextTest](this[tests].slice(), function () {
                         var doneResults = that[results];
-                        that[emit]("complete", doneResults);
+                        that[emit](&quot;complete&quot;, doneResults);
                         that.reset();
                         if (done) {
                             done(doneResults);
@@ -1033,7 +1136,7 @@
              * @param {mixed} args*
              */
             say: parts.args(function (args) {
-                this[emit].apply(this, ["say"].concat(args));
+                this[emit].apply(this, [&quot;say&quot;].concat(args));
             })
         });
     });
@@ -1042,10 +1145,27 @@
 
     if (node) {
         module.exports = gabarito;
-        gabarito.plumbing = require("./plumbing");
+        gabarito.plumbing = require(&quot;./plumbing&quot;);
     } else {
         main.gabarito = gabarito;
         gabarito.parts = parts;
     }
 
-}(typeof exports !== "undefined" && global.exports !== exports));
+}(typeof exports !== &quot;undefined&quot; &amp;&amp; global.exports !== exports));
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

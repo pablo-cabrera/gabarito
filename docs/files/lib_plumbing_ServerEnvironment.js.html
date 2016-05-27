@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/plumbing/ServerEnvironment.js - gabarito</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+            gabarito
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-alpha.006</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+            
+                <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
+            
+                <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Environment.html">gabarito.plumbing.Environment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.JUnitXmlReporter.html">gabarito.plumbing.JUnitXmlReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.NodeEnvironment.html">gabarito.plumbing.NodeEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.PhantomEnvironment.html">gabarito.plumbing.PhantomEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Reporter.html">gabarito.plumbing.Reporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+        </ul>
+    </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>lib/plumbing/ServerEnvironment.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+&quot;use strict&quot;;
+
+var root = &quot;../..&quot;;
+var parts = require(root + &quot;/deps/parts&quot;);
+var ilk = require(root + &quot;/deps/ilk&quot;);
+
+var Environment = require(&quot;./Environment&quot;);
+var url = require(&quot;url&quot;);
+var path = require(&quot;path&quot;);
+
+var events = &quot;init,complete,begin,end,enter,pass,fail,say&quot;.split(&quot;,&quot;);
+
+module.exports = ilk.tokens(function (
+    results,
+    server,
+    complete,
+    http,
+    fs,
+
+    startServer,
+    dispatchBrowser,
+    ditchBrowser,
+    routeRequest,
+    closeServer,
+    deliverBrowserRunner,
+    deliverAssets,
+    deliverFile,
+    receiveEvent,
+    tellReporters,
+    concatFiles,
+    whenFinished
+) {
+
+    /**
+     * The server environment provides a simple http server to serve the test
+     * files and run the tests themselves within a browser.
+     *
+     * An implementation must implement a way of dispatching a browser to
+     * navigate to &quot;http://localhost:1432&quot; and it may implement a method to
+     * close the browser when the gabarito has finished.
+     *
+     * @class gabarito.plumbing.ServerEnvironment
+     * @extends gabarito.plumbing.Environment
+     * @constructor
+     *
+     * @param {HTTP} [http] The node http library
+     * @param {FileSystem} [fs] The node file system library
+     */
+    return Environment.descend(function (pHttp, pFs) {
+        server.mark(this);
+        results.mark(this);
+        complete.mark(this, null);
+
+        http.mark(this, pHttp || require(&quot;http&quot;));
+        fs.mark(this, pFs || require(&quot;fs&quot;));
+    }).
+
+    proto(whenFinished, function (done) {
+        this[complete] = function () {
+            this[complete] = null;
+            this[ditchBrowser](done);
+        };
+    }).
+
+    /**
+     * This method may be implemented in order to clean up any browser
+     * reference.
+     *
+     * It must call the done function afterwards.
+     *
+     * @method ditchBrowser
+     * @for gabarito.plumbing.ServerEnvironment
+     * @protected
+     *
+     * @param {function} done
+     */
+    proto(ditchBrowser, function (done) {
+        done();
+    }).
+
+    proto(startServer, parts.that(function (that, files, reporters, done) {
+        this[server] = this[http].createServer(function (req, res) {
+            that[routeRequest](req, res, files, reporters);
+        });
+
+        this[server].listen(1432, &quot;0.0.0.0&quot;, function () { done(); });
+    })).
+
+    proto(routeRequest, function (req, res, files, reporters) {
+        switch (url.parse(req.url).pathname) {
+        case &quot;/&quot;          : return this[deliverBrowserRunner](req, res, files);
+        case &quot;/assets.js&quot; : return this[deliverAssets](req, res);
+        case &quot;/event&quot;     : return this[receiveEvent](req, res, reporters);
+        default           : return this[deliverFile](req, res, files);
+        }
+    }).
+
+    proto(deliverBrowserRunner, function (req, res, files) {
+        var hooks =
+            &quot;var queue = [];&quot; +
+            &quot;var sending = false;&quot; +
+            &quot;var parts = gabarito.parts;&quot; +
+
+            &quot;var normalize = function (v) {&quot; +
+                &quot;if (v instanceof Error) {&quot; +
+                    &quot;return {&quot; +
+                        &quot;toString: v.toString(),&quot; +
+                        &quot;stack: v.stack,&quot; +
+                        &quot;message: v.message&quot; +
+                    &quot;};&quot; +
+                &quot;} else if (parts.isArray(v)) {&quot; +
+                    &quot;return parts.map(v, normalize);&quot; +
+                &quot;} else if (parts.isObject(v)) {&quot; +
+                    &quot;var o = {};&quot; +
+                    &quot;parts.forEach(v, function (v, p) {&quot; +
+                        &quot;o[p] = normalize(v);&quot; +
+                    &quot;});&quot; +
+                    &quot;return o;&quot; +
+                &quot;}&quot; +
+                &quot;return v;&quot; +
+            &quot;};&quot; +
+
+            &quot;var emit = parts.args(function (args) {&quot; +
+                &quot;queue.push(args);&quot; +
+                &quot;if (!sending) {&quot; +
+                    &quot;sending = true;&quot; +
+                    &quot;send();&quot; +
+                &quot;}&quot; +
+            &quot;});&quot; +
+
+            &quot;var send = function () {&quot; +
+                &quot;var args = queue[0];&quot; +
+                &quot;var xhr = new XMLHttpRequest();&quot; +
+                &quot;xhr.onreadystatechange = function () {&quot; +
+                    &quot;if (xhr.readyState === 4) {&quot; +
+                        &quot;xhr = null;&quot; +
+                        &quot;queue.shift();&quot; +
+                        &quot;if (queue.length !== 0) {&quot; +
+                            &quot;send();&quot; +
+                        &quot;} else { &quot; +
+                            &quot;sending = false;&quot; +
+                        &quot;}&quot; +
+                    &quot;}&quot; +
+                &quot;};&quot; +
+                &quot;xhr.open(\&quot;POST\&quot;, \&quot;/event\&quot;, true);&quot; +
+                &quot;xhr.send(JSON.stringify(normalize(args)));&quot; +
+            &quot;};&quot; +
+
+            &quot;var events = &quot; + JSON.stringify(events) + &quot;;&quot; +
+
+            &quot;parts.forEach(events, function (e) {&quot; +
+                &quot;gabarito.on(e, parts.args(function (args) {&quot; +
+                    &quot;emit.apply(null, [e].concat(args)); &quot; +
+                &quot;}));&quot; +
+            &quot;});&quot; +
+
+            &quot;gabarito.verify();&quot;;
+
+        var html =
+            &quot;&lt;!DOCTYPE HTML PUBLIC \&quot;-&quot; +
+                    &quot;//W3C//DTD HTML 4.01 Transitional//EN\&quot;&gt;&quot; +
+
+            &quot;&lt;html&gt;&quot; +
+                &quot;&lt;head&gt;&quot; +
+                    &quot;&lt;title&gt;gabarito runner&lt;/title&gt;&quot; +
+                    &quot;&lt;meta charset=\&quot;UTF-8\&quot;&gt;&quot; +
+                    &quot;&lt;script src=\&quot;/assets.js\&quot;&gt;&lt;/script&gt;&quot; +
+                        files.map(function (f) {
+                            return &quot;&lt;script src=\&quot;&quot; +
+                                    path.join(&quot;f&quot;, f) + &quot;\&quot;&gt;&lt;/script&gt;&quot;;
+                        }).join(&quot;&quot;) +
+                        &quot;&lt;script&gt;(function () {&quot; + hooks + &quot;}());&lt;/script&gt;&quot; +
+                    &quot;&lt;/head&gt;&quot; +
+                &quot;&lt;body&gt;&quot; +
+                    &quot;&lt;p&gt;Running...&lt;/p&gt;&quot; +
+                &quot;&lt;/body&gt;&quot; +
+            &quot;&lt;/html&gt;&quot;;
+
+        res.writeHead(200, { &quot;Content-Type&quot;: &quot;text/html&quot; });
+        res.end(html);
+    }).
+
+    proto(concatFiles, parts.that(function (that, files, callback) {
+        var data = {};
+
+        var check = function () {
+            if (files.every(function (f) { return f in data; })) {
+                callback(files.reduce(function (prev, file) {
+                    return prev += data[file] + &quot;\n&quot;;
+                }, &quot;&quot;));
+            }
+        };
+
+        files.forEach(function (f) {
+            that[fs].readFile(f, function (e, d) {
+                data[f] = d;
+                check();
+            });
+        });
+    })).
+
+    proto(deliverAssets, function (req, res) {
+        this[concatFiles]([
+            require.resolve(root + &quot;/deps/json2.js&quot;),
+            require.resolve(root + &quot;/deps/parts&quot;),
+            require.resolve(root + &quot;/deps/ilk&quot;),
+            require.resolve(&quot;../gabarito&quot;)
+        ], function (data) {
+            res.writeHead(200, { &quot;Content-Type&quot;: &quot;text/javascript&quot; });
+            res.end(data);
+        });
+    }).
+
+    proto(deliverFile, function (req, res, files) {
+        var location = url.parse(req.url);
+        var n = location.pathname;
+        var f = (/^\/r\//).test(n)?
+                path.join(process.cwd(), n.replace(/^\/r\/(.+)/, &quot;$1&quot;)):
+                n.replace(/^\/f(.+)/, &quot;$1&quot;);
+
+        this[fs].readFile(f, function (err, file) {
+            if (err) {
+                res.statusCode = 404;
+                res.end();
+            } else {
+                res.writeHead(200, { &quot;Content-Type&quot;: &quot;text/javascript&quot; });
+                res.end(file);
+            }
+        });
+    }).
+
+    proto(receiveEvent, parts.that(function (that, req, res, reporters) {
+        var post = [];
+        req.on(&quot;data&quot;, function (chunk) { post.push(chunk); });
+        req.on(&quot;end&quot;, function () {
+            var data = post.join(&quot;&quot;);
+            var args = JSON.parse(data);
+            var event = args.shift();
+
+            that[tellReporters](reporters, event, args);
+
+            if (event === &quot;complete&quot;) {
+                that[results] = args[0];
+                parts.work(function () { that[complete](); });
+            }
+        });
+
+        res.writeHead(200, { &quot;Content-Type&quot;: &quot;text/plain&quot; });
+        res.end();
+    })).
+
+    proto(tellReporters, parts.that(function (that, reporters, event, args) {
+        reporters.forEach(function (r) {
+            r[event].apply(r, [that].concat(args));
+        });
+    })).
+
+    proto(closeServer, function (done) {
+        this[server].close(function () { done(); });
+        this[server] = undefined;
+    }).
+
+    /**
+     * This method must be implemented in order to dispatch the browser to
+     * navigate to &quot;http://localhost:1432&quot;.
+     *
+     * The done function must be called afterwards.
+     *
+     * @method dispatchBrowser
+     * @for gabarito.plumbing.ServerEnvironment
+     * @protected
+     *
+     * @param {function} done
+     */
+    proto(dispatchBrowser, function (done) {
+        throw new Error(&quot;Unimplemented method&quot;);
+    }).
+
+    proto({
+
+        getName: function () {
+            throw new Error(&quot;Unimplemented method&quot;);
+        },
+
+        dispatch: parts.that(function (that, files, reporters, done) {
+            this[startServer](files, reporters, function () {
+                that[dispatchBrowser](function () {
+                    that[whenFinished](function () {
+                        that[closeServer](function () {
+                            done(that[results]);
+                        });
+                    });
+                });
+            });
+
+        })
+    }).
+
+    shared({
+        dispatchBrowser: dispatchBrowser,
+        ditchBrowser: ditchBrowser
+    });
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

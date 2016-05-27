@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>gabarito.Gabarito - gabarito</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+            gabarito
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-alpha.006</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+            
+                <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
+            
+                <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Environment.html">gabarito.plumbing.Environment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.JUnitXmlReporter.html">gabarito.plumbing.JUnitXmlReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.NodeEnvironment.html">gabarito.plumbing.NodeEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.PhantomEnvironment.html">gabarito.plumbing.PhantomEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Reporter.html">gabarito.plumbing.Reporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+        </ul>
+    </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>gabarito.Gabarito</h1>
+</div>
+
+    
+
+    
+
+    
+
+    
+
+
+
+
+
+<!-- table of contents -->
+
+<div id="class-toc" class="page-section">
+	<h2>Table of Contents</h2>
+    <ul>
+		
+		<li>
+			<strong>Methods</strong>
+			<ul>
+				
+				
+				<li><a href="#method-go"><span class="im">go</span>(<span class="ia">block</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-going"><span class="im">going</span>(<span class="ia">block</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-on"><span class="im">on</span>(<span class="ia">event</span><span class="ia">listener</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-reset"><span class="im">reset</span>()</a></li>
+				
+				
+				
+				<li><a href="#method-say"><span class="im">say</span>(<span class="ia">args</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-sketch"><span class="im">sketch</span>(<span class="ia">test</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-stay"><span class="im">stay</span>(<span class="ia">timeout</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-verify"><span class="im">verify</span>(<span class="ia">done</span>)</a></li>
+				
+				
+			</ul>
+		</li>
+		
+
+		
+		<li>
+			<strong>Properties</strong>
+			<ul>
+				
+				<li><a href="#prop-assert"><span class="ip">assert</span></a></li>
+				
+			</ul>
+		</li>
+		
+
+		
+
+		
+	</ul>
+</div>
+
+<!-- details -->
+
+
+
+
+    <div id="methods" class="page-section">
+        <h2 class="off-left">Methods</h2>
+        <div class="item-list">
+       		
+        	
+<div id="method-go" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>go</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">block</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l935"><code>lib&#x2F;gabarito.js:935</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Tells the gabarito to resume the current draft</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[block]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-going" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>going</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">block</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l952"><code>lib&#x2F;gabarito.js:952</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Returns a function that when called, tells gabarito to resume the
+current draft and also passes the parameters along to the given
+function.</p>
+<p>Just a syntatic sugar to avoid another nesting level.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[block]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-on" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>on</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>event</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code>listener</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l974"><code>lib&#x2F;gabarito.js:974</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Register an event listener for a given event.</p>
+<p>Available events:</p>
+<ul>
+<li>begin: The beginning of the gabarito veritication</li>
+<li>end: The end of the gabarito verification</li>
+<li>pass: Whenever a draft passes</li>
+<li>fail: Whenever a draft fails</li>
+</ul>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">event</code>
+						<span class="type">String</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name">listener</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-reset" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>reset</code></span>
+
+	
+		<span class="paren">()</span>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l847"><code>lib&#x2F;gabarito.js:847</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Resets the gabarito to it&#39;s initial state, removing all listeners
+as well.</p>
+</div>
+	
+
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-say" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>say</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>args</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1027"><code>lib&#x2F;gabarito.js:1027</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Tells gabarito to say something.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">args</code>
+						<span class="type">Mixed</span>
+					
+
+					
+						<span class="flag multiple" title="This argument may occur one or more times.">multiple</span>
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-sketch" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>sketch</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>test</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l895"><code>lib&#x2F;gabarito.js:895</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Adds a test within the gabarito.</p>
+<p>The sketch is an object containing various methods. Each method
+is treated as a draft. Every draft is run to check if it works.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">test</code>
+						<span class="type">Object</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The test itself</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-stay" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>stay</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">timeout</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l910"><code>lib&#x2F;gabarito.js:910</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Tells the gabarito to wait for an async continuation of a draft.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[timeout]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Timeout before it breaks
+                          (defaults to 10000);</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-verify" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>verify</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">done</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l997"><code>lib&#x2F;gabarito.js:997</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Verify all tests</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[done]</code>
+						<span class="type">Function</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+
+	
+</div>
+
+            
+        
+        </div>
+    </div>
+
+
+
+    <div id="properties" class="page-section">
+        <h2 class="off-left">Properties</h2>
+
+        <div class="item-list">
+        
+<div id="prop-assert" class="property item">
+    <h3 class="name"><code>assert</code></h3>
+    <span class="type"><a href="../classes/gabarito.Assert.html" class="crosslink">gabarito.Assert</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/lib_gabarito.js.html#l711"><code>lib&#x2F;gabarito.js:711</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Reference containing the various assert utils.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+        
+        </div>
+    </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

@@ -1,0 +1,2046 @@
+{
+    "project": {
+        "name": "gabarito",
+        "description": "JS unit tests",
+        "version": "0.0.1-alpha.006",
+        "url": "https://github.com/pablo-cabrera/gabarito"
+    },
+    "files": {
+        "lib/plumbing/ConsoleReporter.js": {
+            "name": "lib/plumbing/ConsoleReporter.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.ConsoleReporter": 1
+            },
+            "fors": {
+                "gabarito.plumbing.ConsoleReporter": 1
+            },
+            "namespaces": {}
+        },
+        "lib/plumbing/Environment.js": {
+            "name": "lib/plumbing/Environment.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.Environment": 1
+            },
+            "fors": {
+                "gabarito.plumbing.Environment": 1
+            },
+            "namespaces": {}
+        },
+        "lib/plumbing/JUnitXmlReporter.js": {
+            "name": "lib/plumbing/JUnitXmlReporter.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.JUnitXmlReporter": 1
+            },
+            "fors": {
+                "gabarito.plumbing.JUnitXmlReporter": 1
+            },
+            "namespaces": {}
+        },
+        "lib/plumbing/NodeEnvironment.js": {
+            "name": "lib/plumbing/NodeEnvironment.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.NodeEnvironment": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/plumbing/PhantomEnvironment.js": {
+            "name": "lib/plumbing/PhantomEnvironment.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.PhantomEnvironment": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/plumbing/Reporter.js": {
+            "name": "lib/plumbing/Reporter.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.Reporter": 1
+            },
+            "fors": {
+                "gabarito.plumbing.Reporter": 1
+            },
+            "namespaces": {}
+        },
+        "lib/plumbing/Runner.js": {
+            "name": "lib/plumbing/Runner.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.Runner": 1
+            },
+            "fors": {
+                "gabarito.plumbing.Runner": 1
+            },
+            "namespaces": {}
+        },
+        "lib/plumbing/ServerEnvironment.js": {
+            "name": "lib/plumbing/ServerEnvironment.js",
+            "modules": {},
+            "classes": {
+                "gabarito.plumbing.ServerEnvironment": 1
+            },
+            "fors": {
+                "gabarito.plumbing.ServerEnvironment": 1
+            },
+            "namespaces": {}
+        },
+        "lib/gabarito.js": {
+            "name": "lib/gabarito.js",
+            "modules": {},
+            "classes": {
+                "gabarito.Assert": 1,
+                "gabarito.AssertThat": 1
+            },
+            "fors": {
+                "gabarito.Assert": 1,
+                "gabarito.AssertThat": 1,
+                "gabarito.Gabarito": 1
+            },
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "gabarito.plumbing.ConsoleReporter": {
+            "name": "gabarito.plumbing.ConsoleReporter",
+            "shortname": "gabarito.plumbing.ConsoleReporter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 32,
+            "description": "The console reporter prints the gabarito events to the node's console\nwith colors and what-not.",
+            "extends": "gabarito.plumbing.Reporter",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "console",
+                    "description": "",
+                    "type": "Console",
+                    "optional": true
+                }
+            ]
+        },
+        "gabarito.plumbing.Environment": {
+            "name": "gabarito.plumbing.Environment",
+            "shortname": "gabarito.plumbing.Environment",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/Environment.js",
+            "line": 7,
+            "description": "The environment is responsible for loading the gabarito, the test files and\nrunning the tests themselves.\n\nIt must implement the method getName in order to describe itself to the\nreporters.\n\nThe dispatch method receives the files list, the reporters involved and a\ncallback function that should be called when things complete, passing the\nresults to the callback function as first argument.",
+            "is_constructor": 1
+        },
+        "gabarito.plumbing.JUnitXmlReporter": {
+            "name": "gabarito.plumbing.JUnitXmlReporter",
+            "shortname": "gabarito.plumbing.JUnitXmlReporter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/JUnitXmlReporter.js",
+            "line": 21,
+            "description": "The JUnitXmlReporter produces a XML file with the test results that has\nthe jUnit format. Useful to use along with your favorite CI solution.",
+            "extends": "gabarito.plumbing.Reporter",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "file",
+                    "description": "The file to write the xml itself",
+                    "type": "String"
+                },
+                {
+                    "name": "name",
+                    "description": "The name of the jUnit report",
+                    "type": "String"
+                },
+                {
+                    "name": "xmlbuilder",
+                    "description": "",
+                    "type": "XmlBuilder",
+                    "optional": true
+                },
+                {
+                    "name": "fs",
+                    "description": "",
+                    "type": "FileSystem",
+                    "optional": true
+                }
+            ]
+        },
+        "gabarito.plumbing.NodeEnvironment": {
+            "name": "gabarito.plumbing.NodeEnvironment",
+            "shortname": "gabarito.plumbing.NodeEnvironment",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/NodeEnvironment.js",
+            "line": 17,
+            "description": "The NodeEnvironment runs the tests under the node-js itself. It loades\nthe files using the require mechanism, but it deletes them from the\nnode's cache beforehand.",
+            "extends": "gabarito.plumbing.Environment",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "gabarito",
+                    "description": "A gabarito instance",
+                    "type": "gabarito.Gabarito",
+                    "optional": true
+                },
+                {
+                    "name": "require",
+                    "description": "The module.require function",
+                    "type": "Module#require",
+                    "optional": true
+                }
+            ]
+        },
+        "gabarito.plumbing.PhantomEnvironment": {
+            "name": "gabarito.plumbing.PhantomEnvironment",
+            "shortname": "gabarito.plumbing.PhantomEnvironment",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/PhantomEnvironment.js",
+            "line": 20,
+            "description": "The PhantomEnvironment uses the phantomjs to navigate to\n\"http://localhost:1432\" in order to run the tests.",
+            "extends": "gabarito.plumbing.ServerEnvironment",
+            "is_constructor": 1
+        },
+        "gabarito.plumbing.Reporter": {
+            "name": "gabarito.plumbing.Reporter",
+            "shortname": "gabarito.plumbing.Reporter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/Reporter.js",
+            "line": 6,
+            "description": "The reporter class that describes all the events issued by the environment\nwhile running the tests.\n\nA reporter may implement any method described here, the default\nimplementation does nothing.",
+            "is_constructor": 1
+        },
+        "gabarito.plumbing.Runner": {
+            "name": "gabarito.plumbing.Runner",
+            "shortname": "gabarito.plumbing.Runner",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/Runner.js",
+            "line": 16,
+            "description": "The gabarito runner. It needs the reporters in order to receive the\nvarius events issued by the environments. The environments in which the\ntest should run, and the files containing the tests themselves.",
+            "is_constructor": 1
+        },
+        "gabarito.plumbing.ServerEnvironment": {
+            "name": "gabarito.plumbing.ServerEnvironment",
+            "shortname": "gabarito.plumbing.ServerEnvironment",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/plumbing/ServerEnvironment.js",
+            "line": 34,
+            "description": "The server environment provides a simple http server to serve the test\nfiles and run the tests themselves within a browser.\n\nAn implementation must implement a way of dispatching a browser to\nnavigate to \"http://localhost:1432\" and it may implement a method to\nclose the browser when the gabarito has finished.",
+            "extends": "gabarito.plumbing.Environment",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "http",
+                    "description": "The node http library",
+                    "type": "HTTP",
+                    "optional": true
+                },
+                {
+                    "name": "fs",
+                    "description": "The node file system library",
+                    "type": "FileSystem",
+                    "optional": true
+                }
+            ]
+        },
+        "gabarito.Assert": {
+            "name": "gabarito.Assert",
+            "shortname": "gabarito.Assert",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/gabarito.js",
+            "line": 38,
+            "description": "Static class that contains various assertions",
+            "static": 1
+        },
+        "gabarito.AssertThat": {
+            "name": "gabarito.AssertThat",
+            "shortname": "gabarito.AssertThat",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/gabarito.js",
+            "line": 375,
+            "description": "A nice helper to use asserts in a more expressive way. It has all\nthe methods from the {{#crossLink \"gabarito.Assert\"}}{{/crossLink}}.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Mixed"
+                }
+            ]
+        },
+        "gabarito.Gabarito": {
+            "name": "gabarito.Gabarito",
+            "shortname": "gabarito.Gabarito",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": []
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 111,
+            "description": "Prints a row saying that things are starting.",
+            "itemtype": "method",
+            "name": "start",
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 123,
+            "description": "Prints a small summary when things have finished showing the test\nresults.",
+            "itemtype": "method",
+            "name": "finish",
+            "params": [
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 165,
+            "description": "Prints a row stating that that n tests will be verified.",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "tests",
+                    "description": "",
+                    "type": "String[]"
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 186,
+            "description": "Prints a row stating which test is about to be verified.",
+            "itemtype": "method",
+            "name": "begin",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 203,
+            "description": "Prints a small summary for the test that has ended.",
+            "itemtype": "method",
+            "name": "end",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 228,
+            "description": "Prints a summary for the environment when it has completed.",
+            "itemtype": "method",
+            "name": "complete",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 263,
+            "description": "Prints a green line stating that the test clause has passed",
+            "itemtype": "method",
+            "name": "pass",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "clause",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "result",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 280,
+            "description": "Prints a red line stating that the test clause has failed.",
+            "itemtype": "method",
+            "name": "fail",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "clause",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "result",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/ConsoleReporter.js",
+            "line": 300,
+            "description": "Prints the environment's name and every argument on a new line.",
+            "itemtype": "method",
+            "name": "say",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "args",
+                    "description": "",
+                    "type": "string..."
+                }
+            ],
+            "class": "gabarito.plumbing.ConsoleReporter"
+        },
+        {
+            "file": "lib/plumbing/Environment.js",
+            "line": 23,
+            "description": "The environment's name",
+            "itemtype": "method",
+            "name": "getName",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "gabarito.plumbing.Environment"
+        },
+        {
+            "file": "lib/plumbing/Environment.js",
+            "line": 35,
+            "description": "Method called by the runner that receives the files to be loaded, the\nreporters that should receive all events and the callback function that\nmust be called passing all the results at the end of things.",
+            "itemtype": "method",
+            "name": "dispatch",
+            "params": [
+                {
+                    "name": "files",
+                    "description": "The files list",
+                    "type": "String[]"
+                },
+                {
+                    "name": "reporters",
+                    "description": "",
+                    "type": "gabarito.plumbing.Reporter[]"
+                },
+                {
+                    "name": "done",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "gabarito.plumbing.Environment"
+        },
+        {
+            "file": "lib/plumbing/JUnitXmlReporter.js",
+            "line": 124,
+            "description": "Produces the XML itself",
+            "itemtype": "method",
+            "name": "finish",
+            "params": [
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "gabarito.plumbing.JUnitXmlReporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 19,
+            "description": "Issued when the runner starts",
+            "itemtype": "method",
+            "name": "start",
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 27,
+            "description": "Issued when the runner finishes",
+            "itemtype": "method",
+            "name": "finish",
+            "params": [
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 37,
+            "description": "Issued when an environment has initialized",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment that has\n           initialized",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "tests",
+                    "description": "The test names that will run",
+                    "type": "String[]"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 49,
+            "description": "Issued when an environment has completed",
+            "itemtype": "method",
+            "name": "complete",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment that has\n           completed",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "results",
+                    "description": "The environment's results",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 61,
+            "description": "Issued when a test is about to begin",
+            "itemtype": "method",
+            "name": "begin",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment running the\n           tests",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "The test name",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 73,
+            "description": "Issued when a test has ended",
+            "itemtype": "method",
+            "name": "end",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment running the\n           tests",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "results",
+                    "description": "The results for the test",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 85,
+            "description": "Issued when a test clause is about to be run",
+            "itemtype": "method",
+            "name": "enter",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment running the\n           tests",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "The test name",
+                    "type": "String"
+                },
+                {
+                    "name": "clause",
+                    "description": "The test clause",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 98,
+            "description": "Issued when a test clause passes",
+            "itemtype": "method",
+            "name": "pass",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment running the\n           tests",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "The test name",
+                    "type": "String"
+                },
+                {
+                    "name": "clause",
+                    "description": "The test clause",
+                    "type": "String"
+                },
+                {
+                    "name": "result",
+                    "description": "The clause result",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 112,
+            "description": "Issued when a test clause fail",
+            "itemtype": "method",
+            "name": "fail",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment running the\n           tests",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "test",
+                    "description": "The test name",
+                    "type": "String"
+                },
+                {
+                    "name": "clause",
+                    "description": "The test clause",
+                    "type": "String"
+                },
+                {
+                    "name": "result",
+                    "description": "The clause result",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 126,
+            "description": "Issued when an environment is dispatched",
+            "itemtype": "method",
+            "name": "dispatch",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment",
+                    "type": "gabarito.plumbing.Environment"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 136,
+            "description": "Issued when an environment finishes",
+            "itemtype": "method",
+            "name": "done",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "results",
+                    "description": "The results for the environment",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 147,
+            "description": "Issued when an environment says something",
+            "itemtype": "method",
+            "name": "say",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environment",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "args",
+                    "description": "",
+                    "type": "string..."
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Runner.js",
+            "line": 56,
+            "description": "Adds a file within the runner",
+            "itemtype": "method",
+            "name": "addFile",
+            "params": [
+                {
+                    "name": "file",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.plumbing.Runner"
+        },
+        {
+            "file": "lib/plumbing/Runner.js",
+            "line": 68,
+            "description": "Adds an environment within the runner",
+            "itemtype": "method",
+            "name": "addRunner",
+            "params": [
+                {
+                    "name": "environment",
+                    "description": "",
+                    "type": "gabarito.plumbing.Environment"
+                }
+            ],
+            "class": "gabarito.plumbing.Runner"
+        },
+        {
+            "file": "lib/plumbing/Runner.js",
+            "line": 80,
+            "description": "Adds a reporter within the runner",
+            "itemtype": "method",
+            "name": "addReporter",
+            "params": [
+                {
+                    "name": "reporter",
+                    "description": "",
+                    "type": "gabarito.plumbing.Reporter"
+                }
+            ],
+            "class": "gabarito.plumbing.Runner"
+        },
+        {
+            "file": "lib/plumbing/Runner.js",
+            "line": 93,
+            "description": "Dispatches the runner",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "done",
+                    "description": "The function that will be called when things\n           have finished. It will receive the test results as first\n           argument.",
+                    "type": "Function"
+                }
+            ],
+            "class": "gabarito.plumbing.Runner"
+        },
+        {
+            "file": "lib/plumbing/ServerEnvironment.js",
+            "line": 65,
+            "description": "This method may be implemented in order to clean up any browser\nreference.\n\nIt must call the done function afterwards.",
+            "itemtype": "method",
+            "name": "ditchBrowser",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "done",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "gabarito.plumbing.ServerEnvironment"
+        },
+        {
+            "file": "lib/plumbing/ServerEnvironment.js",
+            "line": 263,
+            "description": "This method must be implemented in order to dispatch the browser to\nnavigate to \"http://localhost:1432\".\n\nThe done function must be called afterwards.",
+            "itemtype": "method",
+            "name": "dispatchBrowser",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "done",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "gabarito.plumbing.ServerEnvironment"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 45,
+            "description": "Asserts that both values are the same (using ===)",
+            "itemtype": "method",
+            "name": "areSame",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "A value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 57,
+            "description": "Asserts that both values are not the same (using !==)",
+            "itemtype": "method",
+            "name": "areNotSame",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "A value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 69,
+            "description": "Asserts that both values are equal (using parts.Parts/equals method).",
+            "itemtype": "method",
+            "name": "areEqual",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "A value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "b",
+                    "description": "A another value",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 79,
+            "description": "Asserts that both values are equals by using the passed equality\nfunction.\n\nThe equality function will receive both values as arguments and it\nmust returns true if the values are considered equal.",
+            "itemtype": "method",
+            "name": "areEqual",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "A value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "equality",
+                    "description": "The equality function",
+                    "type": "Function"
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 94,
+            "description": "Asserts that both values are equal (using parts.Parts/equals method).",
+            "itemtype": "method",
+            "name": "areEqual",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "A value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 105,
+            "description": "Asserts that both values are equals by using the passed equality\nfunction.\n\nThe equality function will receive both values as arguments and it\nmust returns true if the values are considered equal.",
+            "itemtype": "method",
+            "name": "areEqual",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "A value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "equality",
+                    "description": "The equality function",
+                    "type": "Function"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 133,
+            "description": "Asserts that a given value is an array.",
+            "itemtype": "method",
+            "name": "isArray",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 144,
+            "description": "Asserts that a given value is a boolean.",
+            "itemtype": "method",
+            "name": "isBoolean",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 155,
+            "description": "Asserts that a given value is a function.",
+            "itemtype": "method",
+            "name": "isFunction",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 166,
+            "description": "Asserts that a given value is a number and is not NaN.",
+            "itemtype": "method",
+            "name": "isNumber",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 177,
+            "description": "Asserts that a given value is an object.",
+            "itemtype": "method",
+            "name": "isObject",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 188,
+            "description": "Asserts that a given value is a string.",
+            "itemtype": "method",
+            "name": "isString",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 199,
+            "description": "Asserts that a given value is a RegExp instance.",
+            "itemtype": "method",
+            "name": "isRegExp",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 210,
+            "description": "Asserts that a given value is a Date instance.",
+            "itemtype": "method",
+            "name": "isDate",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 221,
+            "description": "Asserts that a given value is an instance of a given type.",
+            "itemtype": "method",
+            "name": "isInstanceOf",
+            "params": [
+                {
+                    "name": "o",
+                    "description": "The object",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "t",
+                    "description": "The type",
+                    "type": "Function"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 234,
+            "description": "Asserts that a given value is false.",
+            "itemtype": "method",
+            "name": "isFalse",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 245,
+            "description": "Asserts that a given value is true.",
+            "itemtype": "method",
+            "name": "isTrue",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 256,
+            "description": "Asserts that a given value is NaN.\n\nNote that the value should be the actual NaN and not something that\nconverts to NaN.",
+            "itemtype": "method",
+            "name": "isNaN",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 270,
+            "description": "Asserts that a given value is not NaN.\n\nNote that the value should be the actual NaN and not something that\nconverts to NaN.",
+            "itemtype": "method",
+            "name": "isNotNaN",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 284,
+            "description": "Asserts that a given value is null.",
+            "itemtype": "method",
+            "name": "isNull",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 295,
+            "description": "Asserts that a given value is not null.",
+            "itemtype": "method",
+            "name": "isNotNull",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 306,
+            "description": "Asserts that a given value is undefined.",
+            "itemtype": "method",
+            "name": "isUndefined",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 317,
+            "description": "Asserts that a given value is undefined.",
+            "itemtype": "method",
+            "name": "isNotUndefined",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "Value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 329,
+            "description": "Asserts that a given object has a property",
+            "itemtype": "method",
+            "name": "hasProperty",
+            "params": [
+                {
+                    "name": "o",
+                    "description": "The object",
+                    "type": "Object"
+                },
+                {
+                    "name": "p",
+                    "description": "The property name",
+                    "type": "String"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 342,
+            "description": "Asserts that a given object owns a property",
+            "itemtype": "method",
+            "name": "hop",
+            "params": [
+                {
+                    "name": "o",
+                    "description": "The object",
+                    "type": "Object"
+                },
+                {
+                    "name": "p",
+                    "description": "The property name",
+                    "type": "String"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 354,
+            "description": "A nice helper to use asserts in a more expressive way. It has all\nthe methods from the assert itself.\n\nUsage:\n```\nassert.that(someValue).isEqualTo(\"3\");\n```",
+            "itemtype": "method",
+            "name": "that",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Mixed"
+                }
+            ],
+            "return": {
+                "description": "gabarito.AssertThat"
+            },
+            "class": "gabarito.Assert"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 388,
+            "description": "Asserts that both values are the same (using ===)",
+            "itemtype": "method",
+            "name": "isTheSameAs",
+            "params": [
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 397,
+            "description": "Asserts that both values are not the same (using !==)",
+            "itemtype": "method",
+            "name": "isNotTheSameAs",
+            "params": [
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 406,
+            "description": "Asserts that both values are equal (using parts.Parts/equals method).",
+            "itemtype": "method",
+            "name": "isEqualTo",
+            "params": [
+                {
+                    "name": "b",
+                    "description": "A another value",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 415,
+            "description": "Asserts that both values are equals by using the passed equality\nfunction.\n\nThe equality function will receive both values as arguments and it\nmust returns true if the values are considered equal.",
+            "itemtype": "method",
+            "name": "isEqualTo",
+            "params": [
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "equality",
+                    "description": "The equality function",
+                    "type": "Function"
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 429,
+            "description": "Asserts that both values are equal (using parts.Parts/equals method).",
+            "itemtype": "method",
+            "name": "isEqualTo",
+            "params": [
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 439,
+            "description": "Asserts that both values are equals by using the passed equality\nfunction.\n\nThe equality function will receive both values as arguments and it\nmust returns true if the values are considered equal.",
+            "itemtype": "method",
+            "name": "isEqualTo",
+            "params": [
+                {
+                    "name": "b",
+                    "description": "Another value",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "equality",
+                    "description": "The equality function",
+                    "type": "Function"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String"
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 454,
+            "description": "Asserts that a given value is an array.",
+            "itemtype": "method",
+            "name": "isArray",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 463,
+            "description": "Asserts that a given value is a boolean.",
+            "itemtype": "method",
+            "name": "isBoolean",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 472,
+            "description": "Asserts that a given value is a function.",
+            "itemtype": "method",
+            "name": "isFunction",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 481,
+            "description": "Asserts that a given value is a number and is not NaN.",
+            "itemtype": "method",
+            "name": "isNumber",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 490,
+            "description": "Asserts that a given value is an object.",
+            "itemtype": "method",
+            "name": "isObject",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 499,
+            "description": "Asserts that a given value is a string.",
+            "itemtype": "method",
+            "name": "isString",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 508,
+            "description": "Asserts that a given value is a RegExp instance.",
+            "itemtype": "method",
+            "name": "isRegExp",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 517,
+            "description": "Asserts that a given value is a Date instance.",
+            "itemtype": "method",
+            "name": "isDate",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 526,
+            "description": "Asserts that a given value is an instance of a given type.",
+            "itemtype": "method",
+            "name": "isInstanceOf",
+            "params": [
+                {
+                    "name": "t",
+                    "description": "The type",
+                    "type": "Function"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 536,
+            "description": "Asserts that a given value is false.",
+            "itemtype": "method",
+            "name": "isFalse",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 545,
+            "description": "Asserts that a given value is true.",
+            "itemtype": "method",
+            "name": "isTrue",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 554,
+            "description": "Asserts that a given value is NaN.\n\nNote that the value should be the actual NaN and not something that\nconverts to NaN.",
+            "itemtype": "method",
+            "name": "isNaN",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 566,
+            "description": "Asserts that a given value is not NaN.\n\nNote that the value should be the actual NaN and not something that\nconverts to NaN.",
+            "itemtype": "method",
+            "name": "isNotNaN",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 578,
+            "description": "Asserts that a given value is null.",
+            "itemtype": "method",
+            "name": "isNull",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 587,
+            "description": "Asserts that a given value is not null.",
+            "itemtype": "method",
+            "name": "isNotNull",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 596,
+            "description": "Asserts that a given value is undefined.",
+            "itemtype": "method",
+            "name": "isUndefined",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 605,
+            "description": "Asserts that a given value is undefined.",
+            "itemtype": "method",
+            "name": "isNotUndefined",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 614,
+            "description": "Asserts that a given object has a property",
+            "itemtype": "method",
+            "name": "hasProperty",
+            "params": [
+                {
+                    "name": "p",
+                    "description": "The property name",
+                    "type": "String"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 624,
+            "description": "Asserts that a given object owns a property",
+            "itemtype": "method",
+            "name": "hop",
+            "params": [
+                {
+                    "name": "p",
+                    "description": "The property name",
+                    "type": "String"
+                },
+                {
+                    "name": "msg",
+                    "description": "The error message",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.AssertThat"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 711,
+            "description": "Reference containing the various assert utils.",
+            "itemtype": "property",
+            "name": "assert",
+            "type": "{gabarito.Assert}",
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 847,
+            "description": "Resets the gabarito to it's initial state, removing all listeners\nas well.",
+            "itemtype": "method",
+            "name": "reset",
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 879,
+            "description": "Tells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 895,
+            "description": "Adds a test within the gabarito.\n\nThe sketch is an object containing various methods. Each method\nis treated as a draft. Every draft is run to check if it works.",
+            "itemtype": "method",
+            "name": "sketch",
+            "params": [
+                {
+                    "name": "test",
+                    "description": "The test itself",
+                    "type": "Object"
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 910,
+            "description": "Tells the gabarito to wait for an async continuation of a draft.",
+            "itemtype": "method",
+            "name": "stay",
+            "params": [
+                {
+                    "name": "timeout",
+                    "description": "Timeout before it breaks\n                          (defaults to 10000);",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 935,
+            "description": "Tells the gabarito to resume the current draft",
+            "itemtype": "method",
+            "name": "go",
+            "params": [
+                {
+                    "name": "block",
+                    "description": "",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 952,
+            "description": "Returns a function that when called, tells gabarito to resume the\ncurrent draft and also passes the parameters along to the given\nfunction.\n\nJust a syntatic sugar to avoid another nesting level.",
+            "itemtype": "method",
+            "name": "going",
+            "params": [
+                {
+                    "name": "block",
+                    "description": "",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 974,
+            "description": "Register an event listener for a given event.\n\nAvailable events:\n\n- begin: The beginning of the gabarito veritication\n- end: The end of the gabarito verification\n- pass: Whenever a draft passes\n- fail: Whenever a draft fails",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "listener",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 997,
+            "description": "Verify all tests",
+            "itemtype": "method",
+            "name": "verify",
+            "params": [
+                {
+                    "name": "done",
+                    "description": "",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 1027,
+            "description": "Tells gabarito to say something.",
+            "itemtype": "method",
+            "name": "say",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "",
+                    "type": "Mixed",
+                    "multiple": true
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nTells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
+            "line": " lib/gabarito.js:879"
+        }
+    ]
+}

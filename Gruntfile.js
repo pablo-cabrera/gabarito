@@ -67,7 +67,8 @@ module.exports = function (grunt) {
                     themedir: "node_modules/yuidoc-lucid-theme/",
                     paths: "lib/",
                     outdir: "docs/",
-                    helpers: ["node_modules/yuidoc-lucid-theme/helpers/helpers.js"]
+                    helpers: ["node_modules/" +
+                            "yuidoc-lucid-theme/helpers/helpers.js"]
                 }
             }
         }

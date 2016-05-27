@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/plumbing/ConsoleReporter.js - gabarito</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+            gabarito
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-alpha.006</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+<div>
+    <div id="sidebar">
+    <div id="classes">
+        <ul id="api-classes" class="nav nav-list">
+            
+                <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
+            
+                <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Environment.html">gabarito.plumbing.Environment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.JUnitXmlReporter.html">gabarito.plumbing.JUnitXmlReporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.NodeEnvironment.html">gabarito.plumbing.NodeEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.PhantomEnvironment.html">gabarito.plumbing.PhantomEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Reporter.html">gabarito.plumbing.Reporter</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
+            
+                <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+        </ul>
+    </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+    <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>lib/plumbing/ConsoleReporter.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+&quot;use strict&quot;;
+
+var root = &quot;../..&quot;;
+var parts = require(root + &quot;/deps/parts&quot;);
+var ilk = require(root + &quot;/deps/ilk&quot;);
+var Reporter = require(&quot;./Reporter&quot;);
+
+require(&quot;colors&quot;);
+
+var ROW = (function (c, n) {
+    var r = [];
+    for (var i = 0; i &lt; n; i += 1) {
+        r.push(c);
+    }
+
+    return r.join(&quot;&quot;);
+}(&quot;=&quot;, 80));
+
+module.exports = ilk.tokens(function (
+    startTime,
+    initTime,
+    console,
+
+    formatEnv,
+    log,
+    testSummary,
+    elapsed,
+    row,
+    formatError,
+    getHighlightSentences
+) {
+    /**
+     * The console reporter prints the gabarito events to the node&#x27;s console
+     * with colors and what-not.
+     *
+     * @class gabarito.plumbing.ConsoleReporter
+     * @extends gabarito.plumbing.Reporter
+     * @constructor
+     *
+     * @param {Console} [console]
+     */
+    return Reporter.descend(function (pConsole) {
+        console.mark(this, pConsole || global.console);
+        startTime.mark(this);
+        initTime.mark(this);
+    }).
+
+    proto(formatEnv, function (env) {
+        return &quot;(&quot; + env.getName().yellow + &quot;)&quot;;
+    }).
+
+    proto(log, function (m) { this[console].log(m); }).
+
+    proto(testSummary, function (results) {
+        var summary = {
+            failed: 0,
+            passed: 0
+        };
+
+        parts.forEach(results.results, function (r) {
+            if (r.error) {
+                summary.failed += 1;
+            } else {
+                summary.passed += 1;
+            }
+        });
+
+        return summary;
+    }).
+
+    proto(elapsed, function (t) { return (Date.now() - t) / 1000; }).
+
+    proto(row, function (pass) {
+        this[log](ROW[pass? &quot;green&quot;: &quot;red&quot;].bold);
+    }).
+
+    proto(formatError, function (error, highlight) {
+        var stack = error.stack;
+        var msg;
+
+        if (error instanceof Error) {
+            msg = stack? stack: error.toString();
+        } else {
+            msg = parts.isFunction(error.toString)?
+                    error.toString():
+                    error.toString;
+
+            if (msg === &quot;[object Object]&quot;) {
+                msg = error.message;
+            }
+
+            if (stack) {
+
+                if (stack.indexOf(msg) === 0) {
+                    msg = stack;
+                } else {
+                    msg += &quot;\n&quot; + stack;
+                }
+            }
+        }
+
+        highlight.forEach(function (h) {
+            msg = msg.split(h).join(h.bold);
+        });
+
+        return msg;
+    }).
+
+    proto({
+
+        /**
+         * Prints a row saying that things are starting.
+         *
+         * @method start
+         * @for gabarito.plumbing.ConsoleReporter
+         */
+        start: function () {
+            this[log](ROW.bold);
+            this[log](&quot;Starting tests.&quot;);
+            this[startTime] = Date.now();
+        },
+
+        /**
+         * Prints a small summary when things have finished showing the test
+         * results.
+         *
+         * @method finish
+         * @for gabarito.plumbing.ConsoleReporter
+         *
+         * @param {object} results
+         */
+        finish: parts.that(function (that, results) {
+            var failed = results.some(function (e) {
+                return e.results.some(function (r) {
+                    return parts.some(r.results, function (r) {
+                        return Boolean(r.error);
+                    });
+                });
+            });
+
+            this[row](!failed);
+            this[log](&quot;Finished tests.&quot;);
+            results.forEach(function (e) {
+                var passed = 0;
+                var failed = 0;
+
+                e.results.forEach(function (r) {
+                    var summary = that[testSummary](r);
+                    passed += summary.passed;
+                    failed += summary.failed;
+                });
+
+                that[log](that[formatEnv](e.environment) + &quot; &quot; +
+                        &quot;passed=&quot; + (String(passed).green.bold) + &quot; &quot; +
+                        &quot;failed=&quot; + (String(failed).red.bold));
+            });
+
+            this[log]((&quot;Elapsed time: &quot; +
+                    (String(this[elapsed](this[startTime])).bold) +
+                    &quot; seconds.&quot;));
+            this[row](!failed);
+            this[log](&quot;&quot;);
+        }),
+
+        /**
+         * Prints a row stating that that n tests will be verified.
+         *
+         *  @method init
+         *  @for gabarito.plumbing.ConsoleReporter
+         *
+         *  @param {gabarito.plumbing.Environment} env
+         *  @param {string[]} tests
+         */
+        init: function (env, tests) {
+            var l = tests.length;
+            var msg = this[formatEnv](env) + &quot; &quot; +
+                    &quot;verifying &quot; + (String(l).green.bold) + &quot; &quot; +
+                    (l === 1? &quot;test.&quot;: &quot;tests.&quot;);
+
+            this[initTime] = Date.now();
+
+            this[log](ROW.yellow.bold);
+            this[log](msg);
+        },
+
+        /**
+         * Prints a row stating which test is about to be verified.
+         *
+         * @method begin
+         * @for gabarito.plumbing.ConsoleReporter
+         *
+         * @param {gabarito.plumbing.Environment} env
+         * @param {string} test
+         */
+        begin: function (env, test) {
+            var msg = this[formatEnv](env) + &quot; &quot; +
+                    &quot;verifying &quot; + (test.bold) + &quot;.&quot;;
+
+            this[log](ROW.bold);
+            this[log](msg);
+        },
+
+        /**
+         * Prints a small summary for the test that has ended.
+         *
+         * @method end
+         * @for gabarito.plumbing.ConsoleReporter
+         *
+         * @param {gabarito.plumbing.Environment} env
+         * @param {string} test
+         * @param {object} results
+         */
+        end: function (env, test, results) {
+            var summary = this[testSummary](results);
+
+            var msg = this[formatEnv](env) + &quot; &quot; +
+                    &quot;test summary: &quot; +
+                    (&quot;passed: &quot; + summary.passed).bold.green +
+                    &quot; &quot; +
+                    (&quot;failed: &quot; + summary.failed).bold.red;
+
+            this[row](summary.failed === 0);
+            this[log](msg);
+            this[row](summary.failed === 0);
+            this[log](&quot;&quot;);
+        },
+
+        /**
+         * Prints a summary for the environment when it has completed.
+         *
+         * @method complete
+         * @for gabarito.plumbing.ConsoleReporter
+         *
+         * @param {gabarito.plumbing.Environment} env
+         * @param {object[]} results
+         */
+        complete: parts.that(function (that, env, results) {
+            var tests = results.length;
+            var summary = {
+                passed: 0,
+                failed: 0
+            };
+
+            results.forEach(function (r) {
+                var s = that[testSummary](r);
+                summary.passed += s.passed;
+                summary.failed += s.failed;
+            });
+
+            this[row](summary.failed === 0);
+            this[log](&quot;Environment summary: &quot; + (env.getName().yellow.bold));
+            this[log](&quot;Tests: &quot; + (String(tests).bold));
+            this[log]((&quot;Passed clauses: &quot; +
+                    (String(summary.passed).bold)).green);
+            this[log]((&quot;Failed clauses: &quot; + (String(summary.failed).bold)).red);
+            this[log]((&quot;Elapsed time: &quot; +
+                    (String((Date.now() - this[initTime]) / 1000).bold) +
+                    &quot; seconds.&quot;));
+            this[row](summary.failed === 0);
+            this[log](&quot;&quot;);
+        }),
+
+        /**
+         * Prints a green line stating that the test clause has passed
+         *
+         * @method pass
+         * @for gabarito.plumbing.ConsoleReporter
+         *
+         * @param {gabarito.plumbing.Environment} env
+         * @param {string} test
+         * @param {string} clause
+         * @param {object} result
+         */
+        pass: function (env, test, clause, result) {
+            var msg = this[formatEnv](env) + &quot; &quot; +
+                    ((&quot;[&quot; + &quot;PASS&quot;.green + &quot;] &quot;).bold) + test + &quot; :: &quot; + clause;
+            this[log](msg);
+        },
+
+        /**
+         * Prints a red line stating that the test clause has failed.
+         *
+         * @method fail
+         * @for gabarito.plumbing.ConsoleReporter
+         *
+         * @param {gabarito.plumbing.Environment} env
+         * @param {string} test
+         * @param {string} clause
+         * @param {object} result
+         */
+        fail: function (env, test, clause, result) {
+            var msg = this[formatEnv](env) + &quot; &quot; +
+                    ((&quot;[&quot; + &quot;FAIL&quot;.red + &quot;] &quot;).bold) + test + &quot; :: &quot; +
+                    clause;
+            this[log](msg);
+            this[log](this[formatError](result.error,
+                    test.name.split(/[\.\\\/\s]/).concat([clause])).red);
+        },
+
+        /**
+         * Prints the environment&#x27;s name and every argument on a new line.
+         *
+         * @method say
+         * @for gabarito.plumbing.ConsoleReporter
+         *
+         * @param {gabarito.plumbing.Environment} env
+         * @param {string...} args
+         */
+
+        say: parts.args(parts.that(function (that, args) {
+            var env = args.shift();
+
+            this[log](this[formatEnv](env) + &quot; says...&quot;);
+            args.forEach(function (m) { that[log](m); });
+        }))
+    });
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
