@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder"]'>
         </form>
     </div>
 </div>
@@ -60,6 +60,8 @@
                 <li><a href="../classes/gabarito.plumbing.Runner.html">gabarito.plumbing.Runner</a></li>
             
                 <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
+            
+                <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
             
         </ul>
     </div>
@@ -754,26 +756,97 @@
     });
 
     var TestBuilder = ilk.tokens(function (test) {
+        var unimplemented = function () {
+            throw new Error(&quot;Unimplemented clause.&quot;);
+        };
+
+        /**
+         * The test builder is a helper that builds a test in a more expressive
+         * way.
+         *
+         * Usage:
+         * &#x60;&#x60;&#x60;
+         * gabarito.test().
+         * name(&quot;test name&quot;).
+         * before(function () {
+         *     // runs before each clause
+         * }).
+         * after(function () {
+         *     // runs after each clause
+         * }).
+         *
+         * clause(&quot;an unimplemented clause&quot;).
+         * clause(&quot;another clause&quot;, function () {
+         *    // clause body
+         * });
+         * &#x60;&#x60;&#x60;
+         *
+         * @class gabarito.TestBuilder
+         * @constructor
+         *
+         * @param {object} test The actual test object
+         */
         return ilk(function (t) {
             test.mark(this, t);
         }).
 
         proto({
+
+            /**
+             * Adds a clause within the test object.
+             *
+             * If the clause body is omitted, an unimplemented clause that
+             * always throws an error will be used instead.
+             *
+             * @method clause
+             * @for gabarito.TestBuilder
+             *
+             * @param {string} name
+             * @param {function} [body]
+             * @return {gabarito.TestBuilder}
+             */
             clause: function (name, body) {
-                this[test][name] = body;
+                this[test][name] = body || unimplmemented;
                 return this;
             },
 
+            /**
+             * Sets the before function within the test object.
+             *
+             * @method before
+             * @for gabarito.TestBuilder
+             *
+             * @param {function} before
+             * @return {gabarito.TestBuilder}
+             */
             before: function (before) {
                 this[test].before = before;
                 return this;
             },
 
+            /**
+             * Sets the after function within the test object.
+             *
+             * @method after
+             * @for gabarito.TestBuilder
+             *
+             * @param {function} after
+             * @return {gabarito.TestBuilder}
+             */
             after: function (after) {
                 this[test].after = after;
                 return this;
             },
 
+            /**
+             * Sets test name for the test object.
+             *
+             * @method name
+             * @for gabarito.TestBuilder
+             *
+             * @param {string} name
+             * @return {gabarito.TestBuilder}
+             */
             name: function (name) {
                 this[test].name = name;
             }
@@ -936,6 +1009,17 @@
 
         proto({
 
+            /**
+             * Adds a test using the
+             * {{#crossLink &quot;gabarito.TestBuilder&quot;}}{{/crossLink}} within
+             * gabarito.
+             *
+             * @method test
+             * @for gabarito.Gabarito
+             *
+             * @param {string} [name] The test&#x27;s name
+             * @return {gabarito.TestBuilder}
+             */
             test: function (name) {
                 var test = { name: name };
                 var builder = new TestBuilder(test);

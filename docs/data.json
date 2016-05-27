@@ -95,11 +95,13 @@
             "modules": {},
             "classes": {
                 "gabarito.Assert": 1,
-                "gabarito.AssertThat": 1
+                "gabarito.AssertThat": 1,
+                "gabarito.TestBuilder": 1
             },
             "fors": {
                 "gabarito.Assert": 1,
                 "gabarito.AssertThat": 1,
+                "gabarito.TestBuilder": 1,
                 "gabarito.Gabarito": 1
             },
             "namespaces": {}
@@ -306,6 +308,26 @@
                     "name": "value",
                     "description": "",
                     "type": "Mixed"
+                }
+            ]
+        },
+        "gabarito.TestBuilder": {
+            "name": "gabarito.TestBuilder",
+            "shortname": "gabarito.TestBuilder",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/gabarito.js",
+            "line": 658,
+            "description": "The test builder is a helper that builds a test in a more expressive\nway.\n\nUsage:\n```\ngabarito.test().\nname(\"test name\").\nbefore(function () {\n    // runs before each clause\n}).\nafter(function () {\n    // runs after each clause\n}).\n\nclause(\"an unimplemented clause\").\nclause(\"another clause\", function () {\n   // clause body\n});\n```",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "test",
+                    "description": "The actual test object",
+                    "type": "Object"
                 }
             ]
         },
@@ -1900,7 +1922,89 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 711,
+            "line": 690,
+            "description": "Adds a clause within the test object.\n\nIf the clause body is omitted, an unimplemented clause that\nalways throws an error will be used instead.",
+            "itemtype": "method",
+            "name": "clause",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "body",
+                    "description": "",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "gabarito.TestBuilder"
+            },
+            "class": "gabarito.TestBuilder"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 708,
+            "description": "Sets the before function within the test object.",
+            "itemtype": "method",
+            "name": "before",
+            "params": [
+                {
+                    "name": "before",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "gabarito.TestBuilder"
+            },
+            "class": "gabarito.TestBuilder"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 722,
+            "description": "Sets the after function within the test object.",
+            "itemtype": "method",
+            "name": "after",
+            "params": [
+                {
+                    "name": "after",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "gabarito.TestBuilder"
+            },
+            "class": "gabarito.TestBuilder"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 736,
+            "description": "Sets test name for the test object.",
+            "itemtype": "method",
+            "name": "name",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "gabarito.TestBuilder"
+            },
+            "class": "gabarito.TestBuilder"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 782,
             "description": "Reference containing the various assert utils.",
             "itemtype": "property",
             "name": "assert",
@@ -1909,7 +2013,27 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 847,
+            "line": 907,
+            "description": "Adds a test using the\n{{#crossLink \"gabarito.TestBuilder\"}}{{/crossLink}} within\ngabarito.",
+            "itemtype": "method",
+            "name": "test",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The test's name",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "gabarito.TestBuilder"
+            },
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 929,
             "description": "Resets the gabarito to it's initial state, removing all listeners\nas well.",
             "itemtype": "method",
             "name": "reset",
@@ -1917,13 +2041,13 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 879,
+            "line": 961,
             "description": "Tells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
             "class": "gabarito.Gabarito"
         },
         {
             "file": "lib/gabarito.js",
-            "line": 895,
+            "line": 977,
             "description": "Adds a test within the gabarito.\n\nThe sketch is an object containing various methods. Each method\nis treated as a draft. Every draft is run to check if it works.",
             "itemtype": "method",
             "name": "sketch",
@@ -1938,7 +2062,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 910,
+            "line": 992,
             "description": "Tells the gabarito to wait for an async continuation of a draft.",
             "itemtype": "method",
             "name": "stay",
@@ -1954,7 +2078,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 935,
+            "line": 1017,
             "description": "Tells the gabarito to resume the current draft",
             "itemtype": "method",
             "name": "go",
@@ -1970,7 +2094,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 952,
+            "line": 1034,
             "description": "Returns a function that when called, tells gabarito to resume the\ncurrent draft and also passes the parameters along to the given\nfunction.\n\nJust a syntatic sugar to avoid another nesting level.",
             "itemtype": "method",
             "name": "going",
@@ -1986,7 +2110,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 974,
+            "line": 1056,
             "description": "Register an event listener for a given event.\n\nAvailable events:\n\n- begin: The beginning of the gabarito veritication\n- end: The end of the gabarito verification\n- pass: Whenever a draft passes\n- fail: Whenever a draft fails",
             "itemtype": "method",
             "name": "on",
@@ -2006,7 +2130,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 997,
+            "line": 1079,
             "description": "Verify all tests",
             "itemtype": "method",
             "name": "verify",
@@ -2022,7 +2146,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1027,
+            "line": 1109,
             "description": "Tells gabarito to say something.",
             "itemtype": "method",
             "name": "say",
@@ -2040,7 +2164,7 @@
     "warnings": [
         {
             "message": "Missing item type\nTells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
-            "line": " lib/gabarito.js:879"
+            "line": " lib/gabarito.js:961"
         }
     ]
 }
