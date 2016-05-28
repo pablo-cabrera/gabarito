@@ -6,6 +6,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "gabarito.Gabarito",
         "gabarito.Matcher",
         "gabarito.TestBuilder",
+        "gabarito.VarargsMatcher",
         "gabarito.plumbing.ConsoleReporter",
         "gabarito.plumbing.Environment",
         "gabarito.plumbing.JUnitXmlReporter",

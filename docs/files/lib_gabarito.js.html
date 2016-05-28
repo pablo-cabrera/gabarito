@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -64,6 +64,8 @@
                 <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
             
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
+            
+                <li><a href="../classes/gabarito.VarargsMatcher.html">gabarito.VarargsMatcher</a></li>
             
         </ul>
     </div>
@@ -499,6 +501,9 @@
              *
              * @method hasSizeOf
              * @for gabarito.AssertThat
+             *
+             * @param {number} size The given size
+             * @param {string} [msg] The error message
              */
             hasSizeOf: parts.overload(
                 function (size) {
@@ -901,6 +906,19 @@
     });
 
 
+    /**
+     * The varargs matcher uses a single function that will receive an array
+     * containing all the remaining args passed to the function while applying
+     * the matchers.
+     *
+     * This matcher should always be the last matcher.
+     *
+     * @class gabarito.VarargsMatcher
+     * @extends gabarito.Matcher
+     * @constructor
+     *
+     * @param {function} matcher The matcher function
+     */
     var VarargsMatcher = Matcher.descend();
 
     var matcher = function (fn) {
@@ -914,7 +932,6 @@
          *
          * @property matcher.STRING
          * @for gabarito.Gabarito
-         * @static
          * @type {gabarito.Matcher}
          */
         STRING: new Matcher(parts.isString),
@@ -924,7 +941,6 @@
          *
          * @property matcher.ARRAY
          * @for gabarito.Gabarito
-         * @static
          * @type {gabarito.Matcher}
          */
         ARRAY: new Matcher(parts.isArray),
@@ -934,7 +950,6 @@
          *
          * @property matcher.FUNCTION
          * @for gabarito.Gabarito
-         * @static
          * @type {gabarito.Matcher}
          */
         FUNCTION: new Matcher(parts.isFunction),
@@ -944,7 +959,6 @@
          *
          * @property matcher.OBJECT
          * @for gabarito.Gabarito
-         * @static
          * @type {gabarito.Matcher}
          */
         OBJECT: new Matcher(parts.isObject),
@@ -954,7 +968,6 @@
          *
          * @property matcher.NUMBER
          * @for gabarito.Gabarito
-         * @static
          * @type {gabarito.Matcher}
          */
         NUMBER: new Matcher(parts.isNumber),
@@ -964,7 +977,6 @@
          *
          * @property matcher.ANY
          * @for gabarito.Gabarito
-         * @static
          * @type {gabarito.Matcher}
          */
         ANY: new Matcher(parts.constant(true)),
@@ -974,8 +986,7 @@
          *
          * @property matcher.ANY_ARGS
          * @for gabarito.Gabarito
-         * @static
-         * @type {gabarito.VargargsMatcher}
+         * @type {gabarito.VarargsMatcher}
          */
         ANY_ARGS: new VarargsMatcher(parts.constant(true)),
 
@@ -984,7 +995,6 @@
          *
          * @method matcher.type
          * @for gabarito.Gabarito
-         * @static
          *
          * @param {function} type
          * @return gabarito.Matcher
@@ -1000,7 +1010,6 @@
          *
          * @method matcher.args
          * @for gabarito.Gabarito
-         * @static
          *
          * @param {function} fn
          * @return {gabarito.VarargsMatcher}
@@ -1015,7 +1024,6 @@
          *
          * @method matcher.value
          * @for gabarito.Gabarito
-         * @static
          *
          * @param {mixed} v
          * @return {gabarito.Matcher}
@@ -1528,8 +1536,31 @@
              */
             assert: assert,
 
+            /**
+             * Creates an instance of
+             * {{#crossLink &quot;gabarito.Spy&quot;}}{{/crossLink}}
+             *
+             * @method spy
+             * @for gabarito.Gabarito
+             *
+             * @param {function} fn Function to spy on
+             * @return {function} The spy handler function
+             */
             spy: Spy.on,
 
+            /**
+             * Creates a custom matcher using the function as a matching
+             * criteria.
+             *
+             * The function will receive a value to examinate and should return
+             * a boolean indicating whether the criteria is met.
+             *
+             * @method matcher
+             * @for gabarito.Gabarito
+             *
+             * @param {function} fn The matcher function
+             * @return {gabarito.Matcher}
+             */
             matcher: matcher
         });
     });

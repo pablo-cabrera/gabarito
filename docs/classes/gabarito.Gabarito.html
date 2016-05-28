@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -64,6 +64,8 @@
                 <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
             
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
+            
+                <li><a href="../classes/gabarito.VarargsMatcher.html">gabarito.VarargsMatcher</a></li>
             
         </ul>
     </div>
@@ -134,12 +136,19 @@
 				
 				
 				
+				<li><a href="#method-matcher"><span class="im">matcher</span>(<span class="ia">fn</span>)</a></li>
 				
 				
 				
+				<li><a href="#method-matcher.args"><span class="im">matcher.args</span>(<span class="ia">fn</span>)</a></li>
 				
 				
 				
+				<li><a href="#method-matcher.type"><span class="im">matcher.type</span>(<span class="ia">type</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-matcher.value"><span class="im">matcher.value</span>(<span class="ia">v</span>)</a></li>
 				
 				
 				
@@ -156,6 +165,10 @@
 				
 				
 				<li><a href="#method-sketch"><span class="im">sketch</span>(<span class="ia">test</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-spy"><span class="im">spy</span>(<span class="ia">fn</span>)</a></li>
 				
 				
 				
@@ -201,43 +214,6 @@
 
 		
 
-		
-		<li>
-			<strong>Static Methods</strong>
-			<ul>
-				
-				
-				
-				
-				
-				
-				<li><a href="#method-matcher.args"><span class="im">gabarito.Gabarito.matcher.args</span>(<span class="ia">fn</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-matcher.type"><span class="im">gabarito.Gabarito.matcher.type</span>(<span class="ia">type</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-matcher.value"><span class="im">gabarito.Gabarito.matcher.value</span>(<span class="ia">v</span>)</a></li>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-			</ul>
-		</li>
 		
 	</ul>
 </div>
@@ -293,7 +269,7 @@
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1311"><code>lib&#x2F;gabarito.js:1311</code></a>
+		<a href="../files/lib_gabarito.js.html#l1317"><code>lib&#x2F;gabarito.js:1317</code></a>
 		
 		</p>
 
@@ -381,7 +357,7 @@
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1328"><code>lib&#x2F;gabarito.js:1328</code></a>
+		<a href="../files/lib_gabarito.js.html#l1334"><code>lib&#x2F;gabarito.js:1334</code></a>
 		
 		</p>
 
@@ -431,12 +407,423 @@ function.</p>
             
         
         	
+<div id="method-matcher" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>matcher</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>fn</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1442"><code>lib&#x2F;gabarito.js:1442</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Creates a custom matcher using the function as a matching
+criteria.</p>
+<p>The function will receive a value to examinate and should return
+a boolean indicating whether the criteria is met.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">fn</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The matcher function</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a></span>
+					
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
             
         
         	
+<div id="method-matcher.args" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>matcher.args</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>fn</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/gabarito.VarargsMatcher.html" class="crosslink">gabarito.VarargsMatcher</a></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l899"><code>lib&#x2F;gabarito.js:899</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Matcher for varargs</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">fn</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type"><a href="../classes/gabarito.VarargsMatcher.html" class="crosslink">gabarito.VarargsMatcher</a></span>
+					
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
             
         
         	
+<div id="method-matcher.type" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>matcher.type</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>type</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l884"><code>lib&#x2F;gabarito.js:884</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Matcher for a given type</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">type</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+					<p>gabarito.Matcher</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-matcher.value" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>matcher.value</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l910"><code>lib&#x2F;gabarito.js:910</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Literal value matcher</p>
+<p>If given value is an object (not a function) or an array, it uses
+parts.equals, otherwise it will check for it&#39;s identity</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type">Mixed</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a></span>
+					
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
             
         
         	
@@ -487,7 +874,7 @@ function.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1350"><code>lib&#x2F;gabarito.js:1350</code></a>
+		<a href="../files/lib_gabarito.js.html#l1356"><code>lib&#x2F;gabarito.js:1356</code></a>
 		
 		</p>
 
@@ -584,7 +971,7 @@ function.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1223"><code>lib&#x2F;gabarito.js:1223</code></a>
+		<a href="../files/lib_gabarito.js.html#l1229"><code>lib&#x2F;gabarito.js:1229</code></a>
 		
 		</p>
 
@@ -651,7 +1038,7 @@ as well.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1403"><code>lib&#x2F;gabarito.js:1403</code></a>
+		<a href="../files/lib_gabarito.js.html#l1409"><code>lib&#x2F;gabarito.js:1409</code></a>
 		
 		</p>
 
@@ -740,7 +1127,7 @@ as well.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1271"><code>lib&#x2F;gabarito.js:1271</code></a>
+		<a href="../files/lib_gabarito.js.html#l1277"><code>lib&#x2F;gabarito.js:1277</code></a>
 		
 		</p>
 
@@ -791,6 +1178,115 @@ is treated as a draft. Every draft is run to check if it works.</p>
             
         
         	
+<div id="method-spy" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>spy</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>fn</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type">Function</span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1430"><code>lib&#x2F;gabarito.js:1430</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Creates an instance of
+gabarito.Spy</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">fn</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>Function to spy on</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Function</span>:
+					
+					<p>The spy handler function</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
+            
+        
+        	
 <div id="method-stay" class="method item">
 	<div class="method-signature">
 	<span class="name"><code>stay</code></span>
@@ -832,7 +1328,7 @@ is treated as a draft. Every draft is run to check if it works.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1286"><code>lib&#x2F;gabarito.js:1286</code></a>
+		<a href="../files/lib_gabarito.js.html#l1292"><code>lib&#x2F;gabarito.js:1292</code></a>
 		
 		</p>
 
@@ -928,7 +1424,7 @@ is treated as a draft. Every draft is run to check if it works.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1201"><code>lib&#x2F;gabarito.js:1201</code></a>
+		<a href="../files/lib_gabarito.js.html#l1207"><code>lib&#x2F;gabarito.js:1207</code></a>
 		
 		</p>
 
@@ -1033,7 +1529,7 @@ gabarito.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1373"><code>lib&#x2F;gabarito.js:1373</code></a>
+		<a href="../files/lib_gabarito.js.html#l1379"><code>lib&#x2F;gabarito.js:1379</code></a>
 		
 		</p>
 
@@ -1112,7 +1608,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l1415"><code>lib&#x2F;gabarito.js:1415</code></a>
+        <a href="../files/lib_gabarito.js.html#l1421"><code>lib&#x2F;gabarito.js:1421</code></a>
         
         </p>
 
@@ -1145,8 +1641,6 @@ gabarito.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     <div class="meta">
         
@@ -1159,7 +1653,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l855"><code>lib&#x2F;gabarito.js:855</code></a>
+        <a href="../files/lib_gabarito.js.html#l866"><code>lib&#x2F;gabarito.js:866</code></a>
         
         </p>
 
@@ -1183,7 +1677,7 @@ gabarito.</p>
         
 <div id="prop-matcher.ANY_ARGS" class="property item">
     <h3 class="name"><code>matcher.ANY_ARGS</code></h3>
-    <span class="type">gabarito.VargargsMatcher</span>
+    <span class="type"><a href="../classes/gabarito.VarargsMatcher.html" class="crosslink">gabarito.VarargsMatcher</a></span>
 
     
 
@@ -1191,8 +1685,6 @@ gabarito.</p>
 
     
 
-    
-        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -1206,7 +1698,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l865"><code>lib&#x2F;gabarito.js:865</code></a>
+        <a href="../files/lib_gabarito.js.html#l875"><code>lib&#x2F;gabarito.js:875</code></a>
         
         </p>
 
@@ -1239,8 +1731,6 @@ gabarito.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     <div class="meta">
         
@@ -1253,7 +1743,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l815"><code>lib&#x2F;gabarito.js:815</code></a>
+        <a href="../files/lib_gabarito.js.html#l830"><code>lib&#x2F;gabarito.js:830</code></a>
         
         </p>
 
@@ -1286,8 +1776,6 @@ gabarito.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     <div class="meta">
         
@@ -1300,7 +1788,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l825"><code>lib&#x2F;gabarito.js:825</code></a>
+        <a href="../files/lib_gabarito.js.html#l839"><code>lib&#x2F;gabarito.js:839</code></a>
         
         </p>
 
@@ -1333,8 +1821,6 @@ gabarito.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     <div class="meta">
         
@@ -1347,7 +1833,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l845"><code>lib&#x2F;gabarito.js:845</code></a>
+        <a href="../files/lib_gabarito.js.html#l857"><code>lib&#x2F;gabarito.js:857</code></a>
         
         </p>
 
@@ -1380,8 +1866,6 @@ gabarito.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     <div class="meta">
         
@@ -1394,7 +1878,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l835"><code>lib&#x2F;gabarito.js:835</code></a>
+        <a href="../files/lib_gabarito.js.html#l848"><code>lib&#x2F;gabarito.js:848</code></a>
         
         </p>
 
@@ -1427,8 +1911,6 @@ gabarito.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     <div class="meta">
         
@@ -1441,7 +1923,7 @@ gabarito.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l805"><code>lib&#x2F;gabarito.js:805</code></a>
+        <a href="../files/lib_gabarito.js.html#l821"><code>lib&#x2F;gabarito.js:821</code></a>
         
         </p>
 
@@ -1471,342 +1953,6 @@ gabarito.</p>
 
 
 
-
-    <div id="static-methods" class="page-section">
-        <h2 class="off-left">Static Methods</h2>
-        <div class="item-list">
-        
-			
-        
-			
-        
-			
-<div id="method-matcher.args" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>gabarito.Gabarito.matcher.args</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>fn</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type">gabarito.VarargsMatcher</span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l891"><code>lib&#x2F;gabarito.js:891</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Matcher for varargs</p>
-</div>
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">fn</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">gabarito.VarargsMatcher</span>
-					
-				
-			</div>
-		</div>
-	
-
-	
-</div>
-
-            
-        
-			
-<div id="method-matcher.type" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>gabarito.Gabarito.matcher.type</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>type</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l875"><code>lib&#x2F;gabarito.js:875</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Matcher for a given type</p>
-</div>
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">type</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-					<p>gabarito.Matcher</p>
-
-				
-			</div>
-		</div>
-	
-
-	
-</div>
-
-            
-        
-			
-<div id="method-matcher.value" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>gabarito.Gabarito.matcher.value</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>v</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l903"><code>lib&#x2F;gabarito.js:903</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Literal value matcher</p>
-<p>If given value is an object (not a function) or an array, it uses
-parts.equals, otherwise it will check for it&#39;s identity</p>
-</div>
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">v</code>
-						<span class="type">Mixed</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a></span>
-					
-				
-			</div>
-		</div>
-	
-
-	
-</div>
-
-            
-        
-			
-        
-			
-        
-			
-        
-			
-        
-			
-        
-			
-        
-			
-        
-        </div>
-    </div>
 
                     </div>
                 </div>
