@@ -259,6 +259,21 @@
             assert.that(e.message).isEqualTo("Error mismatch.");
         }
 
+    }).
+
+    clause("noCalls should throw if a call was made", function () {
+        s();
+        try {
+            s.noCalls();
+        } catch (e) {
+            assert.that(e).isInstanceOf(Error);
+            assert.that(e.message).isEqualTo("A call was made.");
+        }
+    }).
+
+    clause("noCalls should pass if no calls were made", function () {
+        s.noCalls();
     });
+
 
 }(typeof exports !== "undefined" && global.exports !== exports));

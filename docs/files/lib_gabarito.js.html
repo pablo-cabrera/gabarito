@@ -490,6 +490,23 @@
          */
         var AssertThat = ilk(function (v) {
             value.mark(this, v);
+        }).
+
+        proto({
+
+            /**
+             * Asserts that a given collection has a given number of elements
+             *
+             * @method hasSizeOf
+             * @for gabarito.AssertThat
+             */
+            hasSizeOf: parts.overload(
+                function (size) {
+                    this.hasSizeOf(size, &quot;Size mismatch.&quot;);
+                },
+                function (size, msg) {
+                    assert.areSame(this[value].length, size, msg);
+                })
         });
 
         /**
@@ -851,6 +868,7 @@
              */
             name: function (name) {
                 this[test].name = name;
+                return this;
             }
         });
     });
@@ -1107,6 +1125,10 @@
                 return that.verify();
             };
 
+            this.handler.noCalls = function () {
+                return that.noCalls();
+            };
+
         })).
 
         constant({
@@ -1123,6 +1145,12 @@
                 }
 
                 return new SpyVerifier(this[calls].shift());
+            },
+
+            noCalls: function () {
+                if (this[calls].length !== 0) {
+                    throw new Error(&quot;A call was made.&quot;);
+                }
             }
         });
     });
