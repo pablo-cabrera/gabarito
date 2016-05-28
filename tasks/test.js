@@ -18,7 +18,6 @@ module.exports = function (grunt) {
                     f = path.join(cwd, f);
                 }
 
-                console.log(f);
                 runner.addFile(f);
             });
         });
