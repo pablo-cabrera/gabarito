@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
             
                 <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.Matcher.html">gabarito.Matcher</a></li>
             
                 <li><a href="../classes/gabarito.plumbing.ConsoleReporter.html">gabarito.plumbing.ConsoleReporter</a></li>
             
@@ -806,7 +808,7 @@
              * @return {gabarito.TestBuilder}
              */
             clause: function (name, body) {
-                this[test][name] = body || unimplmemented;
+                this[test][name] = body || unimplemented;
                 return this;
             },
 
@@ -853,6 +855,281 @@
         });
     });
 
+    /**
+     * The matcher consists of a single function that evaluates whether a given
+     * values meets the matcher function criteria.
+     *
+     * @class gabarito.Matcher
+     * @constructor
+     *
+     * @param {function} matcher The matcher function
+     */
+    var Matcher = ilk(function (matcher) {
+        if (!(this instanceof Matcher)) {
+            return new Matcher(matcher);
+        }
+
+        /**
+         * The mather method should evaluate the matcher function and tell
+         * whether the value matches the criteria.
+         *
+         * @method matches
+         * @for gabarito.Matcher
+         *
+         * @param {mixed} value
+         * @return {boolean}
+         */
+        this.matches = matcher;
+    });
+
+
+    var VarargsMatcher = Matcher.descend();
+
+    var matcher = function (fn) {
+        return new Matcher(fn);
+    };
+
+    parts.merge(matcher, {
+
+        /**
+         * Matcher for string type
+         *
+         * @property matcher.STRING
+         * @for gabarito.Gabarito
+         * @static
+         * @type {gabarito.Matcher}
+         */
+        STRING: new Matcher(parts.isString),
+
+        /**
+         * Matcher for array type
+         *
+         * @property matcher.ARRAY
+         * @for gabarito.Gabarito
+         * @static
+         * @type {gabarito.Matcher}
+         */
+        ARRAY: new Matcher(parts.isArray),
+
+        /**
+         * Matcher for function type
+         *
+         * @property matcher.FUNCTION
+         * @for gabarito.Gabarito
+         * @static
+         * @type {gabarito.Matcher}
+         */
+        FUNCTION: new Matcher(parts.isFunction),
+
+        /**
+         * Matcher for object type
+         *
+         * @property matcher.OBJECT
+         * @for gabarito.Gabarito
+         * @static
+         * @type {gabarito.Matcher}
+         */
+        OBJECT: new Matcher(parts.isObject),
+
+        /**
+         * Matcher for array type
+         *
+         * @property matcher.NUMBER
+         * @for gabarito.Gabarito
+         * @static
+         * @type {gabarito.Matcher}
+         */
+        NUMBER: new Matcher(parts.isNumber),
+
+        /**
+         * Always matches
+         *
+         * @property matcher.ANY
+         * @for gabarito.Gabarito
+         * @static
+         * @type {gabarito.Matcher}
+         */
+        ANY: new Matcher(parts.constant(true)),
+
+        /**
+         * Always matches any varargs
+         *
+         * @property matcher.ANY_ARGS
+         * @for gabarito.Gabarito
+         * @static
+         * @type {gabarito.VargargsMatcher}
+         */
+        ANY_ARGS: new VarargsMatcher(parts.constant(true)),
+
+        /**
+         * Matcher for a given type
+         *
+         * @method matcher.type
+         * @for gabarito.Gabarito
+         * @static
+         *
+         * @param {function} type
+         * @return gabarito.Matcher
+         */
+        type: function (type) {
+            return new Matcher(function (v) {
+                return v instanceof type;
+            });
+        },
+
+        /**
+         * Matcher for varargs
+         *
+         * @method matcher.args
+         * @for gabarito.Gabarito
+         * @static
+         *
+         * @param {function} fn
+         * @return {gabarito.VarargsMatcher}
+         */
+        args: function (fn) { return new VarargsMatcher(fn); },
+
+        /**
+         * Literal value matcher
+         *
+         * If given value is an object (not a function) or an array, it uses
+         * parts.equals, otherwise it will check for it&#x27;s identity
+         *
+         * @method matcher.value
+         * @for gabarito.Gabarito
+         * @static
+         *
+         * @param {mixed} v
+         * @return {gabarito.Matcher}
+         */
+        value: function (v) {
+            return new Matcher(
+                parts.isArray(v) || (!parts.isFunction(v) &amp;&amp; parts.isObject(v))?
+                function (o) { return parts.equals(v, o); }:
+                function (o) { return v === o; });
+        }
+
+    });
+
+    var Spy = ilk.tokens(function (
+        subject,
+        calls,
+        call,
+
+        getMatcher
+    ) {
+        var SpyVerifier = ilk(function (pCall) {
+            call.mark(this, pCall);
+        }).
+
+        proto(getMatcher, function (v) {
+            return v instanceof Matcher? v: matcher.value(v);
+        }).
+
+        proto({
+            args: parts.args(parts.that(function (that, args) {
+                if (args.length === 0) {
+                    throw new Error(&quot;No args to check.&quot;);
+                }
+
+                var lastArg = args[args.length - 1];
+                if (!(lastArg instanceof VarargsMatcher) &amp;&amp;
+                        args.length !== this[call].args.length) {
+                    throw new Error(&quot;Args number mismatch: &quot; +
+                            this[call].args.length + &quot; args passed.&quot;);
+                }
+
+                parts.forEach(args, function (a, i) {
+                    var m = that[getMatcher](a);
+                    if (m instanceof VarargsMatcher) {
+                        if (m === lastArg) {
+                            if (!m.matches(that[call].args.slice(i))) {
+                                throw new Error(&quot;Arguments mismatch.&quot;);
+                            }
+                        } else {
+                            throw new Error(
+                                &quot;VarargsMatcher should be the last matcher.&quot;);
+                        }
+                    } else if (!m.matches(that[call].args[i])) {
+                        throw new Error(&quot;Argument mismatch.&quot;);
+                    }
+                });
+
+                return this;
+            })),
+
+            throwing: function (v) {
+                if (!parts.hop(this[call], &quot;thrown&quot;)) {
+                    throw new Error(&quot;Error not thrown.&quot;);
+                }
+
+                if (!this[getMatcher](v).matches(this[call].thrown)) {
+                    throw new Error(&quot;Error mismatch.&quot;);
+                }
+
+                return this;
+            },
+            returning: function (v) {
+                if (!parts.hop(this[call], &quot;returning&quot;)) {
+                    throw new Error(&quot;Didn&#x27;t return.&quot;);
+                }
+
+                if (!this[getMatcher](v).matches(this[call].returning)) {
+                    throw new Error(&quot;Return mismatch.&quot;);
+                }
+
+                return this;
+            }
+        });
+
+        return ilk(parts.that(function (that, fn) {
+            subject.mark(this, fn);
+            calls.mark(this, []);
+
+            this.handler = parts.args(function (args) {
+                var call = {
+                    that: this,
+                    args: args
+                };
+
+                that[calls].push(call);
+
+                try {
+                    call.returning = fn.apply(this, args);
+                    return call.returning;
+                } catch (e) {
+                    call.thrown = e;
+                    throw e;
+                }
+            });
+
+            this.handler.verify = function () {
+                return that.verify();
+            };
+
+        })).
+
+        constant({
+            on: function (fn) {
+                return new Spy(fn).handler;
+            }
+        }).
+
+        proto({
+            verify: function () {
+
+                if (this[calls].length === 0) {
+                    throw new Error(&quot;No calls were made.&quot;);
+                }
+
+                return new SpyVerifier(this[calls].shift());
+            }
+        });
+    });
+
+
+
+
     var Gabarito = ilk.tokens(function (
         tests,
         results,
@@ -884,15 +1161,6 @@
         ];
 
         return ilk(parts.that(function (t) {
-            /**
-             * Reference containing the various assert utils.
-             *
-             * @property assert
-             * @for gabarito.Gabarito
-             * @type {gabarito.Assert}
-             */
-            this.assert = assert;
-
             parts.forEach(privateProperties, function (p) { p.mark(t); });
 
             this.reset();
@@ -1138,7 +1406,7 @@
 
             /**
              * Returns a function that when called, tells gabarito to resume the
-             * current draft and also passes the parameters along to the given
+             * current clause and also passes the parameters along to the given
              * function.
              *
              * Just a syntatic sugar to avoid another nesting level.
@@ -1221,7 +1489,20 @@
              */
             say: parts.args(function (args) {
                 this[emit].apply(this, [&quot;say&quot;].concat(args));
-            })
+            }),
+
+            /**
+             * Reference containing the various assert utils.
+             *
+             * @property assert
+             * @for gabarito.Gabarito
+             * @type {gabarito.Assert}
+             */
+            assert: assert,
+
+            spy: Spy.on,
+
+            matcher: matcher
         });
     });
 

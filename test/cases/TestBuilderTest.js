@@ -15,29 +15,18 @@
     }
 
     var assert = gabarito.assert;
+    var g;
 
     gabarito.test("gabarito.TestBuilder").
 
-    clause("gabarito.test should add a test with the given name", function () {
-        assert.fail();
+    before(function () {
+        g = gabarito.standalone();
     }).
 
-    clause("should use the name as the test's name", function () {
-        assert.fail();
-    }).
-
-    clause("should use the function as before within the test", function () {
-        assert.fail();
-    }).
-
-    clause("should use the function as after within the test", function () {
-        assert.fail();
-    }).
-
-    clause("should add the clause as a new clause within the test",
-    function () {
-        assert.fail();
-    });
-
+    clause("gabarito.test should add a test with the given name").
+    clause("should use the name as the test's name").
+    clause("should use the function as before within the test").
+    clause("should use the function as after within the test").
+    clause("should add the clause as a new clause within the test");
 
 }(typeof exports !== "undefined" && global.exports !== exports));

@@ -4,6 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "gabarito.Assert",
         "gabarito.AssertThat",
         "gabarito.Gabarito",
+        "gabarito.Matcher",
         "gabarito.TestBuilder",
         "gabarito.plumbing.ConsoleReporter",
         "gabarito.plumbing.Environment",
