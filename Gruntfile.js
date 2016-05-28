@@ -15,7 +15,29 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON("package.json"),
 
         test: {
-            files: ["test/**/*.js"]
+            runtime: {
+                src: [
+                    "test/cases/AssertTest.js",
+                    "test/cases/AssertThatTest.js",
+                    "test/cases/GabaritoTest.js",
+                    "test/cases/SpyTest.js",
+                    "test/cases/TestBuilderTest.js"
+                ],
+
+                options: {
+                    results: "test/result/runtime.xml",
+                    environments: ["node", "phantom"]
+                }
+            },
+
+            plumbing: {
+                src: ["test/cases/plumbing/**/*.js"],
+
+                options: {
+                    results: "test/result/plumbing.xml",
+                    environments: ["node"]
+                }
+            }
         },
 
         jshint: {
@@ -83,6 +105,7 @@ module.exports = function (grunt) {
     // Local tasks
     grunt.loadTasks("tasks");
 
-    grunt.registerTask("default", ["jscs", "jshint", "test", "yuidoc"]);
+    grunt.registerTask("default",
+            ["jscs", "jshint", "test:runtime", "test:plumbing", "yuidoc"]);
 
 };

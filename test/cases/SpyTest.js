@@ -249,7 +249,7 @@
         s = spy(function () { throw error; });
 
         try { s(); } catch (e) { }
-        s.verify().throwing(new Error());
+        s.verify().throwing(error);
 
         try { s(); } catch (e) { }
         try {

@@ -17,24 +17,29 @@ module.exports = function (grunt) {
                 if (f.indexOf("/") !== 0) {
                     f = path.join(cwd, f);
                 }
+
+                console.log(f);
                 runner.addFile(f);
             });
         });
     };
 
-    var setupEnvironments = function (runner) {
-        var node = new plumbing.NodeEnvironment();
-        runner.addEnvironment(node);
+    var setupEnvironments = function (runner, environments) {
+        if (environments.indexOf("node") > -1) {
+            var node = new plumbing.NodeEnvironment();
+            runner.addEnvironment(node);
+        }
 
-        var phantom = new plumbing.PhantomEnvironment();
-        // runner.addEnvironment(phantom);
+        if (environments.indexOf("phantom") > -1) {
+            var phantom = new plumbing.PhantomEnvironment();
+            runner.addEnvironment(phantom);
+        }
     };
 
-    var setupReporters = function (runner) {
+    var setupReporters = function (runner, jUnitFile) {
         runner.addReporter(new plumbing.ConsoleReporter());
 
-        var jUnitReporter = new plumbing.JUnitXmlReporter(
-                path.join(cwd, "/test/result/results.xml"));
+        var jUnitReporter = new plumbing.JUnitXmlReporter(jUnitFile);
         runner.addReporter(jUnitReporter);
 
     };
@@ -43,11 +48,14 @@ module.exports = function (grunt) {
         var done = this.async();
         var runner = new plumbing.Runner();
 
+        grunt.option.init();
+
+
         grunt.file.mkdir(path.join(cwd, "/test/result"));
 
         setupFiles(runner, this.files);
-        setupEnvironments(runner);
-        setupReporters(runner);
+        setupEnvironments(runner, this.options().environments);
+        setupReporters(runner, this.options().results);
 
         runner.run(function (results) {
             var hasErrors = results.some(function (r) {
