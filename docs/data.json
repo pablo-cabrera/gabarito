@@ -200,7 +200,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/plumbing/JUnitXmlReporter.js",
-            "line": 21,
+            "line": 23,
             "description": "The JUnitXmlReporter produces a XML file with the test results that has\nthe jUnit format. Useful to use along with your favorite CI solution.",
             "extends": "gabarito.plumbing.Reporter",
             "is_constructor": 1,
@@ -225,6 +225,12 @@
                     "name": "fs",
                     "description": "",
                     "type": "FileSystem",
+                    "optional": true
+                },
+                {
+                    "name": "nowGiver",
+                    "description": "",
+                    "type": "Function",
                     "optional": true
                 }
             ]
@@ -443,7 +449,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 1025,
+            "line": 1026,
             "description": "The verifier is used to check for the arguments, return or error\nthrown.",
             "is_constructor": 1,
             "params": [
@@ -463,7 +469,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 1130,
+            "line": 1131,
             "description": "The spy relays the calls to the actual function, but records every\ncall, along with its parameters, its return or error if thrown.\n\nTo verify a given call, the {#crossLink\n\"gabarito.SpyVerifier\"}}{{/crossLink}} may be obtained through the\nverify method.",
             "is_constructor": 1,
             "params": [
@@ -742,7 +748,7 @@
         },
         {
             "file": "lib/plumbing/JUnitXmlReporter.js",
-            "line": 124,
+            "line": 130,
             "description": "Produces the XML itself",
             "itemtype": "method",
             "name": "finish",
@@ -750,7 +756,7 @@
                 {
                     "name": "results",
                     "description": "",
-                    "type": "Object[]"
+                    "type": "gabarito.EnvironmentResults[]"
                 }
             ],
             "class": "gabarito.plumbing.JUnitXmlReporter"
@@ -2391,7 +2397,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1043,
+            "line": 1044,
             "description": "Checks if the calls arguments matches with the given matchers",
             "itemtype": "method",
             "name": "args",
@@ -2410,7 +2416,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1085,
+            "line": 1086,
             "description": "Checks what has been throw by the call using the matcher o a\nvalue matcher.",
             "itemtype": "method",
             "name": "throwing",
@@ -2429,7 +2435,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1107,
+            "line": 1108,
             "description": "Checks what has been returmed by the call using the matcher o a\nvalue matcher.",
             "itemtype": "method",
             "name": "returning",
@@ -2448,7 +2454,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1147,
+            "line": 1148,
             "description": "The handler function that relays all the calls, this is the\nactual function that should be used instead of the real one.",
             "itemtype": "property",
             "name": "handler",
@@ -2457,7 +2463,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1172,
+            "line": 1173,
             "description": "Relays the verify call to the spy instance.",
             "itemtype": "method",
             "name": "handler.verify",
@@ -2469,7 +2475,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1184,
+            "line": 1185,
             "description": "Relays the noCalls call to the spy instance.",
             "itemtype": "method",
             "name": "handler.noCalls",
@@ -2477,7 +2483,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1194,
+            "line": 1195,
             "description": "Relays the reset call to the spy instance.",
             "itemtype": "method",
             "name": "handler.reset",
@@ -2485,7 +2491,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1208,
+            "line": 1209,
             "description": "Creates a spy instance and returns its handler",
             "itemtype": "method",
             "name": "on",
@@ -2505,7 +2511,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1225,
+            "line": 1226,
             "description": "Returns a spy verifier if a call was made",
             "itemtype": "method",
             "name": "verify",
@@ -2517,7 +2523,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1242,
+            "line": 1243,
             "description": "Throws an error if a call was made",
             "itemtype": "method",
             "name": "noCalls",
@@ -2525,7 +2531,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1254,
+            "line": 1255,
             "description": "Removes all recorded calls from the instance",
             "itemtype": "method",
             "name": "reset",
@@ -2533,7 +2539,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1416,
+            "line": 1417,
             "description": "Adds a test using the\n{{#crossLink \"gabarito.TestBuilder\"}}{{/crossLink}} within\ngabarito.",
             "itemtype": "method",
             "name": "test",
@@ -2553,7 +2559,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1438,
+            "line": 1439,
             "description": "Resets the gabarito to it's initial state, removing all listeners\nas well.",
             "itemtype": "method",
             "name": "reset",
@@ -2561,13 +2567,13 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1470,
+            "line": 1471,
             "description": "Tells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
             "class": "gabarito.Gabarito"
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1486,
+            "line": 1487,
             "description": "Adds a test within the gabarito.\n\nThe sketch is an object containing various methods. Each method\nis treated as a draft. Every draft is run to check if it works.",
             "itemtype": "method",
             "name": "sketch",
@@ -2582,7 +2588,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1501,
+            "line": 1502,
             "description": "Tells the gabarito to wait for an async continuation of a draft.",
             "itemtype": "method",
             "name": "stay",
@@ -2598,7 +2604,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1526,
+            "line": 1527,
             "description": "Tells the gabarito to resume the current draft",
             "itemtype": "method",
             "name": "go",
@@ -2614,7 +2620,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1543,
+            "line": 1544,
             "description": "Returns a function that when called, tells gabarito to resume the\ncurrent clause and also passes the parameters along to the given\nfunction.\n\nJust a syntatic sugar to avoid another nesting level.",
             "itemtype": "method",
             "name": "going",
@@ -2630,7 +2636,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1565,
+            "line": 1566,
             "description": "Register an event listener for a given event.\n\nAvailable events:\n\n- begin: The beginning of the gabarito veritication\n- end: The end of the gabarito verification\n- pass: Whenever a draft passes\n- fail: Whenever a draft fails",
             "itemtype": "method",
             "name": "on",
@@ -2650,7 +2656,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1588,
+            "line": 1589,
             "description": "Verify all tests",
             "itemtype": "method",
             "name": "verify",
@@ -2666,7 +2672,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1618,
+            "line": 1619,
             "description": "Tells gabarito to say something.",
             "itemtype": "method",
             "name": "say",
@@ -2682,7 +2688,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1630,
+            "line": 1631,
             "description": "Reference containing the various assert utils.",
             "itemtype": "property",
             "name": "assert",
@@ -2691,7 +2697,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1639,
+            "line": 1640,
             "description": "Creates an instance of\n{{#crossLink \"gabarito.Spy\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "spy",
@@ -2710,7 +2716,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1651,
+            "line": 1652,
             "description": "Creates a custom matcher using the function as a matching\ncriteria.\n\nThe function will receive a value to examinate and should return\na boolean indicating whether the criteria is met.",
             "itemtype": "method",
             "name": "matcher",
@@ -2812,7 +2818,7 @@
     "warnings": [
         {
             "message": "Missing item type\nTells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
-            "line": " lib/gabarito.js:1470"
+            "line": " lib/gabarito.js:1471"
         }
     ]
 }

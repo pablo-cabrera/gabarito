@@ -207,7 +207,7 @@
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
             assert.that(e.message).
-                    isEqualTo("1st argument mismatch.\nArgument: 1");
+                    isEqualTo("1st argument mismatch.\nExpected: 2\nActual: 1");
         }
     }).
 

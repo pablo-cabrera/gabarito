@@ -1129,7 +1129,8 @@
             return new Matcher(
                 parts.isArray(v) || (!parts.isFunction(v) &amp;&amp; parts.isObject(v))?
                 function (o) { return parts.equals(v, o); }:
-                function (o) { return v === o; });
+                function (o) { return v === o; },
+                &quot;%s argument mismatch.\nExpected: &quot; + v + &quot;\nActual: %s&quot;);
         }
 
     });

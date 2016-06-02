@@ -130,7 +130,9 @@ module.exports = ilk.tokens(function (
     name,
     xmlbuilder,
     fs,
+    nowGiver,
     start,
+
 
     buildTestSuites,
     buildTestSuite,
@@ -149,12 +151,16 @@ module.exports = ilk.tokens(function (
      * @param {string} name The name of the jUnit report
      * @param {XmlBuilder} [xmlbuilder]
      * @param {FileSystem} [fs]
+     * @param {function} [nowGiver]
      */
-    return Reporter.descend(function (pFile, pName, pXmlBuilder, pFs) {
+    return Reporter.descend(function (pFile, pName, pXmlBuilder, pFs,
+            pNowGiver) {
+
         file.mark(this, pFile);
         name.mark(this, pName);
         xmlbuilder.mark(this, pXmlBuilder || require(&quot;xmlbuilder&quot;));
         fs.mark(this, pFs || require(&quot;fs&quot;));
+        nowGiver.mark(this, pNowGiver || Date.now);
     }).
 
     proto(buildTestSuites, parts.that(function (that, results) {
@@ -167,7 +173,7 @@ module.exports = ilk.tokens(function (
         var tests = 0;
         var failures = 0;
 
-        testsuites.att(&quot;time&quot;, (Date.now() - this[start]) / 1000);
+        testsuites.att(&quot;time&quot;, (this[nowGiver]() - this[start]) / 1000);
         results.forEach(function (results) {
             that[buildTestSuite](testsuites, results);
 
@@ -199,7 +205,7 @@ module.exports = ilk.tokens(function (
         results.results.forEach(function (r) {
             that[buildTestCases](env, testSuite, r);
 
-            time += r.elapsedTime;
+            time += (r.end - r.start);
 
             parts.forEach(r.results, function (r) {
                 tests += 1;
@@ -237,7 +243,7 @@ module.exports = ilk.tokens(function (
 
     proto({
         start: function () {
-            this[start] = Date.now();
+            this[start] = this[nowGiver]();
         },
 
         /**
@@ -246,7 +252,7 @@ module.exports = ilk.tokens(function (
          * @method finish
          * @for gabarito.plumbing.JUnitXmlReporter
          *
-         * @param {object[]} results
+         * @param {gabarito.EnvironmentResults[]} results
          */
         finish: function (results) {
             var testsuites = this[buildTestSuites](results);
