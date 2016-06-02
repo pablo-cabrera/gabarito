@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,10 @@
                 <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
             
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
                 <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
             
@@ -63,7 +67,13 @@
             
                 <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
             
+                <li><a href="../classes/gabarito.Spy.html">gabarito.Spy</a></li>
+            
+                <li><a href="../classes/gabarito.SpyVerifier.html">gabarito.SpyVerifier</a></li>
+            
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
+            
+                <li><a href="../classes/gabarito.TestResult.html">gabarito.TestResult</a></li>
             
                 <li><a href="../classes/gabarito.VarargsMatcher.html">gabarito.VarargsMatcher</a></li>
             
@@ -128,15 +138,16 @@ var ROW = (function (c, n) {
 module.exports = ilk.tokens(function (
     startTime,
     initTime,
+    printStack,
     console,
+    nowGiver,
 
     formatEnv,
     log,
     testSummary,
     elapsed,
     row,
-    formatError,
-    getHighlightSentences
+    formatError
 ) {
     /**
      * The console reporter prints the gabarito events to the node&#x27;s console
@@ -147,11 +158,14 @@ module.exports = ilk.tokens(function (
      * @constructor
      *
      * @param {Console} [console]
+     * @param {function} [nowGiver]
      */
-    return Reporter.descend(function (pConsole) {
+    return Reporter.descend(function (pPrintStack, pConsole, pNowGiver) {
         console.mark(this, pConsole || global.console);
         startTime.mark(this);
         initTime.mark(this);
+        printStack.mark(this, arguments.length &gt; 0? pPrintStack: false);
+        nowGiver.mark(this, pNowGiver || Date.now);
     }).
 
     proto(formatEnv, function (env) {
@@ -177,42 +191,19 @@ module.exports = ilk.tokens(function (
         return summary;
     }).
 
-    proto(elapsed, function (t) { return (Date.now() - t) / 1000; }).
+    proto(elapsed, function (t) { return (this[nowGiver]() - t) / 1000; }).
 
     proto(row, function (pass) {
         this[log](ROW[pass? &quot;green&quot;: &quot;red&quot;].bold);
     }).
 
-    proto(formatError, function (error, highlight) {
-        var stack = error.stack;
-        var msg;
-
-        if (error instanceof Error) {
-            msg = stack? stack: error.toString();
-        } else {
-            msg = parts.isFunction(error.toString)?
-                    error.toString():
-                    error.toString;
-
-            if (msg === &quot;[object Object]&quot;) {
-                msg = error.message;
-            }
-
-            if (stack) {
-
-                if (stack.indexOf(msg) === 0) {
-                    msg = stack;
-                } else {
-                    msg += &quot;\n&quot; + stack;
-                }
-            }
+    proto(formatError, function (error) {
+        var stack = &quot;&quot;;
+        if (this[printStack] &amp;&amp; error.stack) {
+            stack = &quot;\nStack trace:\n&quot; + error.stack;
         }
 
-        highlight.forEach(function (h) {
-            msg = msg.split(h).join(h.bold);
-        });
-
-        return msg;
+        return Error.prototype.toString.call(error) + stack;
     }).
 
     proto({
@@ -226,7 +217,7 @@ module.exports = ilk.tokens(function (
         start: function () {
             this[log](ROW.bold);
             this[log](&quot;Starting tests.&quot;);
-            this[startTime] = Date.now();
+            this[startTime] = this[nowGiver]();
         },
 
         /**
@@ -236,7 +227,7 @@ module.exports = ilk.tokens(function (
          * @method finish
          * @for gabarito.plumbing.ConsoleReporter
          *
-         * @param {object} results
+         * @param {gabarito.EnvironmentResults[]} results
          */
         finish: parts.that(function (that, results) {
             var failed = results.some(function (e) {
@@ -286,7 +277,7 @@ module.exports = ilk.tokens(function (
                     &quot;verifying &quot; + (String(l).green.bold) + &quot; &quot; +
                     (l === 1? &quot;test.&quot;: &quot;tests.&quot;);
 
-            this[initTime] = Date.now();
+            this[initTime] = this[nowGiver]();
 
             this[log](ROW.yellow.bold);
             this[log](msg);
@@ -317,7 +308,7 @@ module.exports = ilk.tokens(function (
          *
          * @param {gabarito.plumbing.Environment} env
          * @param {string} test
-         * @param {object} results
+         * @param {gabarito.TestResult} results
          */
         end: function (env, test, results) {
             var summary = this[testSummary](results);
@@ -341,7 +332,7 @@ module.exports = ilk.tokens(function (
          * @for gabarito.plumbing.ConsoleReporter
          *
          * @param {gabarito.plumbing.Environment} env
-         * @param {object[]} results
+         * @param {gabarito.TestResult[]} results
          */
         complete: parts.that(function (that, env, results) {
             var tests = results.length;
@@ -363,7 +354,7 @@ module.exports = ilk.tokens(function (
                     (String(summary.passed).bold)).green);
             this[log]((&quot;Failed clauses: &quot; + (String(summary.failed).bold)).red);
             this[log]((&quot;Elapsed time: &quot; +
-                    (String((Date.now() - this[initTime]) / 1000).bold) +
+                    (String((this[nowGiver]() - this[initTime]) / 1000).bold) +
                     &quot; seconds.&quot;));
             this[row](summary.failed === 0);
             this[log](&quot;&quot;);
@@ -378,7 +369,7 @@ module.exports = ilk.tokens(function (
          * @param {gabarito.plumbing.Environment} env
          * @param {string} test
          * @param {string} clause
-         * @param {object} result
+         * @param {gabarito.ClauseResult} result
          */
         pass: function (env, test, clause, result) {
             var msg = this[formatEnv](env) + &quot; &quot; +
@@ -395,15 +386,14 @@ module.exports = ilk.tokens(function (
          * @param {gabarito.plumbing.Environment} env
          * @param {string} test
          * @param {string} clause
-         * @param {object} result
+         * @param {gabarito.ClauseResult} result
          */
         fail: function (env, test, clause, result) {
             var msg = this[formatEnv](env) + &quot; &quot; +
                     ((&quot;[&quot; + &quot;FAIL&quot;.red + &quot;] &quot;).bold) + test + &quot; :: &quot; +
                     clause;
             this[log](msg);
-            this[log](this[formatError](result.error,
-                    test.split(/[\.\\\/\s]/).concat([clause])).red);
+            this[log](this[formatError](result.error).red);
         },
 
         /**
@@ -413,7 +403,7 @@ module.exports = ilk.tokens(function (
          * @for gabarito.plumbing.ConsoleReporter
          *
          * @param {gabarito.plumbing.Environment} env
-         * @param {string...} args
+         * @param {string} ...args
          */
 
         say: parts.args(parts.that(function (that, args) {

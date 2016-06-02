@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,10 @@
                 <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
             
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
                 <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
             
@@ -63,7 +67,13 @@
             
                 <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
             
+                <li><a href="../classes/gabarito.Spy.html">gabarito.Spy</a></li>
+            
+                <li><a href="../classes/gabarito.SpyVerifier.html">gabarito.SpyVerifier</a></li>
+            
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
+            
+                <li><a href="../classes/gabarito.TestResult.html">gabarito.TestResult</a></li>
             
                 <li><a href="../classes/gabarito.VarargsMatcher.html">gabarito.VarargsMatcher</a></li>
             
@@ -139,7 +149,7 @@ proto({
      * @method finish
      * @for gabarito.plumbing.Reporter
      *
-     * @param {object[]} results
+     * @param {gabarito.EnvironmentResults[]} results
      */
     finish: function (results) {},
 
@@ -163,7 +173,7 @@ proto({
      *
      * @param {gabarito.plumbing.Environment} env The environment that has
      *            completed
-     * @param {object[]} results The environment&#x27;s results
+     * @param {gabarito.TestResult[]} results The environment&#x27;s results
      */
     complete: function (env, results) {},
 
@@ -187,7 +197,7 @@ proto({
      *
      * @param {gabarito.plumbing.Environment} env The environment running the
      *            tests
-     * @param {object} results The results for the test
+     * @param {gabarito.TestResult} results The results for the test
      */
     end: function (env, test, results) {},
 
@@ -214,7 +224,7 @@ proto({
      *            tests
      * @param {string} test The test name
      * @param {string} clause The test clause
-     * @param {object} result The clause result
+     * @param {gabarito.ClauseResult} result The clause result
      */
     pass: function (env, test, clause, result) {},
 
@@ -228,7 +238,7 @@ proto({
      *            tests
      * @param {string} test The test name
      * @param {string} clause The test clause
-     * @param {object} result The clause result
+     * @param {gabarito.ClauseResult} result The clause result
      */
     fail: function (env, test, clause, result) {},
 
@@ -249,7 +259,8 @@ proto({
      * @for gabarito.plumbing.Reporter
      *
      * @param {gabarito.plumbing.Environment} env The environment
-     * @param {object} results The results for the environment
+     * @param {gabarito.EnvironmentResult} results The results for the
+     *            environment
      */
     done: function (env, results) {},
 
@@ -260,7 +271,7 @@ proto({
      * @for gabarito.plumbing.Reporter
      *
      * @param {gabarito.plumbing.Environment} env The environment
-     * @param {string...} args
+     * @param {string} ...args
      */
     say: function (env) {}
 });

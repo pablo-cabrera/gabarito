@@ -80,7 +80,7 @@
             assert.areSame(2, results.length);
             var r = results[0];
 
-            assert.areSame(test, r.test);
+            assert.areSame(test.name, r.test);
             assert.isNumber(r.start);
             assert.isNumber(r.elapsedTime);
 

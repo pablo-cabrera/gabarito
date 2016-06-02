@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,10 @@
                 <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
             
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
                 <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
             
@@ -63,7 +67,13 @@
             
                 <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
             
+                <li><a href="../classes/gabarito.Spy.html">gabarito.Spy</a></li>
+            
+                <li><a href="../classes/gabarito.SpyVerifier.html">gabarito.SpyVerifier</a></li>
+            
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
+            
+                <li><a href="../classes/gabarito.TestResult.html">gabarito.TestResult</a></li>
             
                 <li><a href="../classes/gabarito.VarargsMatcher.html">gabarito.VarargsMatcher</a></li>
             
@@ -131,12 +141,18 @@
         }
     }
 
+    var formatMessage = function (msg, args) {
+        var s = msg;
+        parts.forEach(args, function (arg) { s = s.replace(&quot;%s&quot;, arg); });
+        return s;
+    };
+
     var test = function (m, f) {
         var l = f.length + 1;
         return parts.args(function (args) {
             var msg = args.length === l? args.pop(): m;
             if (!f.apply(null, args)) {
-                throw new Error(msg);
+                throw new Error(formatMessage(msg, args));
             }
         });
     };
@@ -160,7 +176,7 @@
          * @param {mixed} a A value
          * @param {mixed} b Another value
          */
-        areSame: test(&quot;Values are not the same&quot;,
+        areSame: test(&quot;Values are not the same.\nExpected: %s\nActual: %s&quot;,
             function (a, b) { return a === b; }),
 
         /**
@@ -172,7 +188,7 @@
          * @param {mixed} a A value
          * @param {mixed} b Another value
          */
-        areNotSame: test(&quot;Values are the same&quot;,
+        areNotSame: test(&quot;Values are the same.\nExpected: %s\nActual: %s&quot;,
             function (a, b) { return a !== b; }),
 
         /**
@@ -230,11 +246,12 @@
             switch (arguments.length) {
             case 2: return assert.areEqual(a, b, parts.equals);
             case 3: return parts.isFunction(equality)?
-                    assert.areEqual(a, b, equality, &quot;Values should be equal.&quot;):
+                    assert.areEqual(a, b, equality,
+                        &quot;Values should be equal..\nExpected: %s\nActual: %s&quot;):
                     assert.areEqual(a, b, parts.equals, equality);
             default:
                 if (!equality(a, b)) {
-                    throw new Error(msg);
+                    throw new Error(formatMessage(msg, [a, b]));
                 }
             }
         },
@@ -878,32 +895,72 @@
         });
     });
 
-    /**
-     * The matcher consists of a single function that evaluates whether a given
-     * values meets the matcher function criteria.
-     *
-     * @class gabarito.Matcher
-     * @constructor
-     *
-     * @param {function} matcher The matcher function
-     */
-    var Matcher = ilk(function (matcher) {
-        if (!(this instanceof Matcher)) {
-            return new Matcher(matcher);
-        }
+    var Matcher = ilk.tokens(function (msg) {
+        var shared = { msg: msg };
+
+        var ordinal = function (n) {
+            var s = String(n);
+            var ld = s.substr(-1);
+
+            return n &gt; 9 &amp;&amp; n &lt; 10? s + &quot;th&quot;:
+                ld === &quot;1&quot;? s + &quot;st&quot;:
+                ld === &quot;2&quot;? s + &quot;nd&quot;:
+                ld === &quot;3&quot;? s + &quot;rd&quot;:
+                s + &quot;th&quot;;
+        };
 
         /**
-         * The mather method should evaluate the matcher function and tell
-         * whether the value matches the criteria.
+         * The matcher consists of a single function that evaluates whether a
+         * given values meets the matcher function criteria.
          *
-         * @method matches
-         * @for gabarito.Matcher
+         * @class gabarito.Matcher
+         * @constructor
          *
-         * @param {mixed} value
-         * @return {boolean}
+         * @param {function} matcher The matcher function
+         * @param {string} [msg] The error message
          */
-        this.matches = matcher;
+        return ilk(parts.overload(
+            function (matcher) {
+                Matcher.call(this, matcher,
+                    &quot;%s argument mismatch.\nArgument: %s&quot;);
+            },
+
+            function (matcher, pMsg) {
+                msg.mark(this, pMsg);
+
+                /**
+                 * The mather method should evaluate the matcher function and
+                 * tell whether the value matches the criteria.
+                 *
+                 * @method matches
+                 * @for gabarito.Matcher
+                 *
+                 * @param {mixed} value
+                 * @return {boolean}
+                 */
+                this.matches = matcher;
+            }), shared).
+
+        proto({
+
+            /**
+             * Returns the Error instance with the formatted message using the
+             * argument&#x27;s position and the argument itself.
+             *
+             * @method error
+             * @for gabarito.Matcher
+             *
+             * @param {number} position Argument position
+             * @param {mixed} arg
+             * @return {Error}
+             */
+            error: function (position, arg) {
+                return new Error(formatMessage(this[msg],
+                        [ordinal(position), arg]));
+            }
+        });
     });
+
 
 
     /**
@@ -919,11 +976,35 @@
      *
      * @param {function} matcher The matcher function
      */
-    var VarargsMatcher = Matcher.descend();
+    var VarargsMatcher = (function () {
+        var shared = {};
 
-    var matcher = function (fn) {
-        return new Matcher(fn);
-    };
+        return Matcher.descend(shared).
+        proto({
+
+            /**
+             * Returns the Error instance with the formatted message using the
+             * arguments passed to the matcher.
+             *
+             * @method error
+             * @for gabarito.VarargsMatcher
+             *
+             * @param {mixed[]} args The actual varargs array
+             * @return {Error}
+             */
+            error: function (args) {
+                return new Error(formatMessage(this[shared.msg], [args]));
+            }
+        });
+    }());
+
+    var matcher = parts.overload(
+        function (fn) {
+            return matcher(fn, &quot;%s argument mismatch.\nArgument: %s&quot;);
+        },
+        function (fn, msg) {
+            return new Matcher(fn, msg);
+        });
 
     parts.merge(matcher, {
 
@@ -934,7 +1015,8 @@
          * @for gabarito.Gabarito
          * @type {gabarito.Matcher}
          */
-        STRING: new Matcher(parts.isString),
+        STRING: new Matcher(parts.isString,
+                &quot;%s argument mismatch, it should be a string.&quot;),
 
         /**
          * Matcher for array type
@@ -943,7 +1025,8 @@
          * @for gabarito.Gabarito
          * @type {gabarito.Matcher}
          */
-        ARRAY: new Matcher(parts.isArray),
+        ARRAY: new Matcher(parts.isArray,
+                &quot;%s argument mismatch, it should be an array.&quot;),
 
         /**
          * Matcher for function type
@@ -952,7 +1035,8 @@
          * @for gabarito.Gabarito
          * @type {gabarito.Matcher}
          */
-        FUNCTION: new Matcher(parts.isFunction),
+        FUNCTION: new Matcher(parts.isFunction,
+                &quot;%s argument mismatch, it should be a function.&quot;),
 
         /**
          * Matcher for object type
@@ -961,7 +1045,8 @@
          * @for gabarito.Gabarito
          * @type {gabarito.Matcher}
          */
-        OBJECT: new Matcher(parts.isObject),
+        OBJECT: new Matcher(parts.isObject,
+                &quot;%s argument mismatch, it should be an object.&quot;),
 
         /**
          * Matcher for array type
@@ -970,7 +1055,8 @@
          * @for gabarito.Gabarito
          * @type {gabarito.Matcher}
          */
-        NUMBER: new Matcher(parts.isNumber),
+        NUMBER: new Matcher(parts.isNumber,
+                &quot;%s argument mismatch, it should be a number.&quot;),
 
         /**
          * Always matches
@@ -997,13 +1083,17 @@
          * @for gabarito.Gabarito
          *
          * @param {function} type
+         * @param {string} [msg] The optional message format
          * @return gabarito.Matcher
          */
-        type: function (type) {
-            return new Matcher(function (v) {
-                return v instanceof type;
-            });
-        },
+        type: parts.overload(
+            function (type) {
+                return matcher.type(type, &quot;%s argument mismatch, wrong type.&quot;);
+            },
+            function (type, msg) {
+                return new Matcher(function (v) { return v instanceof type; },
+                        msg);
+            }),
 
         /**
          * Matcher for varargs
@@ -1012,9 +1102,16 @@
          * @for gabarito.Gabarito
          *
          * @param {function} fn
+         * @param {string} [msg] The optional message format
          * @return {gabarito.VarargsMatcher}
          */
-        args: function (fn) { return new VarargsMatcher(fn); },
+        args: parts.overload(
+            function (fn) {
+                return matcher.args(fn, &quot;Varargs mismatch.&quot;);
+            },
+            function (fn, msg) {
+                return new VarargsMatcher(fn, msg);
+            }),
 
         /**
          * Literal value matcher
@@ -1038,12 +1135,21 @@
     });
 
     var Spy = ilk.tokens(function (
-        subject,
         calls,
         call,
 
         getMatcher
     ) {
+
+        /**
+         * The verifier is used to check for the arguments, return or error
+         * thrown.
+         *
+         * @class gabarito.SpyVerifier
+         * @constructor
+         *
+         * @param {gabarito.SpyCall} call
+         */
         var SpyVerifier = ilk(function (pCall) {
             call.mark(this, pCall);
         }).
@@ -1053,6 +1159,15 @@
         }).
 
         proto({
+            /**
+             * Checks if the calls arguments matches with the given matchers
+             *
+             * @method args
+             * @for gabarito.SpyVerifier
+             *
+             * @param {gabarito.Matcher|mixed} ...matchers
+             * @return {gabarito.SpyVerifier}
+             */
             args: parts.args(parts.that(function (that, args) {
                 if (args.length === 0) {
                     throw new Error(&quot;No args to check.&quot;);
@@ -1061,29 +1176,41 @@
                 var lastArg = args[args.length - 1];
                 if (!(lastArg instanceof VarargsMatcher) &amp;&amp;
                         args.length !== this[call].args.length) {
-                    throw new Error(&quot;Args number mismatch: &quot; +
-                            this[call].args.length + &quot; args passed.&quot;);
+                    throw new Error(formatMessage(
+                        &quot;Args number mismatch: %s args passed, expected %s.&quot;,
+                        [this[call].args.length, args.length]));
                 }
 
                 parts.forEach(args, function (a, i) {
                     var m = that[getMatcher](a);
+
                     if (m instanceof VarargsMatcher) {
                         if (m === lastArg) {
                             if (!m.matches(that[call].args.slice(i))) {
-                                throw new Error(&quot;Arguments mismatch.&quot;);
+                                throw m.error(that[call].args.slice(i));
                             }
                         } else {
                             throw new Error(
                                 &quot;VarargsMatcher should be the last matcher.&quot;);
                         }
                     } else if (!m.matches(that[call].args[i])) {
-                        throw new Error(&quot;Argument mismatch.&quot;);
+                        throw m.error(i + 1, that[call].args[i]);
                     }
                 });
 
                 return this;
             })),
 
+            /**
+             * Checks what has been throw by the call using the matcher o a
+             * value matcher.
+             *
+             * @method throwing
+             * @for gabarito.SpyVerifier
+             *
+             * @param {gabarito.Matcher|mixed} v
+             * @return {gabarito.SpyVerifier}
+             */
             throwing: function (v) {
                 if (!parts.hop(this[call], &quot;thrown&quot;)) {
                     throw new Error(&quot;Error not thrown.&quot;);
@@ -1095,6 +1222,17 @@
 
                 return this;
             },
+
+            /**
+             * Checks what has been returmed by the call using the matcher o a
+             * value matcher.
+             *
+             * @method returning
+             * @for gabarito.SpyVerifier
+             *
+             * @param {gabarito.Matcher|mixed} v
+             * @return {gabarito.SpyVerifier}
+             */
             returning: function (v) {
                 if (!parts.hop(this[call], &quot;returning&quot;)) {
                     throw new Error(&quot;Didn&#x27;t return.&quot;);
@@ -1108,10 +1246,31 @@
             }
         });
 
+        /**
+         * The spy relays the calls to the actual function, but records every
+         * call, along with its parameters, its return or error if thrown.
+         *
+         * To verify a given call, the {#crossLink
+         * &quot;gabarito.SpyVerifier&quot;}}{{/crossLink}} may be obtained through the
+         * verify method.
+         *
+         * @class gabarito.Spy
+         * @constructor
+         *
+         * @param {function} fn The function to spy on
+         */
         return ilk(parts.that(function (that, fn) {
-            subject.mark(this, fn);
+            var subject = fn || parts.k;
             calls.mark(this, []);
 
+            /**
+             * The handler function that relays all the calls, this is the
+             * actual function that should be used instead of the real one.
+             *
+             * @property handler
+             * @for gabarito.Spy
+             * @type {function}
+             */
             this.handler = parts.args(function (args) {
                 var call = {
                     that: this,
@@ -1121,7 +1280,7 @@
                 that[calls].push(call);
 
                 try {
-                    call.returning = fn.apply(this, args);
+                    call.returning = subject.apply(this, args);
                     return call.returning;
                 } catch (e) {
                     call.thrown = e;
@@ -1129,23 +1288,67 @@
                 }
             });
 
+            /**
+             * Relays the verify call to the spy instance.
+             *
+             * @method handler.verify
+             * @for gabarito.Spy
+             *
+             * @return {gabarito.SpyVerifier}
+             */
             this.handler.verify = function () {
                 return that.verify();
             };
 
+            /**
+             * Relays the noCalls call to the spy instance.
+             *
+             * @method handler.noCalls
+             * @for gabarito.Spy
+             */
             this.handler.noCalls = function () {
-                return that.noCalls();
+                that.noCalls();
+            };
+
+            /**
+             * Relays the reset call to the spy instance.
+             *
+             * @method handler.reset
+             * @for gabarito.Spy
+             */
+            this.handler.reset = function () {
+                that.reset();
             };
 
         })).
 
         constant({
+
+            /**
+             * Creates a spy instance and returns its handler
+             *
+             * @method on
+             * @for gabarito.Spy
+             * @static
+             *
+             * @param {function} fn The function to spy on
+             * @return {function} Returns the handler function from the spy
+             *         instance
+             */
             on: function (fn) {
                 return new Spy(fn).handler;
             }
         }).
 
         proto({
+            /**
+             * Returns a spy verifier if a call was made
+             *
+             * @method verify
+             * @for gabarito.Spy
+             *
+             * @return {gabarito.SpyVerifier}
+             */
             verify: function () {
 
                 if (this[calls].length === 0) {
@@ -1155,10 +1358,26 @@
                 return new SpyVerifier(this[calls].shift());
             },
 
+            /**
+             * Throws an error if a call was made
+             *
+             * @method noCalls
+             * @for gabarito.Spy
+             */
             noCalls: function () {
                 if (this[calls].length !== 0) {
                     throw new Error(&quot;A call was made.&quot;);
                 }
+            },
+
+            /**
+             * Removes all recorded calls from the instance
+             *
+             * @method reset
+             * @for gabarito.Spy
+             */
+            reset: function () {
+                this[calls] = [];
             }
         });
     });
@@ -1223,7 +1442,7 @@
 
         proto(verifyTest, parts.that(function (that, test, done) {
             this[currentResult] = {
-                test: test,
+                test: test.name,
                 results: {},
                 start: parts.now()
             };

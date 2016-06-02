@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>gabarito.VarargsMatcher - gabarito</title>
+    <title>gabarito.Spy - gabarito</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -112,17 +112,11 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>gabarito.VarargsMatcher</h1>
+    <h1>gabarito.Spy</h1>
 </div>
 
     
 
-    
-	<div class="well well-small">
-        <div class="extends">
-            Extends <a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a>
-        </div>
-    </div>
     
 
     
@@ -133,10 +127,11 @@
 
 
 <div class="yuidoc-class-description">
-<p>The varargs matcher uses a single function that will receive an array
-containing all the remaining args passed to the function while applying
-the matchers.</p>
-<p>This matcher should always be the last matcher.</p>
+<p>The spy relays the calls to the actual function, but records every
+call, along with its parameters, its return or error if thrown.</p>
+<p>To verify a given call, the {#crossLink
+"gabarito.SpyVerifier"}}{{/crossLink}} may be obtained through the
+verify method.</p>
 
 </div>
 
@@ -152,12 +147,42 @@ the matchers.</p>
 			<ul>
 				
 				
-				<li><a href="#method-error"><span class="im">error</span>(<span class="ia">args</span>)</a></li>
+				<li><a href="#method-handler.noCalls"><span class="im">handler.noCalls</span>()</a></li>
 				
 				
 				
-				<li><a href="#method-matches"><span class="im">matches</span>(<span class="ia">value</span>)</a></li>
+				<li><a href="#method-handler.reset"><span class="im">handler.reset</span>()</a></li>
 				
+				
+				
+				<li><a href="#method-handler.verify"><span class="im">handler.verify</span>()</a></li>
+				
+				
+				
+				<li><a href="#method-noCalls"><span class="im">noCalls</span>()</a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="#method-reset"><span class="im">reset</span>()</a></li>
+				
+				
+				
+				<li><a href="#method-verify"><span class="im">verify</span>()</a></li>
+				
+				
+			</ul>
+		</li>
+		
+
+		
+		<li>
+			<strong>Properties</strong>
+			<ul>
+				
+				<li><a href="#prop-handler"><span class="ip">handler</span></a></li>
 				
 			</ul>
 		</li>
@@ -166,7 +191,28 @@ the matchers.</p>
 		
 
 		
-
+		<li>
+			<strong>Static Methods</strong>
+			<ul>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<li><a href="#method-on"><span class="im">gabarito.Spy.on</span>(<span class="ia">fn</span>)</a></li>
+				
+				
+				
+				
+				
+				
+			</ul>
+		</li>
 		
 	</ul>
 </div>
@@ -177,9 +223,9 @@ the matchers.</p>
     <div class="constructor yuidoc-class-constructor page-section">
         <h2>Constructor</h2>
         <div class="item-list">
-<div id="method-gabarito.VarargsMatcher" class="method item">
+<div id="method-gabarito.Spy" class="method item">
 	<div class="method-signature">
-	<span class="name"><code>gabarito.VarargsMatcher</code></span>
+	<span class="name"><code>gabarito.Spy</code></span>
 
 	
 		<div class="args">
@@ -187,7 +233,7 @@ the matchers.</p>
 			
 				<li class="arg">
 					
-						<code>matcher</code>
+						<code>fn</code>
 					
 				</li>
 			
@@ -218,7 +264,7 @@ the matchers.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l847"><code>lib&#x2F;gabarito.js:847</code></a>
+		<a href="../files/lib_gabarito.js.html#l1130"><code>lib&#x2F;gabarito.js:1130</code></a>
 		
 		</p>
 
@@ -238,14 +284,14 @@ the matchers.</p>
 			
 				<li class="param">
 					
-						<code class="param-name">matcher</code>
+						<code class="param-name">fn</code>
 						<span class="type">Function</span>
 					
 
 					
 
 					
-					<div class="param-description"><p>The matcher function</p>
+					<div class="param-description"><p>The function to spy on</p>
 </div>
 					
 
@@ -271,26 +317,128 @@ the matchers.</p>
         <div class="item-list">
        		
         	
-<div id="method-error" class="method item">
+<div id="method-handler.noCalls" class="method item">
 	<div class="method-signature">
-	<span class="name"><code>error</code></span>
+	<span class="name"><code>handler.noCalls</code></span>
 
 	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+		<span class="paren">()</span>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
 			
-				<li class="arg">
-					
-						<code>args</code>
-					
-				</li>
+				
+				<p>
+				
+				Defined in
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1184"><code>lib&#x2F;gabarito.js:1184</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Relays the noCalls call to the spy instance.</p>
+</div>
+	
+
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-handler.reset" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>handler.reset</code></span>
+
+	
+		<span class="paren">()</span>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1194"><code>lib&#x2F;gabarito.js:1194</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Relays the reset call to the spy instance.</p>
+</div>
+	
+
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-handler.verify" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>handler.verify</code></span>
+
+	
+		<span class="paren">()</span>
 	
 	
 		<span class="returns-inline">
-			<span class="type">Error</span>
+			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
 		</span>
 	
 	</div>
@@ -307,16 +455,16 @@ the matchers.</p>
 
 	<div class="meta">
 		
-			<p>Inherited from
-			<a href="../classes/gabarito.Matcher.html#method_error">
-				gabarito.Matcher
-			</a>
 			
-			but overwritten in
+				
+				<p>
+				
+				Defined in
+				
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l866"><code>lib&#x2F;gabarito.js:866</code></a>
+		<a href="../files/lib_gabarito.js.html#l1172"><code>lib&#x2F;gabarito.js:1172</code></a>
 		
 		</p>
 
@@ -327,35 +475,10 @@ the matchers.</p>
 	</div>
 
 	
-	<div class="description"><p>Returns the Error instance with the formatted message using the
-arguments passed to the matcher.</p>
+	<div class="description"><p>Relays the verify call to the spy instance.</p>
 </div>
 	
 
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">args</code>
-						<span class="type">Mixed[]</span>
-					
-
-					
-
-					
-					<div class="param-description"><p>The actual varargs array</p>
-</div>
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
 	
 
 	
@@ -365,7 +488,7 @@ arguments passed to the matcher.</p>
 			<div class="returns-description">
 				
 					
-						<span class="type">Error</span>
+						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
 					
 				
 			</div>
@@ -378,26 +501,131 @@ arguments passed to the matcher.</p>
             
         
         	
-<div id="method-matches" class="method item inherited">
+<div id="method-noCalls" class="method item">
 	<div class="method-signature">
-	<span class="name"><code>matches</code></span>
+	<span class="name"><code>noCalls</code></span>
 
 	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
+		<span class="paren">()</span>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
 			
-				<li class="arg">
-					
-						<code>value</code>
-					
-				</li>
+				
+				<p>
+				
+				Defined in
+				
 			
-			</ul><span class="paren">)</span>
-		</div>
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1242"><code>lib&#x2F;gabarito.js:1242</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Throws an error if a call was made</p>
+</div>
+	
+
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+            
+        
+        	
+<div id="method-reset" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>reset</code></span>
+
+	
+		<span class="paren">()</span>
+	
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1254"><code>lib&#x2F;gabarito.js:1254</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Removes all recorded calls from the instance</p>
+</div>
+	
+
+	
+
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-verify" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>verify</code></span>
+
+	
+		<span class="paren">()</span>
 	
 	
 		<span class="returns-inline">
-			<span class="type">Boolean</span>
+			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
 		</span>
 	
 	</div>
@@ -415,12 +643,15 @@ arguments passed to the matcher.</p>
 	<div class="meta">
 		
 			
-				<p>Inherited from
-				<a href="../classes/gabarito.Matcher.html#method_matches">gabarito.Matcher</a>:
+				
+				<p>
+				
+				Defined in
+				
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l812"><code>lib&#x2F;gabarito.js:812</code></a>
+		<a href="../files/lib_gabarito.js.html#l1225"><code>lib&#x2F;gabarito.js:1225</code></a>
 		
 		</p>
 
@@ -431,32 +662,10 @@ arguments passed to the matcher.</p>
 	</div>
 
 	
-	<div class="description"><p>The mather method should evaluate the matcher function and
-tell whether the value matches the criteria.</p>
+	<div class="description"><p>Returns a spy verifier if a call was made</p>
 </div>
 	
 
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">value</code>
-						<span class="type">Mixed</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
 	
 
 	
@@ -466,7 +675,7 @@ tell whether the value matches the criteria.</p>
 			<div class="returns-description">
 				
 					
-						<span class="type">Boolean</span>
+						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
 					
 				
 			</div>
@@ -483,11 +692,193 @@ tell whether the value matches the criteria.</p>
 
 
 
+    <div id="properties" class="page-section">
+        <h2 class="off-left">Properties</h2>
+
+        <div class="item-list">
+        
+<div id="prop-handler" class="property item">
+    <h3 class="name"><code>handler</code></h3>
+    <span class="type">Function</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/lib_gabarito.js.html#l1147"><code>lib&#x2F;gabarito.js:1147</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The handler function that relays all the calls, this is the
+actual function that should be used instead of the real one.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+        
+        </div>
+    </div>
 
 
 
 
 
+
+
+    <div id="static-methods" class="page-section">
+        <h2 class="off-left">Static Methods</h2>
+        <div class="item-list">
+        
+			
+        
+			
+        
+			
+        
+			
+        
+			
+<div id="method-on" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>gabarito.Spy.on</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>fn</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type">Function</span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1208"><code>lib&#x2F;gabarito.js:1208</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Creates a spy instance and returns its handler</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">fn</code>
+						<span class="type">Function</span>
+					
+
+					
+
+					
+					<div class="param-description"><p>The function to spy on</p>
+</div>
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type">Function</span>:
+					
+					<p>Returns the handler function from the spy
+        instance</p>
+
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
+            
+        
+			
+        
+			
+        
+        </div>
+    </div>
 
                     </div>
                 </div>

@@ -1,16 +1,20 @@
+"use strict";
+var cwd = process.cwd();
+var root = cwd + "/lib";
+
+var path = require("path");
+var parts = require(cwd + "/deps/parts");
+
+try {
+    require(root + "/gabarito");
+} catch (e) {
+    console.log(e);
+}
+
+var gabarito = require(root + "/gabarito");
+var plumbing = gabarito.plumbing;
+
 module.exports = function (grunt) {
-    "use strict";
-
-    var cwd = process.cwd();
-
-    var root = cwd + "/lib";
-
-    var path = require("path");
-
-    var parts = require(cwd + "/deps/parts");
-    var gabarito = require(root + "/gabarito");
-    var plumbing = gabarito.plumbing;
-
     var setupFiles = function (runner, files) {
         files.forEach(function (f) {
             f.src.forEach(function (f) {

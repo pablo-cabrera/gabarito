@@ -27,6 +27,12 @@
         s = spy(parts.constant(o));
     }).
 
+    clause("shoud use an empty function if no function is passed", function () {
+        s = spy();
+        s();
+        s.verify();
+    }).
+
     clause("should call the function", function () {
         var called = false;
 
@@ -117,7 +123,8 @@
             s.verify().args(matcher(parts.constant(false)));
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isEqualTo("Argument mismatch.");
+            assert.that(e.message).
+                    isEqualTo("1st argument mismatch.\nArgument: 1");
         }
     }).
 
@@ -130,8 +137,9 @@
             s.verify().args(1);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).
-                    isEqualTo("Args number mismatch: 0 args passed.");
+            assert.
+                that(e.message).
+                isEqualTo("Args number mismatch: 0 args passed, expected 1.");
         }
     }).
 
@@ -198,7 +206,8 @@
             s.verify().args(2);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isEqualTo("Argument mismatch.");
+            assert.that(e.message).
+                    isEqualTo("1st argument mismatch.\nArgument: 1");
         }
     }).
 
@@ -272,6 +281,13 @@
     }).
 
     clause("noCalls should pass if no calls were made", function () {
+        s.noCalls();
+    }).
+
+    clause("reset should remove all the calls from within the spy",
+    function () {
+        s();
+        s.reset();
         s.noCalls();
     });
 

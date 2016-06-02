@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>gabarito.plumbing.Environment - gabarito</title>
+    <title>gabarito.EnvironmentResult - gabarito</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -112,7 +112,7 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>gabarito.plumbing.Environment</h1>
+    <h1>gabarito.EnvironmentResult</h1>
 </div>
 
     
@@ -127,13 +127,7 @@
 
 
 <div class="yuidoc-class-description">
-<p>The environment is responsible for loading the gabarito, the test files and
-running the tests themselves.</p>
-<p>It must implement the method getName in order to describe itself to the
-reporters.</p>
-<p>The dispatch method receives the files list, the reporters involved and a
-callback function that should be called when things complete, passing the
-results to the callback function as first argument.</p>
+<p>Dummy class that describes the environment results data structure</p>
 
 </div>
 
@@ -144,22 +138,18 @@ results to the callback function as first argument.</p>
 	<h2>Table of Contents</h2>
     <ul>
 		
+
+		
 		<li>
-			<strong>Methods</strong>
+			<strong>Properties</strong>
 			<ul>
 				
+				<li><a href="#prop-environment"><span class="ip">environment</span></a></li>
 				
-				<li><a href="#method-dispatch"><span class="im">dispatch</span>(<span class="ia">files</span><span class="ia">reporters</span><span class="ia">done</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-getName"><span class="im">getName</span>()</a></li>
-				
+				<li><a href="#prop-results"><span class="ip">results</span></a></li>
 				
 			</ul>
 		</li>
-		
-
 		
 
 		
@@ -174,9 +164,9 @@ results to the callback function as first argument.</p>
     <div class="constructor yuidoc-class-constructor page-section">
         <h2>Constructor</h2>
         <div class="item-list">
-<div id="method-gabarito.plumbing.Environment" class="method item">
+<div id="method-gabarito.EnvironmentResult" class="method item">
 	<div class="method-signature">
-	<span class="name"><code>gabarito.plumbing.Environment</code></span>
+	<span class="name"><code>gabarito.EnvironmentResult</code></span>
 
 	
 		<span class="paren">()</span>
@@ -205,7 +195,7 @@ results to the callback function as first argument.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_Environment.js.html#l7"><code>lib&#x2F;plumbing&#x2F;Environment.js:7</code></a>
+		<a href="../files/yuidoc-extras_EnvironmentResult.js.html#l1"><code>yuidoc-extras&#x2F;EnvironmentResult.js:1</code></a>
 		
 		</p>
 
@@ -229,216 +219,105 @@ results to the callback function as first argument.</p>
 
 
 
-    <div id="methods" class="page-section">
-        <h2 class="off-left">Methods</h2>
+
+
+    <div id="properties" class="page-section">
+        <h2 class="off-left">Properties</h2>
+
         <div class="item-list">
-       		
-        	
-<div id="method-dispatch" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>dispatch</code></span>
+        
+<div id="prop-environment" class="property item">
+    <h3 class="name"><code>environment</code></h3>
+    <span class="type"><a href="../classes/gabarito.plumbing.Environment.html" class="crosslink">gabarito.plumbing.Environment</a></span>
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>files</code>
-					
-				</li>
-			
-				<li class="arg">
-					
-						<code>reporters</code>
-					
-				</li>
-			
-				<li class="arg">
-					
-						<code>done</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-	</div>
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_plumbing_Environment.js.html#l35"><code>lib&#x2F;plumbing&#x2F;Environment.js:35</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Method called by the runner that receives the files to be loaded, the
-reporters that should receive all events and the callback function that
-must be called passing all the results at the end of things.</p>
-</div>
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">files</code>
-						<span class="type">String[]</span>
-					
-
-					
-
-					
-					<div class="param-description"><p>The files list</p>
-</div>
-					
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">reporters</code>
-						<span class="type"><a href="../classes/gabarito.plumbing.Reporter.html" class="crosslink">gabarito.plumbing.Reporter[][]</a></span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">done</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-
-	
-</div>
-
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
             
         
-        	
-<div id="method-getName" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>getName</code></span>
+        
+        <a href="../files/yuidoc-extras_EnvironmentResult.js.html#l8"><code>yuidoc-extras&#x2F;EnvironmentResult.js:8</code></a>
+        
+        </p>
 
-	
-		<span class="paren">()</span>
-	
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
-	</div>
+        
 
-	
+        
+    </div>
 
-	
+    <div class="description">
+        <p>The related environment that has run the tests</p>
 
-	
+    </div>
 
-	
+    
 
-	
+    
 
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_plumbing_Environment.js.html#l23"><code>lib&#x2F;plumbing&#x2F;Environment.js:23</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>The environment&#39;s name</p>
-</div>
-	
-
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
 </div>
 
+        
+<div id="prop-results" class="property item">
+    <h3 class="name"><code>results</code></h3>
+    <span class="type"><a href="../classes/gabarito.TestResult.html" class="crosslink">gabarito.TestResult[]</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/yuidoc-extras_EnvironmentResult.js.html#l16"><code>yuidoc-extras&#x2F;EnvironmentResult.js:16</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A collection of test results for the given environment</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
         
         </div>
     </div>
-
-
 
 
 

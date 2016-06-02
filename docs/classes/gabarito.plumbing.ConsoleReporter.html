@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.TestBuilder", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -42,6 +42,10 @@
                 <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
             
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
+            
+                <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
                 <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
             
@@ -63,7 +67,13 @@
             
                 <li><a href="../classes/gabarito.plumbing.ServerEnvironment.html">gabarito.plumbing.ServerEnvironment</a></li>
             
+                <li><a href="../classes/gabarito.Spy.html">gabarito.Spy</a></li>
+            
+                <li><a href="../classes/gabarito.SpyVerifier.html">gabarito.SpyVerifier</a></li>
+            
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
+            
+                <li><a href="../classes/gabarito.TestResult.html">gabarito.TestResult</a></li>
             
                 <li><a href="../classes/gabarito.VarargsMatcher.html">gabarito.VarargsMatcher</a></li>
             
@@ -180,7 +190,7 @@ with colors and what-not.</p>
 				
 				
 				
-				<li><a href="#method-say"><span class="im">say</span>(<span class="ia">env</span><span class="ia">args</span>)</a></li>
+				<li><a href="#method-say"><span class="im">say</span>(<span class="ia">env</span><span class="ia">...args</span>)</a></li>
 				
 				
 				
@@ -219,6 +229,12 @@ with colors and what-not.</p>
 					
 				</li>
 			
+				<li class="arg">
+					
+						<code class="optional">nowGiver</code>
+					
+				</li>
+			
 			</ul><span class="paren">)</span>
 		</div>
 	
@@ -246,7 +262,7 @@ with colors and what-not.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l32"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:32</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l33"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:33</code></a>
 		
 		</p>
 
@@ -268,6 +284,20 @@ with colors and what-not.</p>
 					
 						<code class="param-name optional">[console]</code>
 						<span class="type">Console</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[nowGiver]</code>
+						<span class="type">Function</span>
 						<span class="flag optional" title="This parameter is optional.">optional</span>
 					
 
@@ -344,7 +374,7 @@ with colors and what-not.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l186"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:186</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l167"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:167</code></a>
 		
 		</p>
 
@@ -450,7 +480,7 @@ with colors and what-not.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l228"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:228</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l209"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:209</code></a>
 		
 		</p>
 
@@ -487,7 +517,7 @@ with colors and what-not.</p>
 				<li class="param">
 					
 						<code class="param-name">results</code>
-						<span class="type">Object[]</span>
+						<span class="type"><a href="../classes/gabarito.TestResult.html" class="crosslink">gabarito.TestResult[][]</a></span>
 					
 
 					
@@ -680,13 +710,14 @@ with colors and what-not.</p>
 				<li class="param">
 					
 						<code class="param-name">results</code>
-						<span class="type">Object</span>
+						<span class="type"><a href="../classes/gabarito.EnvironmentResult.html" class="crosslink">gabarito.EnvironmentResult</a></span>
 					
 
 					
 
 					
-					<div class="param-description"><p>The results for the environment</p>
+					<div class="param-description"><p>The results for the
+           environment</p>
 </div>
 					
 
@@ -758,7 +789,7 @@ with colors and what-not.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l203"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:203</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l184"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:184</code></a>
 		
 		</p>
 
@@ -808,7 +839,7 @@ with colors and what-not.</p>
 				<li class="param">
 					
 						<code class="param-name">results</code>
-						<span class="type">Object</span>
+						<span class="type"><a href="../classes/gabarito.TestResult.html" class="crosslink">gabarito.TestResult</a></span>
 					
 
 					
@@ -1021,7 +1052,7 @@ with colors and what-not.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l280"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:280</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l261"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:261</code></a>
 		
 		</p>
 
@@ -1084,7 +1115,7 @@ with colors and what-not.</p>
 				<li class="param">
 					
 						<code class="param-name">result</code>
-						<span class="type">Object</span>
+						<span class="type"><a href="../classes/gabarito.ClauseResult.html" class="crosslink">gabarito.ClauseResult</a></span>
 					
 
 					
@@ -1147,7 +1178,7 @@ with colors and what-not.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l123"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:123</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l104"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:104</code></a>
 		
 		</p>
 
@@ -1172,7 +1203,7 @@ results.</p>
 				<li class="param">
 					
 						<code class="param-name">results</code>
-						<span class="type">Object</span>
+						<span class="type">gabarito.EnvironmentResults[]</span>
 					
 
 					
@@ -1241,7 +1272,7 @@ results.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l165"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:165</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l146"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:146</code></a>
 		
 		</p>
 
@@ -1359,7 +1390,7 @@ results.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l263"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:263</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l244"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:244</code></a>
 		
 		</p>
 
@@ -1422,7 +1453,7 @@ results.</p>
 				<li class="param">
 					
 						<code class="param-name">result</code>
-						<span class="type">Object</span>
+						<span class="type"><a href="../classes/gabarito.ClauseResult.html" class="crosslink">gabarito.ClauseResult</a></span>
 					
 
 					
@@ -1460,7 +1491,7 @@ results.</p>
 			
 				<li class="arg">
 					
-						<code>args</code>
+						<code>...args</code>
 					
 				</li>
 			
@@ -1491,7 +1522,7 @@ results.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l300"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:300</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l280"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:280</code></a>
 		
 		</p>
 
@@ -1527,8 +1558,8 @@ results.</p>
 			
 				<li class="param">
 					
-						<code class="param-name">args</code>
-						<span class="type">string...</span>
+						<code class="param-name">...args</code>
+						<span class="type">String</span>
 					
 
 					
@@ -1581,7 +1612,7 @@ results.</p>
 			
 		
 		
-		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l111"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:111</code></a>
+		<a href="../files/lib_plumbing_ConsoleReporter.js.html#l92"><code>lib&#x2F;plumbing&#x2F;ConsoleReporter.js:92</code></a>
 		
 		</p>
 
