@@ -70,7 +70,7 @@
         });
 
         var clause = spy(function () {
-            after.noClause();
+            after.noCalls();
         });
 
         g.test("test").

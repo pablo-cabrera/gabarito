@@ -40,7 +40,7 @@ module.exports = function (grunt) {
     };
 
     var setupReporters = function (runner, jUnitFile) {
-        runner.addReporter(new plumbing.ConsoleReporter());
+        runner.addReporter(new plumbing.ConsoleReporter(true));
 
         var jUnitReporter = new plumbing.JUnitXmlReporter(jUnitFile);
         runner.addReporter(jUnitReporter);

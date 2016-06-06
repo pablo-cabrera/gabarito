@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
             
                 <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.Context.html">gabarito.Context</a></li>
             
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
@@ -144,7 +146,15 @@ thrown.</p>
 			<ul>
 				
 				
+				<li><a href="#method-after"><span class="im">after</span>(<span class="ia">anotherCall</span><span class="ia">msg</span>)</a></li>
+				
+				
+				
 				<li><a href="#method-args"><span class="im">args</span>(<span class="ia">...matchers</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-before"><span class="im">before</span>(<span class="ia">anotherCall</span><span class="ia">msg</span>)</a></li>
 				
 				
 				
@@ -153,6 +163,10 @@ thrown.</p>
 				
 				
 				<li><a href="#method-throwing"><span class="im">throwing</span>(<span class="ia">v</span>)</a></li>
+				
+				
+				
+				<li><a href="#method-withThis"><span class="im">withThis</span>(<span class="ia">v</span>)</a></li>
 				
 				
 			</ul>
@@ -214,7 +228,7 @@ thrown.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1026"><code>lib&#x2F;gabarito.js:1026</code></a>
+		<a href="../files/lib_gabarito.js.html#l1109"><code>lib&#x2F;gabarito.js:1109</code></a>
 		
 		</p>
 
@@ -264,6 +278,131 @@ thrown.</p>
         <div class="item-list">
        		
         	
+<div id="method-after" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>after</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>anotherCall</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+		<span class="flag chainable">chainable</span>
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1181"><code>lib&#x2F;gabarito.js:1181</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that this call was made after another call</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">anotherCall</code>
+						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+					
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
+            
+        
+        	
 <div id="method-args" class="method item">
 	<div class="method-signature">
 	<span class="name"><code>args</code></span>
@@ -295,6 +434,8 @@ thrown.</p>
 	
 
 	
+		<span class="flag chainable">chainable</span>
+	
 
 	
 
@@ -309,7 +450,7 @@ thrown.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1044"><code>lib&#x2F;gabarito.js:1044</code></a>
+		<a href="../files/lib_gabarito.js.html#l1123"><code>lib&#x2F;gabarito.js:1123</code></a>
 		
 		</p>
 
@@ -334,6 +475,131 @@ thrown.</p>
 					
 						<code class="param-name">...matchers</code>
 						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a>  |  Mixed</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+					
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-before" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>before</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>anotherCall</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+		<span class="flag chainable">chainable</span>
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1161"><code>lib&#x2F;gabarito.js:1161</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Asserts that this call was made before another call</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">anotherCall</code>
+						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
 					
 
 					
@@ -398,6 +664,8 @@ thrown.</p>
 	
 
 	
+		<span class="flag chainable">chainable</span>
+	
 
 	
 
@@ -412,7 +680,7 @@ thrown.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1108"><code>lib&#x2F;gabarito.js:1108</code></a>
+		<a href="../files/lib_gabarito.js.html#l1255"><code>lib&#x2F;gabarito.js:1255</code></a>
 		
 		</p>
 
@@ -502,6 +770,8 @@ value matcher.</p>
 	
 
 	
+		<span class="flag chainable">chainable</span>
+	
 
 	
 
@@ -516,7 +786,113 @@ value matcher.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1086"><code>lib&#x2F;gabarito.js:1086</code></a>
+		<a href="../files/lib_gabarito.js.html#l1226"><code>lib&#x2F;gabarito.js:1226</code></a>
+		
+		</p>
+
+
+		
+
+		
+	</div>
+
+	
+	<div class="description"><p>Checks what has been throw by the call using the matcher o a
+value matcher.</p>
+</div>
+	
+
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name">v</code>
+						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a>  |  Mixed</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
+	
+
+	
+		<div class="returns">
+			<h4>Returns:</h4>
+
+			<div class="returns-description">
+				
+					
+						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+					
+				
+			</div>
+		</div>
+	
+
+	
+</div>
+
+            
+        
+        	
+<div id="method-withThis" class="method item">
+	<div class="method-signature">
+	<span class="name"><code>withThis</code></span>
+
+	
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code>v</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
+	
+	
+		<span class="returns-inline">
+			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
+		</span>
+	
+	</div>
+
+	
+
+	
+
+	
+
+	
+		<span class="flag chainable">chainable</span>
+	
+
+	
+
+	<div class="meta">
+		
+			
+				
+				<p>
+				
+				Defined in
+				
+			
+		
+		
+		<a href="../files/lib_gabarito.js.html#l1201"><code>lib&#x2F;gabarito.js:1201</code></a>
 		
 		</p>
 

@@ -94,17 +94,17 @@
         });
     }).
 
-    clause("should timeout at specified time", function () {
+    clause("should timeout at specified time", function (ctx) {
         var t;
 
         g.add({
-            c: function () {
+            c: function (gCtx) {
                 t = parts.now();
-                g.stay(500);
+                gCtx.stay(500);
             }
         });
 
-        g.verify(gabarito.going(function (r) {
+        g.verify(ctx.going(function (r) {
             var delta = parts.now() - t;
             assert.isTrue(delta >= 500);
             assert.isTrue(delta <= 1500);
@@ -112,14 +112,14 @@
                     "Timeout reached.");
         }));
 
-        gabarito.stay(1500);
+        ctx.stay(1500);
     }).
 
-    clause("should fail when stay is called while waiting", function () {
+    clause("should fail when stay is called while waiting", function (ctx) {
         g.add({
-            c: function () {
-                g.stay();
-                g.stay();
+            c: function (gCtx) {
+                gCtx.stay();
+                gCtx.stay();
             }
         });
 
@@ -130,7 +130,7 @@
     }).
 
     clause("should fail when go is called while going", function () {
-        g.add({ c: function () { g.go(); } });
+        g.add({ c: function (gCtx) { gCtx.go(); } });
 
         g.verify(function (r) {
             assert.areSame(r[0].results.c.error.message,
@@ -138,38 +138,59 @@
         });
     }).
 
-    clause("should pass when an async test doesnt throw", function () {
+    clause("should pass when an async test doesnt throw", function (ctx) {
         g.add({
-            c: function () {
-                g.stay();
-                parts.work(g.going());
+            c: function (gCtx) {
+                gCtx.stay();
+                parts.work(gCtx.going());
             }
         });
 
-        g.verify(gabarito.going(function (r) {
+        g.verify(ctx.going(function (r) {
             assert.isFalse(parts.hop(r[0].results.c, "error"));
         }));
 
-        gabarito.stay();
+        ctx.stay();
     }).
 
-    clause("should fail when an async test throws", function () {
+    clause("should fail when an async test throws", function (ctx) {
         var e;
         g.add({
-            c: function () {
-                g.stay();
-                parts.work(g.going(function () {
+            c: function (gCtx) {
+                gCtx.stay();
+                parts.work(gCtx.going(function () {
                     e = new Error("yo");
                     throw e;
                 }));
             }
         });
 
-        g.verify(gabarito.going(function (r) {
+        g.verify(ctx.going(function (r) {
             assert.areSame(r[0].results.c.error, e);
         }));
 
-        gabarito.stay();
+        ctx.stay();
+    }).
+
+    clause("should emit an error if a go is called after the test has finished",
+    function (ctx) {
+        g.on("error", ctx.going(function (error) {
+            assert.that(error).isInstanceOf(Error);
+            assert.that(error.message).isTheSameAs("Context has already run.");
+        }));
+
+        g.test("test").
+        clause("clause", function (gCtx) {
+            gCtx.stay();
+            parts.work(gCtx.going());
+            parts.work(gCtx.going());
+        });
+
+        ctx.stay();
+
+        g.verify();
     });
+
+
 
 }(typeof exports !== "undefined" && global.exports !== exports));

@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
             
                 <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.Context.html">gabarito.Context</a></li>
             
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
@@ -147,7 +149,7 @@ verify method.</p>
 			<ul>
 				
 				
-				<li><a href="#method-handler.noCalls"><span class="im">handler.noCalls</span>()</a></li>
+				<li><a href="#method-handler.noCalls"><span class="im">handler.noCalls</span>(<span class="ia">msg</span>)</a></li>
 				
 				
 				
@@ -155,11 +157,11 @@ verify method.</p>
 				
 				
 				
-				<li><a href="#method-handler.verify"><span class="im">handler.verify</span>()</a></li>
+				<li><a href="#method-handler.verify"><span class="im">handler.verify</span>(<span class="ia">msg</span>)</a></li>
 				
 				
 				
-				<li><a href="#method-noCalls"><span class="im">noCalls</span>()</a></li>
+				<li><a href="#method-noCalls"><span class="im">noCalls</span>(<span class="ia">msg</span>)</a></li>
 				
 				
 				
@@ -170,7 +172,7 @@ verify method.</p>
 				
 				
 				
-				<li><a href="#method-verify"><span class="im">verify</span>()</a></li>
+				<li><a href="#method-verify"><span class="im">verify</span>(<span class="ia">msg</span>)</a></li>
 				
 				
 			</ul>
@@ -264,7 +266,7 @@ verify method.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1131"><code>lib&#x2F;gabarito.js:1131</code></a>
+		<a href="../files/lib_gabarito.js.html#l1286"><code>lib&#x2F;gabarito.js:1286</code></a>
 		
 		</p>
 
@@ -322,7 +324,17 @@ verify method.</p>
 	<span class="name"><code>handler.noCalls</code></span>
 
 	
-		<span class="paren">()</span>
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
 	
 	
 	</div>
@@ -348,7 +360,7 @@ verify method.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1185"><code>lib&#x2F;gabarito.js:1185</code></a>
+		<a href="../files/lib_gabarito.js.html#l1345"><code>lib&#x2F;gabarito.js:1345</code></a>
 		
 		</p>
 
@@ -363,6 +375,28 @@ verify method.</p>
 </div>
 	
 
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
 	
 
 	
@@ -404,7 +438,7 @@ verify method.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1195"><code>lib&#x2F;gabarito.js:1195</code></a>
+		<a href="../files/lib_gabarito.js.html#l1361"><code>lib&#x2F;gabarito.js:1361</code></a>
 		
 		</p>
 
@@ -434,7 +468,17 @@ verify method.</p>
 	<span class="name"><code>handler.verify</code></span>
 
 	
-		<span class="paren">()</span>
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
 	
 	
 		<span class="returns-inline">
@@ -464,7 +508,7 @@ verify method.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1173"><code>lib&#x2F;gabarito.js:1173</code></a>
+		<a href="../files/lib_gabarito.js.html#l1329"><code>lib&#x2F;gabarito.js:1329</code></a>
 		
 		</p>
 
@@ -479,6 +523,28 @@ verify method.</p>
 </div>
 	
 
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
 	
 
 	
@@ -506,7 +572,17 @@ verify method.</p>
 	<span class="name"><code>noCalls</code></span>
 
 	
-		<span class="paren">()</span>
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
 	
 	
 	</div>
@@ -532,7 +608,7 @@ verify method.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1243"><code>lib&#x2F;gabarito.js:1243</code></a>
+		<a href="../files/lib_gabarito.js.html#l1411"><code>lib&#x2F;gabarito.js:1411</code></a>
 		
 		</p>
 
@@ -547,6 +623,28 @@ verify method.</p>
 </div>
 	
 
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
 	
 
 	
@@ -591,7 +689,7 @@ verify method.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1255"><code>lib&#x2F;gabarito.js:1255</code></a>
+		<a href="../files/lib_gabarito.js.html#l1426"><code>lib&#x2F;gabarito.js:1426</code></a>
 		
 		</p>
 
@@ -621,7 +719,17 @@ verify method.</p>
 	<span class="name"><code>verify</code></span>
 
 	
-		<span class="paren">()</span>
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+			
+				<li class="arg">
+					
+						<code class="optional">msg</code>
+					
+				</li>
+			
+			</ul><span class="paren">)</span>
+		</div>
 	
 	
 		<span class="returns-inline">
@@ -651,7 +759,7 @@ verify method.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1226"><code>lib&#x2F;gabarito.js:1226</code></a>
+		<a href="../files/lib_gabarito.js.html#l1392"><code>lib&#x2F;gabarito.js:1392</code></a>
 		
 		</p>
 
@@ -666,6 +774,28 @@ verify method.</p>
 </div>
 	
 
+	
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+			
+				<li class="param">
+					
+						<code class="param-name optional">[msg]</code>
+						<span class="type">String</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
+					
+
+					
+				</li>
+			
+			</ul>
+		</div>
 	
 
 	
@@ -720,7 +850,7 @@ verify method.</p>
             
         
         
-        <a href="../files/lib_gabarito.js.html#l1148"><code>lib&#x2F;gabarito.js:1148</code></a>
+        <a href="../files/lib_gabarito.js.html#l1303"><code>lib&#x2F;gabarito.js:1303</code></a>
         
         </p>
 
@@ -810,7 +940,7 @@ actual function that should be used instead of the real one.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l1209"><code>lib&#x2F;gabarito.js:1209</code></a>
+		<a href="../files/lib_gabarito.js.html#l1375"><code>lib&#x2F;gabarito.js:1375</code></a>
 		
 		</p>
 

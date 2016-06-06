@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
             
                 <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.Context.html">gabarito.Context</a></li>
             
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
@@ -152,7 +154,7 @@ the matchers.</p>
 			<ul>
 				
 				
-				<li><a href="#method-error"><span class="im">error</span>(<span class="ia">args</span>)</a></li>
+				<li><a href="#method-error"><span class="im">error</span>(<span class="ia">value</span><span class="ia">position</span>)</a></li>
 				
 				
 				
@@ -218,7 +220,7 @@ the matchers.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l847"><code>lib&#x2F;gabarito.js:847</code></a>
+		<a href="../files/lib_gabarito.js.html#l893"><code>lib&#x2F;gabarito.js:893</code></a>
 		
 		</p>
 
@@ -271,7 +273,7 @@ the matchers.</p>
         <div class="item-list">
        		
         	
-<div id="method-error" class="method item">
+<div id="method-error" class="method item inherited">
 	<div class="method-signature">
 	<span class="name"><code>error</code></span>
 
@@ -281,7 +283,13 @@ the matchers.</p>
 			
 				<li class="arg">
 					
-						<code>args</code>
+						<code>value</code>
+					
+				</li>
+			
+				<li class="arg">
+					
+						<code class="optional">position</code>
 					
 				</li>
 			
@@ -307,16 +315,13 @@ the matchers.</p>
 
 	<div class="meta">
 		
-			<p>Inherited from
-			<a href="../classes/gabarito.Matcher.html#method_error">
-				gabarito.Matcher
-			</a>
 			
-			but overwritten in
+				<p>Inherited from
+				<a href="../classes/gabarito.Matcher.html#method_error">gabarito.Matcher</a>:
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l866"><code>lib&#x2F;gabarito.js:866</code></a>
+		<a href="../files/lib_gabarito.js.html#l871"><code>lib&#x2F;gabarito.js:871</code></a>
 		
 		</p>
 
@@ -328,7 +333,7 @@ the matchers.</p>
 
 	
 	<div class="description"><p>Returns the Error instance with the formatted message using the
-arguments passed to the matcher.</p>
+argument&#39;s position and the argument itself.</p>
 </div>
 	
 
@@ -340,15 +345,26 @@ arguments passed to the matcher.</p>
 			
 				<li class="param">
 					
-						<code class="param-name">args</code>
-						<span class="type">Mixed[]</span>
+						<code class="param-name">value</code>
+						<span class="type">Mixed</span>
 					
 
 					
 
 					
-					<div class="param-description"><p>The actual varargs array</p>
-</div>
+
+					
+				</li>
+			
+				<li class="param">
+					
+						<code class="param-name optional">[position]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+					
+
+					
+
 					
 
 					
@@ -420,7 +436,7 @@ arguments passed to the matcher.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l812"><code>lib&#x2F;gabarito.js:812</code></a>
+		<a href="../files/lib_gabarito.js.html#l856"><code>lib&#x2F;gabarito.js:856</code></a>
 		
 		</p>
 

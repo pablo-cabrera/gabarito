@@ -63,8 +63,8 @@
             return false;
         }
 
-        var ioa = indexOf(sa, a);
-        if (ioa !== undefined && ioa === indexOf(sb, b)) {
+        var ioa = indexOf(sa, sameAs(a));
+        if (ioa !== undefined && ioa === indexOf(sb, sameAs(b))) {
             return true;
         }
 
@@ -251,6 +251,87 @@
             return f.apply(this, args);
         });
     };
+
+    var dump = (function () {
+
+        var d = function (v, p, i, c, s) {
+            var ref;
+            var values;
+
+            i = p? i + "  ": "";
+
+            if (isObject(v)) {
+                ref = indexOf(s, sameAs(v));
+                if (ref !== undefined) {
+                    return "<" + ref + ":r>";
+                }
+
+                s.push(v);
+
+                if (isArray(v)) {
+                    values = map(v, function (v) {
+                                return d(v, p, i, c + 1, s); });
+
+                    return values.length === 0?
+                        "<" + c + ":a: []>":
+                        "<" + c + ":a: [" + (p? "\n" + i: "") +
+                            values.join(p? ",\n" + i: ", ") +
+                        (p? "\n" + i.substr(0, i.length - 2): "") + "]>";
+                }
+
+                if (isDate(v)) {
+                    return "<" + c + ":d: " + v.toString() + ">";
+                }
+
+                if (isRegExp(v)) {
+                    return "<" + c + ":r: " + v.toString() + ">";
+                }
+
+                if (isFunction(v)) {
+                    return "<" + c + ":f: " + v.toString() + ">";
+                }
+
+                values = map(v, function (v, k) {
+                        return k + ": " + d(v, p, i, c + 1, s); });
+
+                return values.length === 0?
+                    "<" + c + ":o: {}>":
+                    "<" + c + ":o: {" + (p? "\n" + i: "") +
+                        values. join(p? "\n" + i: "") +
+                    (p? "\n" + i.substr(0, i.length - 2): "") + "}>";
+            }
+
+            if (isBoolean(v)) {
+                return "<b: " + v + ">";
+            }
+
+            if (isNumber(v)) {
+                return "<n: " + v.toString() + ">";
+            }
+
+            if (isString(v)) {
+                return "<s: " + JSON.stringify(v) + ">";
+            }
+
+            if (myIsNaN(v)) {
+                return "<nan>";
+            }
+
+            if (v === null) {
+                return "<null>";
+            }
+
+            if (v === undefined) {
+                return "<undefined>";
+            }
+
+            return "<unknown: " + v.toString() + ">";
+        };
+
+        return function (value, pretty) {
+            return d(value, arguments.length > 1? pretty: true, "", 0, [])
+        };
+    }());
 
     /**
      * Exported utilities class.
@@ -686,8 +767,17 @@
             f.build = constant(o);
 
             return f;
-        }
+        },
 
+        dump: dump,
+
+        applyNew: function (type, args) {
+            var F = function () { type.apply(this, args); };
+            F.prototype = type.prototype;
+            return new F();
+        },
+
+        silence: function (f) { try { f(); } catch (e) {}; }
     };
 
     if (node) {

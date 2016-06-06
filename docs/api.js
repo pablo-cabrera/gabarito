@@ -4,6 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "gabarito.Assert",
         "gabarito.AssertThat",
         "gabarito.ClauseResult",
+        "gabarito.Context",
         "gabarito.EnvironmentResult",
         "gabarito.Gabarito",
         "gabarito.Matcher",

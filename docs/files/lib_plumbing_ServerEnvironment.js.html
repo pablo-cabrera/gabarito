@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
             
                 <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.Context.html">gabarito.Context</a></li>
             
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
@@ -300,35 +302,21 @@ module.exports = ilk.tokens(function (
         res.end(html);
     }).
 
-    proto(concatFiles, parts.that(function (that, files, callback) {
-        var data = {};
-
-        var check = function () {
-            if (files.every(function (f) { return f in data; })) {
-                callback(files.reduce(function (prev, file) {
-                    return prev += data[file] + &quot;\n&quot;;
-                }, &quot;&quot;));
-            }
-        };
-
-        files.forEach(function (f) {
-            that[fs].readFile(f, function (e, d) {
-                data[f] = d;
-                check();
-            });
-        });
+    proto(concatFiles, parts.that(function (that, files) {
+        return files.map(function (f) { return that[fs].readFileSync(f); }).
+                join(&quot;\n&quot;);
     })).
 
     proto(deliverAssets, function (req, res) {
-        this[concatFiles]([
+        var data = this[concatFiles]([
             require.resolve(root + &quot;/deps/json2.js&quot;),
             require.resolve(root + &quot;/deps/parts&quot;),
             require.resolve(root + &quot;/deps/ilk&quot;),
             require.resolve(&quot;../gabarito&quot;)
-        ], function (data) {
-            res.writeHead(200, { &quot;Content-Type&quot;: &quot;text/javascript&quot; });
-            res.end(data);
-        });
+        ]);
+
+        res.writeHead(200, { &quot;Content-Type&quot;: &quot;text/javascript&quot; });
+        res.end(data);
     }).
 
     proto(deliverFile, function (req, res, files) {
@@ -393,14 +381,10 @@ module.exports = ilk.tokens(function (
      * @param {function} done
      */
     proto(dispatchBrowser, function (done) {
-        throw new Error(&quot;Unimplemented method&quot;);
+        throw new Error(&quot;Unimplemented method.&quot;);
     }).
 
     proto({
-
-        getName: function () {
-            throw new Error(&quot;Unimplemented method&quot;);
-        },
 
         dispatch: parts.that(function (that, files, reporters, done) {
             this[startServer](files, reporters, function () {

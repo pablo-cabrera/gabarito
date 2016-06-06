@@ -1,9 +1,11 @@
 "use strict";
 
+var parts = require("../../../deps/parts");
 var gabarito = require("../../../lib/gabarito");
 var Environment = require("../../../lib/plumbing/Environment");
 
-var assert = gabarito.assert;
+var matcher = gabarito.matcher;
+var spy = gabarito.spy;
 
 var env;
 
@@ -13,21 +15,19 @@ before(function () {
     env = new Environment();
 }).
 
-
-
 clause("getName should throw \"Unimplemented method.\"", function () {
-    try {
-        env.getName();
-    } catch (e) {
-        assert.that(e).isInstanceOf(Error);
-        assert.that(e.message).isEqualTo("Unimplemented method.");
-    }
+    env.getName = spy(env.getName);
+    parts.silence(function () { env.getName(); });
+    env.getName.verify().throwing(matcher(function (e) {
+        return e.message === "Unimplemented method.";
+    }));
 }).
+
 clause("dispatch should throw \"Unimplemented method.\"", function () {
-    try {
-        env.dispatch();
-    } catch (e) {
-        assert.that(e).isInstanceOf(Error);
-        assert.that(e.message).isEqualTo("Unimplemented method.");
-    }
+    env.dispatch = spy(env.dispatch);
+    parts.silence(function () { env.dispatch(); });
+
+    env.dispatch.verify().throwing(matcher(function (e) {
+        return e.message === "Unimplemented method.";
+    }));
 });

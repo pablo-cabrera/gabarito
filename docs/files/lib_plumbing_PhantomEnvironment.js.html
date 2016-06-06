@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
             
                 <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.Context.html">gabarito.Context</a></li>
             
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
@@ -128,11 +130,11 @@ var http = require(&quot;http&quot;);
 var url = require(&quot;url&quot;);
 var fs = require(&quot;fs&quot;);
 var path = require(&quot;path&quot;);
-var phantom = require(&quot;phantom&quot;);
 
 var shared = {};
 
 module.exports = ilk.tokens(function (
+    phantom,
     instance,
     page
 ) {
@@ -143,15 +145,18 @@ module.exports = ilk.tokens(function (
      * @class gabarito.plumbing.PhantomEnvironment
      * @extends gabarito.plumbing.ServerEnvironment
      * @constructor
+     *
+     * @param {Phantom} [phantom] The phantom module
      */
-    return ServerEnvironment.descend(function () {
+    return ServerEnvironment.descend(function (pPhantom) {
         ServerEnvironment.call(this);
+        phantom.mark(this, pPhantom || require(&quot;phantom&quot;));
         instance.mark(this, null);
         page.mark(this, null);
     }, shared).
 
     proto(shared.dispatchBrowser, parts.that(function (that, done) {
-        phantom.create().then(function (i) {
+        that[phantom].create().then(function (i) {
             that[instance] = i;
             return i.createPage();
         }).then(function (p) {

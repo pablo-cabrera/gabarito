@@ -27,7 +27,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
         </form>
     </div>
 </div>
@@ -44,6 +44,8 @@
                 <li><a href="../classes/gabarito.AssertThat.html">gabarito.AssertThat</a></li>
             
                 <li><a href="../classes/gabarito.ClauseResult.html">gabarito.ClauseResult</a></li>
+            
+                <li><a href="../classes/gabarito.Context.html">gabarito.Context</a></li>
             
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
@@ -144,7 +146,7 @@ given values meets the matcher function criteria.</p>
 			<ul>
 				
 				
-				<li><a href="#method-error"><span class="im">error</span>(<span class="ia">position</span><span class="ia">arg</span>)</a></li>
+				<li><a href="#method-error"><span class="im">error</span>(<span class="ia">value</span><span class="ia">position</span>)</a></li>
 				
 				
 				
@@ -216,7 +218,7 @@ given values meets the matcher function criteria.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l793"><code>lib&#x2F;gabarito.js:793</code></a>
+		<a href="../files/lib_gabarito.js.html#l837"><code>lib&#x2F;gabarito.js:837</code></a>
 		
 		</p>
 
@@ -296,13 +298,13 @@ given values meets the matcher function criteria.</p>
 			
 				<li class="arg">
 					
-						<code>position</code>
+						<code>value</code>
 					
 				</li>
 			
 				<li class="arg">
 					
-						<code>arg</code>
+						<code class="optional">position</code>
 					
 				</li>
 			
@@ -337,7 +339,7 @@ given values meets the matcher function criteria.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l827"><code>lib&#x2F;gabarito.js:827</code></a>
+		<a href="../files/lib_gabarito.js.html#l871"><code>lib&#x2F;gabarito.js:871</code></a>
 		
 		</p>
 
@@ -361,15 +363,12 @@ argument&#39;s position and the argument itself.</p>
 			
 				<li class="param">
 					
-						<code class="param-name">position</code>
-						<span class="type">Number</span>
+						<code class="param-name">value</code>
+						<span class="type">Mixed</span>
 					
 
 					
 
-					
-					<div class="param-description"><p>Argument position</p>
-</div>
 					
 
 					
@@ -377,8 +376,9 @@ argument&#39;s position and the argument itself.</p>
 			
 				<li class="param">
 					
-						<code class="param-name">arg</code>
-						<span class="type">Mixed</span>
+						<code class="param-name optional">[position]</code>
+						<span class="type">Number</span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
 					
 
 					
@@ -457,7 +457,7 @@ argument&#39;s position and the argument itself.</p>
 			
 		
 		
-		<a href="../files/lib_gabarito.js.html#l812"><code>lib&#x2F;gabarito.js:812</code></a>
+		<a href="../files/lib_gabarito.js.html#l856"><code>lib&#x2F;gabarito.js:856</code></a>
 		
 		</p>
 

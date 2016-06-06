@@ -124,7 +124,7 @@
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
             assert.that(e.message).
-                    isEqualTo("1st argument mismatch.\nArgument: 1");
+                    isEqualTo("Value mismatch.\nValue: <n: 1>");
         }
     }).
 
@@ -207,7 +207,10 @@
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
             assert.that(e.message).
-                    isEqualTo("1st argument mismatch.\nExpected: 2\nActual: 1");
+                    isEqualTo(
+                            "1st argument mismatch.\n" +
+                            "Expected: <n: 2>\n" +
+                            "Actual: <n: 1>");
         }
     }).
 
@@ -218,7 +221,8 @@
             s.verify().returning(matcher(parts.constant(false)));
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isEqualTo("Return mismatch.");
+            assert.that(e.message).
+                    isEqualTo("Value mismatch.\nValue: <0:o: {}>");
         }
     }).
     clause(
@@ -233,39 +237,40 @@
             s.verify().returning(1);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isEqualTo("Return mismatch.");
+            assert.that(e.message).
+                    isEqualTo("Return mismatch.\nReturn: <0:o: {}>");
         }
     }).
 
     clause("throwing should throw if the matcher fails", function () {
         var error = new Error();
         s = spy(function () { throw error; });
-        try { s(); } catch (e) { }
+        parts.silence(s);
 
         try {
             s.verify().throwing(matcher(parts.constant(false)));
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isEqualTo("Error mismatch.");
+            assert.that(e.message.indexOf("Value mismatch")).isTheSameAs(0);
         }
 
     }).
 
     clause(
-    "throwing should use the default matcher for a value that is not a " +
+    "throwing should use an identity matcher for a value that is not a " +
     "matcher", function () {
         var error = new Error();
         s = spy(function () { throw error; });
 
-        try { s(); } catch (e) { }
+        parts.silence(s);
         s.verify().throwing(error);
 
-        try { s(); } catch (e) { }
+        parts.silence(s);
         try {
             s.verify().throwing(1);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isEqualTo("Error mismatch.");
+            assert.that(e.message.indexOf("Error mismatch")).isTheSameAs(0);
         }
 
     }).
@@ -289,6 +294,70 @@
         s();
         s.reset();
         s.noCalls();
+    }).
+
+    clause("withThis should throw if the matcher fails", function () {
+        s();
+
+        try {
+            s.verify().withThis(matcher(parts.constant(false)));
+        } catch (e) {
+            assert.that(e).isInstanceOf(Error);
+            assert.that(e.message.indexOf("Value mismatch")).isTheSameAs(0);
+        }
+    }).
+
+    clause(
+    "withThis should use an identity matcher for a value that is not a " +
+    "matcher",
+    function () {
+        var that = {};
+        s.call(that);
+        s.verify().withThis(that);
+
+        s();
+        try {
+            s.verify().withThis(that);
+        } catch (e) {
+            assert.that(e).isInstanceOf(Error);
+            assert.that(e.message.indexOf("This mismatch")).isTheSameAs(0);
+        }
+
+    }).
+
+    clause("after should throw if a call was made before another one",
+    function () {
+        s();
+        s();
+
+        var call1 = s.verify();
+        var call2 = s.verify();
+
+        call2.after(call1);
+        try {
+            call1.after(call2);
+        } catch (e) {
+            assert.that(e).isInstanceOf(Error);
+            assert.that(e.message).isTheSameAs("Call made before.");
+        }
+    }).
+
+    clause("before should throw if a call was made after another one",
+    function () {
+        s();
+        s();
+
+        var call1 = s.verify();
+        var call2 = s.verify();
+
+        call1.before(call2);
+        try {
+            call2.before(call1);
+        } catch (e) {
+            assert.that(e).isInstanceOf(Error);
+            assert.that(e.message).isTheSameAs("Call made after.");
+        }
+
     });
 
 
