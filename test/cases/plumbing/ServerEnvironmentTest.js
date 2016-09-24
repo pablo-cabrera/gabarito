@@ -146,7 +146,7 @@ clause("request to \"/\" should deliver the browser runner", function () {
     assert.that(responseGrabber.grab().indexOf(
         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">" +
         "<html><head><title>gabarito runner</title>")).
-        isTheSameAs(0);
+        sameAs(0);
 }).
 
 clause(

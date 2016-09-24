@@ -5,6 +5,21 @@
     var arrayProto = Array.prototype;
     var objectProto = Object.prototype;
 
+    var format = function (msg, args) {
+        var s = 0;
+        return msg.replace(/[$%](\d+|s)/g, function (m) {
+            var arg;
+            if (m.charAt(1) === "s") {
+                arg = args[s];
+                s += 1;
+            } else {
+                arg = args[Number(m.substr(1)) - 1];
+            }
+
+            return m.charAt(0) === "$"? dump(arg): String(arg);
+        });
+    };
+
     var now = function () { return new Date().getTime(); };
 
     var checkType = function (n) {
@@ -181,6 +196,8 @@
     var some = function (c, f) {
         return !every(c, negate(f));
     };
+
+
 
     var hints = {
         "string": isString,
@@ -770,6 +787,8 @@
         },
 
         dump: dump,
+
+        format: format,
 
         applyNew: function (type, args) {
             var F = function () { type.apply(this, args); };

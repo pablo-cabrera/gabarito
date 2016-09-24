@@ -42,7 +42,7 @@ before(function () {
 }).
 
 clause("getName should return \"PhantomJS\"", function () {
-    assert.that(env.getName()).isTheSameAs("PhantomJS");
+    assert.that(env.getName()).sameAs("PhantomJS");
 }).
 
 clause(

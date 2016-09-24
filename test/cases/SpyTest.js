@@ -50,7 +50,7 @@
         var arg = {};
         var f = parts.args(function (args) {
             assert.that(args.length).isEqualTo(1);
-            assert.that(args[0]).isTheSameAs(arg);
+            assert.that(args[0]).sameAs(arg);
         });
 
         var s = spy(f);
@@ -61,7 +61,7 @@
         var someThis = {};
 
         var f = function () {
-            assert.that(this).isTheSameAs(someThis);
+            assert.that(this).sameAs(someThis);
         };
 
         var s = spy(f);
@@ -73,7 +73,7 @@
         var f = parts.constant(result);
         var s = spy(f);
         var anotherResult = s();
-        assert.that(anotherResult).isTheSameAs(result);
+        assert.that(anotherResult).sameAs(result);
     }).
 
     clause("should throw the same error", function () {
@@ -83,7 +83,7 @@
         try {
             s();
         } catch (e) {
-            assert.that(e).isTheSameAs(error);
+            assert.that(e).sameAs(error);
         }
     }).
 
@@ -175,13 +175,13 @@
         var called2 = false;
 
         var m1 = matcher(function (v1) {
-            assert.that(v1).isTheSameAs(1);
+            assert.that(v1).sameAs(1);
             called1 = true;
             return true;
         });
 
         var m2 = matcher(function (v2) {
-            assert.that(v2).isTheSameAs(v2);
+            assert.that(v2).sameAs(v2);
             called2 = true;
             return true;
         });
@@ -251,7 +251,7 @@
             s.verify().throwing(matcher(parts.constant(false)));
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message.indexOf("Value mismatch")).isTheSameAs(0);
+            assert.that(e.message.indexOf("Value mismatch")).sameAs(0);
         }
 
     }).
@@ -270,7 +270,7 @@
             s.verify().throwing(1);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message.indexOf("Error mismatch")).isTheSameAs(0);
+            assert.that(e.message.indexOf("Error mismatch")).sameAs(0);
         }
 
     }).
@@ -303,7 +303,7 @@
             s.verify().withThis(matcher(parts.constant(false)));
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message.indexOf("Value mismatch")).isTheSameAs(0);
+            assert.that(e.message.indexOf("Value mismatch")).sameAs(0);
         }
     }).
 
@@ -320,7 +320,7 @@
             s.verify().withThis(that);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message.indexOf("This mismatch")).isTheSameAs(0);
+            assert.that(e.message.indexOf("This mismatch")).sameAs(0);
         }
 
     }).
@@ -338,7 +338,7 @@
             call1.after(call2);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isTheSameAs("Call made before.");
+            assert.that(e.message).sameAs("Call made before.");
         }
     }).
 
@@ -355,7 +355,7 @@
             call2.before(call1);
         } catch (e) {
             assert.that(e).isInstanceOf(Error);
-            assert.that(e.message).isTheSameAs("Call made after.");
+            assert.that(e.message).sameAs("Call made after.");
         }
 
     });

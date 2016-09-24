@@ -176,7 +176,7 @@
     function (ctx) {
         g.on("error", ctx.going(function (error) {
             assert.that(error).isInstanceOf(Error);
-            assert.that(error.message).isTheSameAs("Context has already run.");
+            assert.that(error.message).sameAs("Context has already run.");
         }));
 
         g.test("test").

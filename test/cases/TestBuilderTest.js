@@ -31,7 +31,7 @@
 
         g.verify(function (results) {
             assert.that(results).hasSizeOf(1);
-            assert.that(results[0].test).isTheSameAs("some test");
+            assert.that(results[0].test).sameAs("some test");
         });
     }).
 
@@ -42,7 +42,7 @@
 
         g.verify(function (results) {
             assert.that(results).hasSizeOf(1);
-            assert.that(results[0].test).isTheSameAs("some test");
+            assert.that(results[0].test).sameAs("some test");
         });
     }).
 
