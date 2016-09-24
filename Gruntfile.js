@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 
                 options: {
                     results: "test/result/runtime.xml",
-                    environments: ["node"/*, "phantom"*/]
+                    environments: ["node", "phantom"]
                 }
             },
 
