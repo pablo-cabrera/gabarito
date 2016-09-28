@@ -86,11 +86,9 @@ module.exports = function (grunt) {
                 version: "<%= pkg.version %>",
                 url: "<%= pkg.homepage %>",
                 options: {
-                    themedir: "node_modules/yuidoc-lucid-theme/",
+                    themedir: "yuidoc-clear-theme",
                     paths: ["lib/", "yuidoc-extras/"],
-                    outdir: "docs/",
-                    helpers: ["node_modules/" +
-                            "yuidoc-lucid-theme/helpers/helpers.js"]
+                    outdir: "docs/"
                 }
             }
         }

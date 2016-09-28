@@ -2,7 +2,7 @@
     "project": {
         "name": "gabarito",
         "description": "JS unit tests",
-        "version": "0.0.1-alpha.006",
+        "version": "0.0.1",
         "url": "https://github.com/pablo-cabrera/gabarito"
     },
     "files": {
@@ -94,11 +94,14 @@
             "name": "lib/gabarito.js",
             "modules": {},
             "classes": {
+                "gabarito.Assert": 1,
                 "gabarito.AssertThat": 1,
                 "gabarito.TestBuilder": 1,
                 "gabarito.Matcher": 1,
                 "gabarito.VarargsMatcher": 1,
                 "gabarito.Gabarito": 1,
+                "gabarito.GrabberMatcher": 1,
+                "gabarito.ArgsGrabberMatcher": 1,
                 "gabarito.SpyVerifier": 1,
                 "gabarito.Spy": 1,
                 "gabarito.Context": 1
@@ -134,6 +137,28 @@
             },
             "fors": {
                 "gabarito.EnvironmentResult": 1
+            },
+            "namespaces": {}
+        },
+        "yuidoc-extras/Grabber.js": {
+            "name": "yuidoc-extras/Grabber.js",
+            "modules": {},
+            "classes": {
+                "gabarito.Grabber": 1
+            },
+            "fors": {
+                "gabarito.Grabber": 1
+            },
+            "namespaces": {}
+        },
+        "yuidoc-extras/SpyCall.js": {
+            "name": "yuidoc-extras/SpyCall.js",
+            "modules": {},
+            "classes": {
+                "gabarito.SpyCall": 1
+            },
+            "fors": {
+                "gabarito.SpyCall": 1
             },
             "namespaces": {}
         },
@@ -259,7 +284,7 @@
                 {
                     "name": "require",
                     "description": "The module.require function",
-                    "type": "Module#require",
+                    "type": "Module/require",
                     "optional": true
                 }
             ]
@@ -308,7 +333,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/plumbing/Runner.js",
-            "line": 16,
+            "line": 22,
             "description": "The gabarito runner. It needs the reporters in order to receive the\nvarius events issued by the environments. The environments in which the\ntest should run, and the files containing the tests themselves.",
             "is_constructor": 1
         },
@@ -347,7 +372,19 @@
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
-            "extension_for": []
+            "extension_for": [],
+            "file": "lib/gabarito.js",
+            "line": 25,
+            "description": "The Assert class provides the various assertions used within tests.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "parts",
+                    "description": "",
+                    "type": "Parts::Parts",
+                    "optional": true
+                }
+            ]
         },
         "gabarito.AssertThat": {
             "name": "gabarito.AssertThat",
@@ -358,7 +395,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 421,
+            "line": 430,
             "description": "A nice helper to use asserts in a more expressive way. It has all\nthe methods from the {{#crossLink \"gabarito.Assert\"}}{{/crossLink}}.",
             "is_constructor": 1,
             "params": [
@@ -383,7 +420,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 713,
+            "line": 722,
             "description": "The test builder is a helper that builds a test in a more expressive\nway.\n\nUsage:\n```\ngabarito.test().\nname(\"test name\").\nbefore(function () {\n    // runs before each clause\n}).\nafter(function () {\n    // runs after each clause\n}).\n\nclause(\"an unimplemented clause\").\nclause(\"another clause\", function () {\n   // clause body\n});\n```",
             "is_constructor": 1,
             "params": [
@@ -403,7 +440,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 821,
+            "line": 830,
             "description": "The matcher consists of a single function that evaluates whether a\ngiven values meets the matcher function criteria.",
             "is_constructor": 1,
             "params": [
@@ -429,7 +466,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 877,
+            "line": 886,
             "description": "The varargs matcher uses a single function that will receive an array\ncontaining all the remaining args passed to the function while applying\nthe matchers.\n\nThis matcher should always be the last matcher.",
             "extends": "gabarito.Matcher",
             "is_constructor": 1,
@@ -450,8 +487,40 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 1423,
+            "line": 1449,
             "is_constructor": 1
+        },
+        "gabarito.GrabberMatcher": {
+            "name": "gabarito.GrabberMatcher",
+            "shortname": "gabarito.GrabberMatcher",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/gabarito.js",
+            "line": 1048,
+            "description": "Matcher that always passes and stores the passed value for later use.",
+            "extends": "gabarito.Matcher",
+            "uses": [
+                "gabarito.Grabber"
+            ]
+        },
+        "gabarito.ArgsGrabberMatcher": {
+            "name": "gabarito.ArgsGrabberMatcher",
+            "shortname": "gabarito.ArgsGrabberMatcher",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/gabarito.js",
+            "line": 1074,
+            "description": "Matcher that always passes and stores the passed values for later\nuse.",
+            "extends": "gabarito.VarargsMatcher",
+            "uses": [
+                "gabarito.Grabber"
+            ]
         },
         "gabarito.SpyVerifier": {
             "name": "gabarito.SpyVerifier",
@@ -462,7 +531,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 1093,
+            "line": 1119,
             "description": "The verifier is used to check for the arguments, return or error\nthrown.",
             "is_constructor": 1,
             "params": [
@@ -482,8 +551,8 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 1270,
-            "description": "The spy relays the calls to the actual function, but records every\ncall, along with its parameters, its return or error if thrown.\n\nTo verify a given call, the {#crossLink\n\"gabarito.SpyVerifier\"}}{{/crossLink}} may be obtained through the\nverify method.",
+            "line": 1296,
+            "description": "The spy relays the calls to the actual function, but records every\ncall, along with its parameters, its return or error if thrown.\n\nTo verify a given call, the\n{{#crossLink \"gabarito.SpyVerifier\"}}{{/crossLink}} may be obtained\nthrough the verify method.",
             "is_constructor": 1,
             "params": [
                 {
@@ -502,7 +571,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/gabarito.js",
-            "line": 1451,
+            "line": 1477,
             "description": "The context class is passed to each clause when it is run, also to\nthe before and after functions.\n\nIt provides means to run tests asynchronously through the\n{{#crossLink \"gabarito.Context#stay\"}}{{/crossLink}},\n{{#crossLink \"gabarito.Context#go\"}}{{/crossLink}} and\n{{#crossLink \"gabarito.Context#going\"}}{{/crossLink}} methods.",
             "is_constructor": 1
         },
@@ -530,6 +599,35 @@
             "file": "yuidoc-extras/EnvironmentResult.js",
             "line": 1,
             "description": "Dummy class that describes the environment results data structure",
+            "is_constructor": 1
+        },
+        "gabarito.Grabber": {
+            "name": "gabarito.Grabber",
+            "shortname": "gabarito.Grabber",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "gabarito.GrabberMatcher",
+                "gabarito.ArgsGrabberMatcher"
+            ],
+            "file": "yuidoc-extras/Grabber.js",
+            "line": 1,
+            "description": "Interface used for the grabber matchers",
+            "is_constructor": 1
+        },
+        "gabarito.SpyCall": {
+            "name": "gabarito.SpyCall",
+            "shortname": "gabarito.SpyCall",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "yuidoc-extras/SpyCall.js",
+            "line": 1,
+            "description": "Structure class that represents a function call",
             "is_constructor": 1
         },
         "gabarito.TestResult": {
@@ -728,9 +826,10 @@
                     "type": "gabarito.plumbing.Environment"
                 },
                 {
-                    "name": "...args",
+                    "name": "args",
                     "description": "",
-                    "type": "String"
+                    "type": "String",
+                    "multiple": true
                 }
             ],
             "class": "gabarito.plumbing.ConsoleReporter"
@@ -1043,9 +1142,10 @@
                     "type": "gabarito.plumbing.Environment"
                 },
                 {
-                    "name": "...args",
+                    "name": "args",
                     "description": "",
-                    "type": "String"
+                    "type": "String",
+                    "multiple": true
                 }
             ],
             "class": "gabarito.plumbing.Reporter"
@@ -1072,7 +1172,7 @@
         },
         {
             "file": "lib/plumbing/Runner.js",
-            "line": 56,
+            "line": 62,
             "description": "Adds a file within the runner",
             "itemtype": "method",
             "name": "addFile",
@@ -1087,7 +1187,7 @@
         },
         {
             "file": "lib/plumbing/Runner.js",
-            "line": 68,
+            "line": 74,
             "description": "Adds an environment within the runner",
             "itemtype": "method",
             "name": "addRunner",
@@ -1102,7 +1202,7 @@
         },
         {
             "file": "lib/plumbing/Runner.js",
-            "line": 80,
+            "line": 86,
             "description": "Adds a reporter within the runner",
             "itemtype": "method",
             "name": "addReporter",
@@ -1117,7 +1217,7 @@
         },
         {
             "file": "lib/plumbing/Runner.js",
-            "line": 93,
+            "line": 99,
             "description": "Dispatches the runner",
             "itemtype": "method",
             "name": "run",
@@ -1166,7 +1266,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 47,
+            "line": 56,
             "description": "Asserts that both values are the same (using ===)",
             "itemtype": "method",
             "name": "areSame",
@@ -1186,7 +1286,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 60,
+            "line": 69,
             "description": "Asserts that both values are not the same (using !==)",
             "itemtype": "method",
             "name": "areNotSame",
@@ -1206,7 +1306,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 72,
+            "line": 81,
             "description": "Asserts that both values are equal (using parts.Parts/equals\nmethod).",
             "itemtype": "method",
             "name": "areEqual",
@@ -1226,7 +1326,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 83,
+            "line": 92,
             "description": "Asserts that both values are equals by using the passed\nequality function.\n\nThe equality function will receive both values as arguments\nand it must returns true if the values are considered equal.",
             "itemtype": "method",
             "name": "areEqual",
@@ -1251,7 +1351,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 98,
+            "line": 107,
             "description": "Asserts that both values are equal (using parts.Parts/equals\nmethod).",
             "itemtype": "method",
             "name": "areEqual",
@@ -1276,7 +1376,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 110,
+            "line": 119,
             "description": "Asserts that both values are equals by using the passed\nequality function.\n\nThe equality function will receive both values as arguments\nand it must returns true if the values are considered equal.",
             "itemtype": "method",
             "name": "areEqual",
@@ -1306,7 +1406,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 140,
+            "line": 149,
             "description": "Asserts that a given value is an array.",
             "itemtype": "method",
             "name": "isArray",
@@ -1327,7 +1427,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 151,
+            "line": 160,
             "description": "Asserts that a given value is a boolean.",
             "itemtype": "method",
             "name": "isBoolean",
@@ -1348,7 +1448,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 162,
+            "line": 171,
             "description": "Asserts that a given value is a function.",
             "itemtype": "method",
             "name": "isFunction",
@@ -1369,7 +1469,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 174,
+            "line": 183,
             "description": "Asserts that a given value is a number and is not NaN.",
             "itemtype": "method",
             "name": "isNumber",
@@ -1390,7 +1490,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 185,
+            "line": 194,
             "description": "Asserts that a given value is an object.",
             "itemtype": "method",
             "name": "isObject",
@@ -1411,7 +1511,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 196,
+            "line": 205,
             "description": "Asserts that a given value is a string.",
             "itemtype": "method",
             "name": "isString",
@@ -1432,7 +1532,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 207,
+            "line": 216,
             "description": "Asserts that a given value is a RegExp instance.",
             "itemtype": "method",
             "name": "isRegExp",
@@ -1453,7 +1553,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 219,
+            "line": 228,
             "description": "Asserts that a given value is a Date instance.",
             "itemtype": "method",
             "name": "isDate",
@@ -1474,7 +1574,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 230,
+            "line": 239,
             "description": "Asserts that a given value is an instance of a given type.",
             "itemtype": "method",
             "name": "isInstanceOf",
@@ -1500,7 +1600,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 243,
+            "line": 252,
             "description": "Asserts that a given value is false.",
             "itemtype": "method",
             "name": "isFalse",
@@ -1521,7 +1621,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 254,
+            "line": 263,
             "description": "Asserts that a given value is true.",
             "itemtype": "method",
             "name": "isTrue",
@@ -1542,7 +1642,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 265,
+            "line": 274,
             "description": "Asserts that a given value is NaN.\n\nNote that the value should be the actual NaN and not\nsomething that converts to NaN.",
             "itemtype": "method",
             "name": "isNaN",
@@ -1563,7 +1663,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 279,
+            "line": 288,
             "description": "Asserts that a given value is not NaN.\n\nNote that the value should be the actual NaN and not\nsomething that converts to NaN.",
             "itemtype": "method",
             "name": "isNotNaN",
@@ -1584,7 +1684,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 294,
+            "line": 303,
             "description": "Asserts that a given value is null.",
             "itemtype": "method",
             "name": "isNull",
@@ -1605,7 +1705,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 305,
+            "line": 314,
             "description": "Asserts that a given value is not null.",
             "itemtype": "method",
             "name": "isNotNull",
@@ -1626,7 +1726,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 317,
+            "line": 326,
             "description": "Asserts that a given value is undefined.",
             "itemtype": "method",
             "name": "isUndefined",
@@ -1647,7 +1747,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 329,
+            "line": 338,
             "description": "Asserts that a given value is undefined.",
             "itemtype": "method",
             "name": "isNotUndefined",
@@ -1668,7 +1768,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 341,
+            "line": 350,
             "description": "Asserts that a given object has a property",
             "itemtype": "method",
             "name": "hasProperty",
@@ -1694,7 +1794,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 354,
+            "line": 363,
             "description": "Asserts that a given object doesn't has a property",
             "itemtype": "method",
             "name": "doesntHasProperty",
@@ -1720,7 +1820,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 367,
+            "line": 376,
             "description": "Asserts that a given object owns a property",
             "itemtype": "method",
             "name": "hop",
@@ -1746,7 +1846,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 383,
+            "line": 392,
             "description": "Asserts that a given object doesn't own a property",
             "itemtype": "method",
             "name": "dhop",
@@ -1772,7 +1872,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 399,
+            "line": 408,
             "description": "A nice helper to use asserts in a more expressive way. It has\n all the methods from the assert itself.\n\nUsage:\n```\nassert.that(someValue).isEqualTo(\"3\");\n```",
             "itemtype": "method",
             "name": "that",
@@ -1784,13 +1884,14 @@
                 }
             ],
             "return": {
-                "description": "gabarito.AssertThat"
+                "description": "",
+                "type": "gabarito.AssertThat"
             },
             "class": "gabarito.Assert"
         },
         {
             "file": "lib/gabarito.js",
-            "line": 434,
+            "line": 443,
             "description": "Asserts that a given collection has a given number of\nelements",
             "itemtype": "method",
             "name": "hasSizeOf",
@@ -1811,7 +1912,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 479,
+            "line": 488,
             "description": "Asserts that both values are equal (using parts.Parts/equals method).",
             "itemtype": "method",
             "name": "isEqualTo",
@@ -1826,7 +1927,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 488,
+            "line": 497,
             "description": "Asserts that both values are equals by using the passed equality\nfunction.\n\nThe equality function will receive both values as arguments and it\nmust returns true if the values are considered equal.",
             "itemtype": "method",
             "name": "isEqualTo",
@@ -1846,7 +1947,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 502,
+            "line": 511,
             "description": "Asserts that both values are equal (using parts.Parts/equals method).",
             "itemtype": "method",
             "name": "isEqualTo",
@@ -1866,7 +1967,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 512,
+            "line": 521,
             "description": "Asserts that both values are equals by using the passed equality\nfunction.\n\nThe equality function will receive both values as arguments and it\nmust returns true if the values are considered equal.",
             "itemtype": "method",
             "name": "isEqualTo",
@@ -1891,7 +1992,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 527,
+            "line": 536,
             "description": "Asserts that a given value is an array.",
             "itemtype": "method",
             "name": "isArray",
@@ -1907,7 +2008,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 536,
+            "line": 545,
             "description": "Asserts that a given value is a boolean.",
             "itemtype": "method",
             "name": "isBoolean",
@@ -1923,7 +2024,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 545,
+            "line": 554,
             "description": "Asserts that a given value is a function.",
             "itemtype": "method",
             "name": "isFunction",
@@ -1939,7 +2040,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 554,
+            "line": 563,
             "description": "Asserts that a given value is a number and is not NaN.",
             "itemtype": "method",
             "name": "isNumber",
@@ -1955,7 +2056,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 563,
+            "line": 572,
             "description": "Asserts that a given value is an object.",
             "itemtype": "method",
             "name": "isObject",
@@ -1971,7 +2072,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 572,
+            "line": 581,
             "description": "Asserts that a given value is a string.",
             "itemtype": "method",
             "name": "isString",
@@ -1987,7 +2088,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 581,
+            "line": 590,
             "description": "Asserts that a given value is a RegExp instance.",
             "itemtype": "method",
             "name": "isRegExp",
@@ -2003,7 +2104,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 590,
+            "line": 599,
             "description": "Asserts that a given value is a Date instance.",
             "itemtype": "method",
             "name": "isDate",
@@ -2019,7 +2120,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 599,
+            "line": 608,
             "description": "Asserts that a given value is an instance of a given type.",
             "itemtype": "method",
             "name": "isInstanceOf",
@@ -2040,7 +2141,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 609,
+            "line": 618,
             "description": "Asserts that a given value is false.",
             "itemtype": "method",
             "name": "isFalse",
@@ -2056,7 +2157,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 618,
+            "line": 627,
             "description": "Asserts that a given value is true.",
             "itemtype": "method",
             "name": "isTrue",
@@ -2072,7 +2173,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 627,
+            "line": 636,
             "description": "Asserts that a given value is NaN.\n\nNote that the value should be the actual NaN and not something that\nconverts to NaN.",
             "itemtype": "method",
             "name": "isNaN",
@@ -2088,7 +2189,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 639,
+            "line": 648,
             "description": "Asserts that a given value is not NaN.\n\nNote that the value should be the actual NaN and not something that\nconverts to NaN.",
             "itemtype": "method",
             "name": "isNotNaN",
@@ -2104,7 +2205,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 651,
+            "line": 660,
             "description": "Asserts that a given value is null.",
             "itemtype": "method",
             "name": "isNull",
@@ -2120,7 +2221,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 660,
+            "line": 669,
             "description": "Asserts that a given value is not null.",
             "itemtype": "method",
             "name": "isNotNull",
@@ -2136,7 +2237,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 669,
+            "line": 678,
             "description": "Asserts that a given value is undefined.",
             "itemtype": "method",
             "name": "isUndefined",
@@ -2152,7 +2253,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 678,
+            "line": 687,
             "description": "Asserts that a given value is undefined.",
             "itemtype": "method",
             "name": "isNotUndefined",
@@ -2168,7 +2269,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 687,
+            "line": 696,
             "description": "Asserts that a given object has a property",
             "itemtype": "method",
             "name": "hasProperty",
@@ -2189,7 +2290,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 697,
+            "line": 706,
             "description": "Asserts that a given object owns a property",
             "itemtype": "method",
             "name": "hop",
@@ -2210,7 +2311,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 745,
+            "line": 754,
             "description": "Adds a clause within the test object.\n\nIf the clause body is omitted, an unimplemented clause that\nalways throws an error will be used instead.",
             "itemtype": "method",
             "name": "clause",
@@ -2235,7 +2336,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 763,
+            "line": 772,
             "description": "Sets the before function within the test object.",
             "itemtype": "method",
             "name": "before",
@@ -2254,7 +2355,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 777,
+            "line": 786,
             "description": "Sets the after function within the test object.",
             "itemtype": "method",
             "name": "after",
@@ -2273,7 +2374,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 791,
+            "line": 800,
             "description": "Sets test name for the test object.",
             "itemtype": "method",
             "name": "name",
@@ -2292,8 +2393,8 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 840,
-            "description": "The mather method should evaluate the matcher function and\ntell whether the value matches the criteria.",
+            "line": 849,
+            "description": "The matcher method should evaluate the matcher function and\ntell whether the value matches the criteria.",
             "itemtype": "method",
             "name": "matches",
             "params": [
@@ -2311,7 +2412,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 855,
+            "line": 864,
             "description": "Returns the Error instance with the formatted message using the\nargument's position and the argument itself.",
             "itemtype": "method",
             "name": "error",
@@ -2336,7 +2437,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 905,
+            "line": 914,
             "description": "Matcher for string type",
             "itemtype": "property",
             "name": "matcher.STRING",
@@ -2345,7 +2446,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 915,
+            "line": 924,
             "description": "Matcher for array type",
             "itemtype": "property",
             "name": "matcher.ARRAY",
@@ -2354,7 +2455,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 925,
+            "line": 934,
             "description": "Matcher for function type",
             "itemtype": "property",
             "name": "matcher.FUNCTION",
@@ -2363,7 +2464,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 935,
+            "line": 944,
             "description": "Matcher for object type",
             "itemtype": "property",
             "name": "matcher.OBJECT",
@@ -2372,7 +2473,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 945,
+            "line": 954,
             "description": "Matcher for array type",
             "itemtype": "property",
             "name": "matcher.NUMBER",
@@ -2381,7 +2482,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 955,
+            "line": 964,
             "description": "Always matches",
             "itemtype": "property",
             "name": "matcher.ANY",
@@ -2390,7 +2491,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 964,
+            "line": 973,
             "description": "Always matches any varargs",
             "itemtype": "property",
             "name": "matcher.ANY_ARGS",
@@ -2399,7 +2500,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 973,
+            "line": 982,
             "description": "Matcher for a given type",
             "itemtype": "method",
             "name": "matcher.type",
@@ -2423,7 +2524,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1000,
+            "line": 1009,
             "description": "Matcher for varargs",
             "itemtype": "method",
             "name": "matcher.args",
@@ -2448,7 +2549,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1014,
+            "line": 1023,
             "description": "Literal value matcher\n\nIf given value is an object (not a function) or an array, it uses\nparts.equals, otherwise it will check for it's identity",
             "itemtype": "method",
             "name": "matcher.value",
@@ -2473,40 +2574,41 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1039,
+            "line": 1056,
             "description": "Returns a matcher that always passes. This matcher stores the value\npassed to the matcher for further inspection later on.",
             "itemtype": "method",
             "name": "matcher.grabber",
             "return": {
                 "description": "",
-                "type": "gabarito.Matcher"
+                "type": "gabarito.GrabberMatcher"
             },
             "class": "gabarito.Gabarito"
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1057,
-            "description": "Just like the grabber matcher, this matcher that always passes. It\nstores the value passed to the matcher for further inspection\nlater on.\n\nIt works as a varargs matcher.",
+            "line": 1083,
+            "description": "Just like the grabber matcher, this matcher that always passes. It\nstores the values passed to the matcher for further inspection\nlater on.\n\nIt works as a varargs matcher.",
             "itemtype": "method",
-            "name": "mather.argsGrabber",
+            "name": "matcher.argsGrabber",
             "return": {
                 "description": "",
-                "type": "gabarito.VarargsMatcher"
+                "type": "gabarito.ArgsGrabberMatcher"
             },
             "class": "gabarito.Gabarito"
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1107,
+            "line": 1133,
             "description": "Checks if the calls arguments matches with the given matchers",
             "itemtype": "method",
             "name": "args",
             "chainable": 1,
             "params": [
                 {
-                    "name": "...matchers",
+                    "name": "matchers",
                     "description": "",
-                    "type": "gabarito.Matcher|mixed"
+                    "type": "gabarito.Matcher|mixed",
+                    "multiple": true
                 }
             ],
             "return": {
@@ -2517,7 +2619,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1145,
+            "line": 1171,
             "description": "Asserts that this call was made before another call",
             "itemtype": "method",
             "name": "before",
@@ -2543,7 +2645,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1165,
+            "line": 1191,
             "description": "Asserts that this call was made after another call",
             "itemtype": "method",
             "name": "after",
@@ -2569,7 +2671,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1185,
+            "line": 1211,
             "description": "Checks what has been throw by the call using the matcher o a\nvalue matcher.",
             "itemtype": "method",
             "name": "withThis",
@@ -2589,7 +2691,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1210,
+            "line": 1236,
             "description": "Checks what has been throw by the call using the matcher o a\nvalue matcher.",
             "itemtype": "method",
             "name": "throwing",
@@ -2609,7 +2711,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1239,
+            "line": 1265,
             "description": "Checks what has been returmed by the call using the matcher o a\nvalue matcher.",
             "itemtype": "method",
             "name": "returning",
@@ -2629,7 +2731,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1287,
+            "line": 1313,
             "description": "The handler function that relays all the calls, this is the\nactual function that should be used instead of the real one.",
             "itemtype": "property",
             "name": "handler",
@@ -2638,7 +2740,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1313,
+            "line": 1339,
             "description": "Relays the verify call to the spy instance.",
             "itemtype": "method",
             "name": "handler.verify",
@@ -2658,7 +2760,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1329,
+            "line": 1355,
             "description": "Relays the noCalls call to the spy instance.",
             "itemtype": "method",
             "name": "handler.noCalls",
@@ -2674,7 +2776,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1345,
+            "line": 1371,
             "description": "Relays the reset call to the spy instance.",
             "itemtype": "method",
             "name": "handler.reset",
@@ -2682,7 +2784,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1359,
+            "line": 1385,
             "description": "Creates a spy instance and returns its handler",
             "itemtype": "method",
             "name": "on",
@@ -2702,7 +2804,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1376,
+            "line": 1402,
             "description": "Returns a spy verifier if a call was made",
             "itemtype": "method",
             "name": "verify",
@@ -2722,7 +2824,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1395,
+            "line": 1421,
             "description": "Throws an error if a call was made",
             "itemtype": "method",
             "name": "noCalls",
@@ -2738,7 +2840,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1410,
+            "line": 1436,
             "description": "Removes all recorded calls from the instance",
             "itemtype": "method",
             "name": "reset",
@@ -2746,7 +2848,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1537,
+            "line": 1563,
             "description": "Tells the context to wait for an async continuation.",
             "itemtype": "method",
             "name": "stay",
@@ -2762,7 +2864,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1563,
+            "line": 1589,
             "description": "Tells the context to resume",
             "itemtype": "method",
             "name": "go",
@@ -2778,7 +2880,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1582,
+            "line": 1608,
             "description": "Returns a function that when called, tells the context to\nresume the current clause and also passes the parameters\nalong to the given function.\n\nJust a syntatic sugar to avoid another nesting level.",
             "itemtype": "method",
             "name": "going",
@@ -2794,7 +2896,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1705,
+            "line": 1731,
             "description": "Adds a test using the\n{{#crossLink \"gabarito.TestBuilder\"}}{{/crossLink}} within\ngabarito.",
             "itemtype": "method",
             "name": "test",
@@ -2814,7 +2916,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1727,
+            "line": 1753,
             "description": "Resets the gabarito to it's initial state, removing all listeners\nas well.",
             "itemtype": "method",
             "name": "reset",
@@ -2822,16 +2924,16 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1752,
+            "line": 1778,
             "description": "Tells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
             "class": "gabarito.Gabarito"
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1768,
+            "line": 1794,
             "description": "Adds a test within the gabarito.\n\nThe test is an object containing various methods. Each method\nis treated as a test clause. Every draft is run to check if it\nworks.",
             "itemtype": "method",
-            "name": "sketch",
+            "name": "add",
             "params": [
                 {
                     "name": "test",
@@ -2843,7 +2945,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1784,
+            "line": 1810,
             "description": "Register an event listener for a given event.\n\nAvailable events:\n\n- init: The initialization of the gabarito verification.\n- begin: The beginning of a test verification.\n- enter: When gabarito is about to enter into a clause\nverification.\n- pass: Whenever a clause passes.\n- fail: Whenever a clause fails.\n- end: When a test verification has ended.\n- complete: When all the test verifications have completed.\n- say: Custom event to emit whatever message.",
             "itemtype": "method",
             "name": "on",
@@ -2863,7 +2965,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1813,
+            "line": 1839,
             "description": "Removes an event listener for a given event.",
             "params": [
                 {
@@ -2881,7 +2983,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1833,
+            "line": 1859,
             "description": "Verify all tests",
             "itemtype": "method",
             "name": "verify",
@@ -2897,7 +2999,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1862,
+            "line": 1888,
             "description": "Tells gabarito to say something.",
             "itemtype": "method",
             "name": "say",
@@ -2913,7 +3015,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1874,
+            "line": 1900,
             "description": "Reference containing the various assert utils.",
             "itemtype": "property",
             "name": "assert",
@@ -2922,7 +3024,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1883,
+            "line": 1909,
             "description": "Creates an instance of\n{{#crossLink \"gabarito.Spy\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "spy",
@@ -2941,7 +3043,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1895,
+            "line": 1921,
             "description": "Creates a custom matcher using the function as a matching\ncriteria.\n\nThe function will receive a value to examinate and should return\na boolean indicating whether the criteria is met.",
             "itemtype": "method",
             "name": "matcher",
@@ -3004,6 +3106,63 @@
             "class": "gabarito.EnvironmentResult"
         },
         {
+            "file": "yuidoc-extras/Grabber.js",
+            "line": 8,
+            "description": "Returns the stored value",
+            "itemtype": "method",
+            "name": "grab",
+            "return": {
+                "description": "",
+                "type": "Mixed"
+            },
+            "class": "gabarito.Grabber"
+        },
+        {
+            "file": "yuidoc-extras/SpyCall.js",
+            "line": 8,
+            "description": "The `this` object within the function call",
+            "itemtype": "property",
+            "name": "that",
+            "type": "{object}",
+            "class": "gabarito.SpyCall"
+        },
+        {
+            "file": "yuidoc-extras/SpyCall.js",
+            "line": 16,
+            "description": "The arguments lists given to the function call",
+            "itemtype": "property",
+            "name": "args",
+            "type": "{mixed[]}",
+            "class": "gabarito.SpyCall"
+        },
+        {
+            "file": "yuidoc-extras/SpyCall.js",
+            "line": 24,
+            "description": "The given order number for the function call",
+            "itemtype": "property",
+            "name": "order",
+            "type": "{number}",
+            "class": "gabarito.SpyCall"
+        },
+        {
+            "file": "yuidoc-extras/SpyCall.js",
+            "line": 32,
+            "description": "The return value for the function call",
+            "itemtype": "property",
+            "name": "returning",
+            "type": "{mixed}",
+            "class": "gabarito.SpyCall"
+        },
+        {
+            "file": "yuidoc-extras/SpyCall.js",
+            "line": 40,
+            "description": "The error thrown by the function call",
+            "itemtype": "property",
+            "name": "thrown",
+            "type": "{mixed}",
+            "class": "gabarito.SpyCall"
+        },
+        {
             "file": "yuidoc-extras/TestResult.js",
             "line": 8,
             "description": "The test name",
@@ -3043,11 +3202,11 @@
     "warnings": [
         {
             "message": "Missing item type\nTells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
-            "line": " lib/gabarito.js:1752"
+            "line": " lib/gabarito.js:1778"
         },
         {
             "message": "Missing item type\nRemoves an event listener for a given event.",
-            "line": " lib/gabarito.js:1813"
+            "line": " lib/gabarito.js:1839"
         }
     ]
 }

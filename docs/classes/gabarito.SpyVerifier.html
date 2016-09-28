@@ -3,41 +3,35 @@
 <head>
     <meta charset="utf-8">
     <title>gabarito.SpyVerifier - gabarito</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/lucid.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-            gabarito
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>0.0.1-alpha.006</b>
-                </p>
-            </li>
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">gabarito: gabarito.SpyVerifier</a></h1>
         </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
-        </form>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-<div>
-    <div id="sidebar">
-    <div id="classes">
-        <ul id="api-classes" class="nav nav-list">
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/gabarito.ArgsGrabberMatcher.html">gabarito.ArgsGrabberMatcher</a></li>
             
                 <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
             
@@ -50,6 +44,10 @@
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
                 <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.Grabber.html">gabarito.Grabber</a></li>
+            
+                <li><a href="../classes/gabarito.GrabberMatcher.html">gabarito.GrabberMatcher</a></li>
             
                 <li><a href="../classes/gabarito.Matcher.html">gabarito.Matcher</a></li>
             
@@ -71,6 +69,8 @@
             
                 <li><a href="../classes/gabarito.Spy.html">gabarito.Spy</a></li>
             
+                <li><a href="../classes/gabarito.SpyCall.html">gabarito.SpyCall</a></li>
+            
                 <li><a href="../classes/gabarito.SpyVerifier.html">gabarito.SpyVerifier</a></li>
             
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
@@ -81,896 +81,369 @@
             
         </ul>
     </div>
+</div>
+
+
+<div id="methods-on-page" class="sidebox on-page">
+    <div class="hd">
+        <h2 class="no-toc">Methods On Page</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="#methods_after">after</a></li>
+            
+                <li><a href="#methods_args">args</a></li>
+            
+                <li><a href="#methods_before">before</a></li>
+            
+                <li><a href="#methods_returning">returning</a></li>
+            
+                <li><a href="#methods_throwing">throwing</a></li>
+            
+                <li><a href="#methods_withThis">withThis</a></li>
+            
+        </ul>
     </div>
 </div>
 
-        </div>
-        <div class="span9">
-    <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
 
 
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-<div class="page-header">
-    <h1>gabarito.SpyVerifier</h1>
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>lib/<ul><li><a href="../files/lib_gabarito.js.html">gabarito.js</a></li><li>plumbing/<ul><li><a href="../files/lib_plumbing_ConsoleReporter.js.html">ConsoleReporter.js</a></li><li><a href="../files/lib_plumbing_Environment.js.html">Environment.js</a></li><li><a href="../files/lib_plumbing_JUnitXmlReporter.js.html">JUnitXmlReporter.js</a></li><li><a href="../files/lib_plumbing_NodeEnvironment.js.html">NodeEnvironment.js</a></li><li><a href="../files/lib_plumbing_PhantomEnvironment.js.html">PhantomEnvironment.js</a></li><li><a href="../files/lib_plumbing_Reporter.js.html">Reporter.js</a></li><li><a href="../files/lib_plumbing_Runner.js.html">Runner.js</a></li><li><a href="../files/lib_plumbing_ServerEnvironment.js.html">ServerEnvironment.js</a></li></ul></li></ul></li><li>yuidoc-extras/<ul><li><a href="../files/yuidoc-extras_ClauseResult.js.html">ClauseResult.js</a></li><li><a href="../files/yuidoc-extras_EnvironmentResult.js.html">EnvironmentResult.js</a></li><li><a href="../files/yuidoc-extras_Grabber.js.html">Grabber.js</a></li><li><a href="../files/yuidoc-extras_SpyCall.js.html">SpyCall.js</a></li><li><a href="../files/yuidoc-extras_TestResult.js.html">TestResult.js</a></li></ul></li></ul>
+    </div>
 </div>
 
-    
 
-    
 
-    
+        </div>
 
-    
-
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>Class gabarito.SpyVerifier</h4>
 
 
 
-<div class="yuidoc-class-description">
-<p>The verifier is used to check for the arguments, return or error
+<span class="foundat">Class defined in: <a href="../files/lib_gabarito.js.html#l1119"><code>lib&#x2F;gabarito.js:1119</code></a></span>
+<div class="intro"><p>The verifier is used to check for the arguments, return or error
 thrown.</p>
-
 </div>
 
 
-<!-- table of contents -->
+    
+    <a name="methods_gabarito.SpyVerifier"></a>
+<div class="method item">
+     <strong class="name"><code>gabarito.SpyVerifier</code></strong>( <code>call </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_gabarito.js.html#l1119"><code>lib&#x2F;gabarito.js:1119</code></a>
+    </span><br>
+    
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>call</code> <strong>&lt;<a href="../classes/gabarito.SpyCall.html" class="crosslink">gabarito.SpyCall</a>&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+</div>
 
-<div id="class-toc" class="page-section">
-	<h2>Table of Contents</h2>
+    
+
+
+<div id="classdocs">
+    <h2>Index</h2>
+
     <ul>
-		
-		<li>
-			<strong>Methods</strong>
-			<ul>
-				
-				
-				<li><a href="#method-after"><span class="im">after</span>(<span class="ia">anotherCall</span><span class="ia">msg</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-args"><span class="im">args</span>(<span class="ia">...matchers</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-before"><span class="im">before</span>(<span class="ia">anotherCall</span><span class="ia">msg</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-returning"><span class="im">returning</span>(<span class="ia">v</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-throwing"><span class="im">throwing</span>(<span class="ia">v</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-withThis"><span class="im">withThis</span>(<span class="ia">v</span>)</a></li>
-				
-				
-			</ul>
-		</li>
-		
+        
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+    <div>
+        
+            <div id="methods">
+            <h2>Methods</h2>
+            
+                <a name="methods_after"></a>
+<div class="method item">
+    <a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a> <strong class="name"><code>after</code></strong>( <code>anotherCall, [msg] </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_gabarito.js.html#l1191"><code>lib&#x2F;gabarito.js:1191</code></a>
+    </span><br>
+    <p>Asserts that this call was made after another call</p>
 
-		
-
-		
-
-		
-	</ul>
-</div>
-
-<!-- details -->
-
-
-    <div class="constructor yuidoc-class-constructor page-section">
-        <h2>Constructor</h2>
-        <div class="item-list">
-<div id="method-gabarito.SpyVerifier" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>gabarito.SpyVerifier</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>call</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l1093"><code>lib&#x2F;gabarito.js:1093</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">call</code>
-						<span class="type">gabarito.SpyCall</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-
-	
-</div>
-
-        </div>
-    </div>
-
-
-
-    <div id="methods" class="page-section">
-        <h2 class="off-left">Methods</h2>
-        <div class="item-list">
-       		
-        	
-<div id="method-after" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>after</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>anotherCall</code>
-					
-				</li>
-			
-				<li class="arg">
-					
-						<code class="optional">msg</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-		<span class="flag chainable">chainable</span>
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l1165"><code>lib&#x2F;gabarito.js:1165</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Asserts that this call was made after another call</p>
-</div>
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">anotherCall</code>
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[msg]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>anotherCall</code> <strong>&lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+        <li>
+        
+            <code>[msg]</code> <strong>&lt;String&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt; </div>
+    
+    
+    
 </div>
 
             
+                <a name="methods_args"></a>
+<div class="method item">
+    <a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a> <strong class="name"><code>args</code></strong>( <code>matchers </code> ) 
+    <br>
+    <span class="foundat">
+    
         
-        	
-<div id="method-args" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>args</code></span>
+    
+        <a href="../files/lib_gabarito.js.html#l1133"><code>lib&#x2F;gabarito.js:1133</code></a>
+    </span><br>
+    <p>Checks if the calls arguments matches with the given matchers</p>
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>...matchers</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-		<span class="flag chainable">chainable</span>
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l1107"><code>lib&#x2F;gabarito.js:1107</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Checks if the calls arguments matches with the given matchers</p>
-</div>
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">...matchers</code>
-						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a>  |  Mixed</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>matchers</code> <strong>&lt;<a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a> | Mixed&gt;</strong>
+        
+        
+            <abbr title="Denotes that this argument can contain (n) number">(*..n)</abbr>
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt; </div>
+    
+    
+    
 </div>
 
             
+                <a name="methods_before"></a>
+<div class="method item">
+    <a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a> <strong class="name"><code>before</code></strong>( <code>anotherCall, [msg] </code> ) 
+    <br>
+    <span class="foundat">
+    
         
-        	
-<div id="method-before" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>before</code></span>
+    
+        <a href="../files/lib_gabarito.js.html#l1171"><code>lib&#x2F;gabarito.js:1171</code></a>
+    </span><br>
+    <p>Asserts that this call was made before another call</p>
 
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>anotherCall</code>
-					
-				</li>
-			
-				<li class="arg">
-					
-						<code class="optional">msg</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-		<span class="flag chainable">chainable</span>
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l1145"><code>lib&#x2F;gabarito.js:1145</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Asserts that this call was made before another call</p>
-</div>
-	
-
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">anotherCall</code>
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name optional">[msg]</code>
-						<span class="type">String</span>
-						<span class="flag optional" title="This parameter is optional.">optional</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>anotherCall</code> <strong>&lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+        <li>
+        
+            <code>[msg]</code> <strong>&lt;String&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt; </div>
+    
+    
+    
 </div>
 
             
+                <a name="methods_returning"></a>
+<div class="method item">
+    <a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a> <strong class="name"><code>returning</code></strong>( <code>v </code> ) 
+    <br>
+    <span class="foundat">
+    
         
-        	
-<div id="method-returning" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>returning</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>v</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-		<span class="flag chainable">chainable</span>
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l1239"><code>lib&#x2F;gabarito.js:1239</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Checks what has been returmed by the call using the matcher o a
+    
+        <a href="../files/lib_gabarito.js.html#l1265"><code>lib&#x2F;gabarito.js:1265</code></a>
+    </span><br>
+    <p>Checks what has been returmed by the call using the matcher o a
 value matcher.</p>
-</div>
-	
 
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">v</code>
-						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a>  |  Mixed</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>v</code> <strong>&lt;<a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a> | Mixed&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt; </div>
+    
+    
+    
 </div>
 
             
+                <a name="methods_throwing"></a>
+<div class="method item">
+    <a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a> <strong class="name"><code>throwing</code></strong>( <code>v </code> ) 
+    <br>
+    <span class="foundat">
+    
         
-        	
-<div id="method-throwing" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>throwing</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>v</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-		<span class="flag chainable">chainable</span>
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l1210"><code>lib&#x2F;gabarito.js:1210</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Checks what has been throw by the call using the matcher o a
+    
+        <a href="../files/lib_gabarito.js.html#l1236"><code>lib&#x2F;gabarito.js:1236</code></a>
+    </span><br>
+    <p>Checks what has been throw by the call using the matcher o a
 value matcher.</p>
-</div>
-	
 
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">v</code>
-						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a>  |  Mixed</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>v</code> <strong>&lt;<a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a> | Mixed&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt; </div>
+    
+    
+    
 </div>
 
             
+                <a name="methods_withThis"></a>
+<div class="method item">
+    <a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a> <strong class="name"><code>withThis</code></strong>( <code>v </code> ) 
+    <br>
+    <span class="foundat">
+    
         
-        	
-<div id="method-withThis" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>withThis</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>v</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-		<span class="returns-inline">
-			<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-		<span class="flag chainable">chainable</span>
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_gabarito.js.html#l1185"><code>lib&#x2F;gabarito.js:1185</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Checks what has been throw by the call using the matcher o a
+    
+        <a href="../files/lib_gabarito.js.html#l1211"><code>lib&#x2F;gabarito.js:1211</code></a>
+    </span><br>
+    <p>Checks what has been throw by the call using the matcher o a
 value matcher.</p>
-</div>
-	
 
-	
-		<div class="params">
-			<h4>Parameters:</h4>
-
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">v</code>
-						<span class="type"><a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a>  |  Mixed</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type"><a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a></span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>v</code> <strong>&lt;<a href="../classes/gabarito.Matcher.html" class="crosslink">gabarito.Matcher</a> | Mixed&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/gabarito.SpyVerifier.html" class="crosslink">gabarito.SpyVerifier</a>&gt; </div>
+    
+    
+    
 </div>
 
             
-        
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
             </div>
+        
+        
+        
+        
+    </div>
+</div>
+</div>
         </div>
     </div>
 </div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
 <script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
 </body>
 </html>

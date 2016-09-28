@@ -1,5 +1,7 @@
 "use strict";
 
+var path = require("path");
+
 var gabarito = require("../../../lib/gabarito");
 var parts = require("../../../deps/parts");
 
@@ -60,7 +62,11 @@ function () {
 
     runner.run(done);
 
-    var files = ["a", "b"];
+    var files = [
+        path.join(process.cwd(), "a"),
+        path.join(process.cwd(), "b")
+    ];
+
     var reporters = [reporter1, reporter2];
     var results = [
         {

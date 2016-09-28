@@ -3,41 +3,35 @@
 <head>
     <meta charset="utf-8">
     <title>gabarito.plumbing.Environment - gabarito</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/lucid.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-        
-            gabarito
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>0.0.1-alpha.006</b>
-                </p>
-            </li>
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">gabarito: gabarito.plumbing.Environment</a></h1>
         </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/gabarito.Assert", "classes/gabarito.AssertThat", "classes/gabarito.ClauseResult", "classes/gabarito.Context", "classes/gabarito.EnvironmentResult", "classes/gabarito.Gabarito", "classes/gabarito.Matcher", "classes/gabarito.plumbing.ConsoleReporter", "classes/gabarito.plumbing.Environment", "classes/gabarito.plumbing.JUnitXmlReporter", "classes/gabarito.plumbing.NodeEnvironment", "classes/gabarito.plumbing.PhantomEnvironment", "classes/gabarito.plumbing.Reporter", "classes/gabarito.plumbing.Runner", "classes/gabarito.plumbing.ServerEnvironment", "classes/gabarito.Spy", "classes/gabarito.SpyVerifier", "classes/gabarito.TestBuilder", "classes/gabarito.TestResult", "classes/gabarito.VarargsMatcher"]'>
-        </form>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-<div>
-    <div id="sidebar">
-    <div id="classes">
-        <ul id="api-classes" class="nav nav-list">
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/gabarito.ArgsGrabberMatcher.html">gabarito.ArgsGrabberMatcher</a></li>
             
                 <li><a href="../classes/gabarito.Assert.html">gabarito.Assert</a></li>
             
@@ -50,6 +44,10 @@
                 <li><a href="../classes/gabarito.EnvironmentResult.html">gabarito.EnvironmentResult</a></li>
             
                 <li><a href="../classes/gabarito.Gabarito.html">gabarito.Gabarito</a></li>
+            
+                <li><a href="../classes/gabarito.Grabber.html">gabarito.Grabber</a></li>
+            
+                <li><a href="../classes/gabarito.GrabberMatcher.html">gabarito.GrabberMatcher</a></li>
             
                 <li><a href="../classes/gabarito.Matcher.html">gabarito.Matcher</a></li>
             
@@ -71,6 +69,8 @@
             
                 <li><a href="../classes/gabarito.Spy.html">gabarito.Spy</a></li>
             
+                <li><a href="../classes/gabarito.SpyCall.html">gabarito.SpyCall</a></li>
+            
                 <li><a href="../classes/gabarito.SpyVerifier.html">gabarito.SpyVerifier</a></li>
             
                 <li><a href="../classes/gabarito.TestBuilder.html">gabarito.TestBuilder</a></li>
@@ -81,383 +81,188 @@
             
         </ul>
     </div>
+</div>
+
+
+<div id="methods-on-page" class="sidebox on-page">
+    <div class="hd">
+        <h2 class="no-toc">Methods On Page</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="#methods_dispatch">dispatch</a></li>
+            
+                <li><a href="#methods_getName">getName</a></li>
+            
+        </ul>
     </div>
 </div>
 
-        </div>
-        <div class="span9">
-    <form id="options-form" class="form-inline pull-right">
-        Show:
-        <label for="api-show-inherited" class="checkbox">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected" class="checkbox">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private" class="checkbox">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated" class="checkbox">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </form>
 
 
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-<div class="page-header">
-    <h1>gabarito.plumbing.Environment</h1>
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>lib/<ul><li><a href="../files/lib_gabarito.js.html">gabarito.js</a></li><li>plumbing/<ul><li><a href="../files/lib_plumbing_ConsoleReporter.js.html">ConsoleReporter.js</a></li><li><a href="../files/lib_plumbing_Environment.js.html">Environment.js</a></li><li><a href="../files/lib_plumbing_JUnitXmlReporter.js.html">JUnitXmlReporter.js</a></li><li><a href="../files/lib_plumbing_NodeEnvironment.js.html">NodeEnvironment.js</a></li><li><a href="../files/lib_plumbing_PhantomEnvironment.js.html">PhantomEnvironment.js</a></li><li><a href="../files/lib_plumbing_Reporter.js.html">Reporter.js</a></li><li><a href="../files/lib_plumbing_Runner.js.html">Runner.js</a></li><li><a href="../files/lib_plumbing_ServerEnvironment.js.html">ServerEnvironment.js</a></li></ul></li></ul></li><li>yuidoc-extras/<ul><li><a href="../files/yuidoc-extras_ClauseResult.js.html">ClauseResult.js</a></li><li><a href="../files/yuidoc-extras_EnvironmentResult.js.html">EnvironmentResult.js</a></li><li><a href="../files/yuidoc-extras_Grabber.js.html">Grabber.js</a></li><li><a href="../files/yuidoc-extras_SpyCall.js.html">SpyCall.js</a></li><li><a href="../files/yuidoc-extras_TestResult.js.html">TestResult.js</a></li></ul></li></ul>
+    </div>
 </div>
 
-    
 
-    
 
-    
+        </div>
 
-    
-
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>Class gabarito.plumbing.Environment</h4>
 
 
 
-<div class="yuidoc-class-description">
-<p>The environment is responsible for loading the gabarito, the test files and
+<span class="foundat">Class defined in: <a href="../files/lib_plumbing_Environment.js.html#l7"><code>lib&#x2F;plumbing&#x2F;Environment.js:7</code></a></span>
+<div class="intro"><p>The environment is responsible for loading the gabarito, the test files and
 running the tests themselves.</p>
 <p>It must implement the method getName in order to describe itself to the
 reporters.</p>
 <p>The dispatch method receives the files list, the reporters involved and a
 callback function that should be called when things complete, passing the
 results to the callback function as first argument.</p>
-
 </div>
 
 
-<!-- table of contents -->
+    
+    <a name="methods_gabarito.plumbing.Environment"></a>
+<div class="method item">
+     <strong class="name"><code>gabarito.plumbing.Environment</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_plumbing_Environment.js.html#l7"><code>lib&#x2F;plumbing&#x2F;Environment.js:7</code></a>
+    </span><br>
+    
+    
+    
+    
+</div>
 
-<div id="class-toc" class="page-section">
-	<h2>Table of Contents</h2>
+    
+
+
+<div id="classdocs">
+    <h2>Index</h2>
+
     <ul>
-		
-		<li>
-			<strong>Methods</strong>
-			<ul>
-				
-				
-				<li><a href="#method-dispatch"><span class="im">dispatch</span>(<span class="ia">files</span><span class="ia">reporters</span><span class="ia">done</span>)</a></li>
-				
-				
-				
-				<li><a href="#method-getName"><span class="im">getName</span>()</a></li>
-				
-				
-			</ul>
-		</li>
-		
-
-		
-
-		
-
-		
-	</ul>
-</div>
-
-<!-- details -->
-
-
-    <div class="constructor yuidoc-class-constructor page-section">
-        <h2>Constructor</h2>
-        <div class="item-list">
-<div id="method-gabarito.plumbing.Environment" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>gabarito.plumbing.Environment</code></span>
-
-	
-		<span class="paren">()</span>
-	
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_plumbing_Environment.js.html#l7"><code>lib&#x2F;plumbing&#x2F;Environment.js:7</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-
-	
-
-	
-
-	
-</div>
-
-        </div>
-    </div>
-
-
-
-    <div id="methods" class="page-section">
-        <h2 class="off-left">Methods</h2>
-        <div class="item-list">
-       		
-        	
-<div id="method-dispatch" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>dispatch</code></span>
-
-	
-		<div class="args">
-			<span class="paren">(</span><ul class="args-list inline commas">
-			
-				<li class="arg">
-					
-						<code>files</code>
-					
-				</li>
-			
-				<li class="arg">
-					
-						<code>reporters</code>
-					
-				</li>
-			
-				<li class="arg">
-					
-						<code>done</code>
-					
-				</li>
-			
-			</ul><span class="paren">)</span>
-		</div>
-	
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_plumbing_Environment.js.html#l35"><code>lib&#x2F;plumbing&#x2F;Environment.js:35</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>Method called by the runner that receives the files to be loaded, the
+        
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+    <div>
+        
+            <div id="methods">
+            <h2>Methods</h2>
+            
+                <a name="methods_dispatch"></a>
+<div class="method item">
+     <strong class="name"><code>dispatch</code></strong>( <code>files, reporters, done </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_plumbing_Environment.js.html#l35"><code>lib&#x2F;plumbing&#x2F;Environment.js:35</code></a>
+    </span><br>
+    <p>Method called by the runner that receives the files to be loaded, the
 reporters that should receive all events and the callback function that
 must be called passing all the results at the end of things.</p>
-</div>
-	
 
-	
-		<div class="params">
-			<h4>Parameters:</h4>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>files</code> <strong>&lt;String&gt;</strong>
+        
+        
+        <p>The files list</p>
 
-			<ul class="params-list">
-			
-				<li class="param">
-					
-						<code class="param-name">files</code>
-						<span class="type">String[]</span>
-					
-
-					
-
-					
-					<div class="param-description"><p>The files list</p>
-</div>
-					
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">reporters</code>
-						<span class="type"><a href="../classes/gabarito.plumbing.Reporter.html" class="crosslink">gabarito.plumbing.Reporter[][]</a></span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-				<li class="param">
-					
-						<code class="param-name">done</code>
-						<span class="type">Function</span>
-					
-
-					
-
-					
-
-					
-				</li>
-			
-			</ul>
-		</div>
-	
-
-	
-
-	
+            
+        </li>
+    
+        <li>
+        
+            <code>reporters</code> <strong>&lt;<a href="../classes/gabarito.plumbing.Reporter.html" class="crosslink">gabarito.plumbing.Reporter[]</a>&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+        <li>
+        
+            <code>done</code> <strong>&lt;Function&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
 </div>
 
             
+                <a name="methods_getName"></a>
+<div class="method item">
+    String <strong class="name"><code>getName</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
         
-        	
-<div id="method-getName" class="method item">
-	<div class="method-signature">
-	<span class="name"><code>getName</code></span>
+    
+        <a href="../files/lib_plumbing_Environment.js.html#l23"><code>lib&#x2F;plumbing&#x2F;Environment.js:23</code></a>
+    </span><br>
+    <p>The environment&#39;s name</p>
 
-	
-		<span class="paren">()</span>
-	
-	
-		<span class="returns-inline">
-			<span class="type">String</span>
-		</span>
-	
-	</div>
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	<div class="meta">
-		
-			
-				
-				<p>
-				
-				Defined in
-				
-			
-		
-		
-		<a href="../files/lib_plumbing_Environment.js.html#l23"><code>lib&#x2F;plumbing&#x2F;Environment.js:23</code></a>
-		
-		</p>
-
-
-		
-
-		
-	</div>
-
-	
-	<div class="description"><p>The environment&#39;s name</p>
-</div>
-	
-
-	
-
-	
-		<div class="returns">
-			<h4>Returns:</h4>
-
-			<div class="returns-description">
-				
-					
-						<span class="type">String</span>
-					
-				
-			</div>
-		</div>
-	
-
-	
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;String&gt; </div>
+    
+    
+    
 </div>
 
             
-        
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
             </div>
+        
+        
+        
+        
+    </div>
+</div>
+</div>
         </div>
     </div>
 </div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
 <script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
 </body>
 </html>

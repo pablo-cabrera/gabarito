@@ -1,14 +1,18 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "gabarito.ArgsGrabberMatcher",
         "gabarito.Assert",
         "gabarito.AssertThat",
         "gabarito.ClauseResult",
         "gabarito.Context",
         "gabarito.EnvironmentResult",
         "gabarito.Gabarito",
+        "gabarito.Grabber",
+        "gabarito.GrabberMatcher",
         "gabarito.Matcher",
         "gabarito.Spy",
+        "gabarito.SpyCall",
         "gabarito.SpyVerifier",
         "gabarito.TestBuilder",
         "gabarito.TestResult",
