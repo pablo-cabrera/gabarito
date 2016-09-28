@@ -572,7 +572,7 @@
             "extension_for": [],
             "file": "lib/gabarito.js",
             "line": 1477,
-            "description": "The context class is passed to each clause when it is run, also to\nthe before and after functions.\n\nIt provides means to run tests asynchronously through the\n{{#crossLink \"gabarito.Context#stay\"}}{{/crossLink}},\n{{#crossLink \"gabarito.Context#go\"}}{{/crossLink}} and\n{{#crossLink \"gabarito.Context#going\"}}{{/crossLink}} methods.",
+            "description": "The context class is passed to each clause when it is run, also to\nthe before and after functions.\n\nIt provides means to run tests asynchronously through the\n{{#crossLink \"gabarito.Context/stay\"}}{{/crossLink}},\n{{#crossLink \"gabarito.Context/go\"}}{{/crossLink}} and\n{{#crossLink \"gabarito.Context/going\"}}{{/crossLink}} methods.",
             "is_constructor": 1
         },
         "gabarito.ClauseResult": {
