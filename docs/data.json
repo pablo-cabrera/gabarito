@@ -270,7 +270,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/plumbing/NodeEnvironment.js",
-            "line": 17,
+            "line": 16,
             "description": "The NodeEnvironment runs the tests under the node-js itself. It loades\nthe files using the require mechanism, but it deletes them from the\nnode's cache beforehand.",
             "extends": "gabarito.plumbing.Environment",
             "is_constructor": 1,
@@ -346,7 +346,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "lib/plumbing/ServerEnvironment.js",
-            "line": 34,
+            "line": 33,
             "description": "The server environment provides a simple http server to serve the test\nfiles and run the tests themselves within a browser.\n\nAn implementation must implement a way of dispatching a browser to\nnavigate to \"http://localhost:1432\" and it may implement a method to\nclose the browser when the gabarito has finished.",
             "extends": "gabarito.plumbing.Environment",
             "is_constructor": 1,
@@ -1144,7 +1144,7 @@
                 {
                     "name": "args",
                     "description": "",
-                    "type": "String",
+                    "type": "Mixed",
                     "multiple": true
                 }
             ],
@@ -1153,6 +1153,27 @@
         {
             "file": "lib/plumbing/Reporter.js",
             "line": 159,
+            "description": "Issued when an environment emits a message",
+            "itemtype": "method",
+            "name": "message",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The environemnt",
+                    "type": "gabarito.plumbing.Environment"
+                },
+                {
+                    "name": "args",
+                    "description": "",
+                    "type": "Mixed",
+                    "multiple": true
+                }
+            ],
+            "class": "gabarito.plumbing.Reporter"
+        },
+        {
+            "file": "lib/plumbing/Reporter.js",
+            "line": 170,
             "description": "Issued when an error outside a given clause happens",
             "itemtype": "method",
             "name": "error",
@@ -1232,7 +1253,7 @@
         },
         {
             "file": "lib/plumbing/ServerEnvironment.js",
-            "line": 65,
+            "line": 64,
             "description": "This method may be implemented in order to clean up any browser\nreference.\n\nIt must call the done function afterwards.",
             "itemtype": "method",
             "name": "ditchBrowser",
@@ -2896,7 +2917,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1731,
+            "line": 1744,
             "description": "Adds a test using the\n{{#crossLink \"gabarito.TestBuilder\"}}{{/crossLink}} within\ngabarito.",
             "itemtype": "method",
             "name": "test",
@@ -2916,7 +2937,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1753,
+            "line": 1766,
             "description": "Resets the gabarito to it's initial state, removing all listeners\nas well.",
             "itemtype": "method",
             "name": "reset",
@@ -2924,13 +2945,13 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1778,
+            "line": 1785,
             "description": "Tells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
             "class": "gabarito.Gabarito"
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1794,
+            "line": 1801,
             "description": "Adds a test within the gabarito.\n\nThe test is an object containing various methods. Each method\nis treated as a test clause. Every draft is run to check if it\nworks.",
             "itemtype": "method",
             "name": "add",
@@ -2945,7 +2966,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1810,
+            "line": 1817,
             "description": "Register an event listener for a given event.\n\nAvailable events:\n\n- init: The initialization of the gabarito verification.\n- begin: The beginning of a test verification.\n- enter: When gabarito is about to enter into a clause\nverification.\n- pass: Whenever a clause passes.\n- fail: Whenever a clause fails.\n- end: When a test verification has ended.\n- complete: When all the test verifications have completed.\n- say: Custom event to emit whatever message.",
             "itemtype": "method",
             "name": "on",
@@ -2965,7 +2986,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1839,
+            "line": 1846,
             "description": "Removes an event listener for a given event.",
             "params": [
                 {
@@ -2983,7 +3004,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1859,
+            "line": 1866,
             "description": "Verify all tests",
             "itemtype": "method",
             "name": "verify",
@@ -2999,7 +3020,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1888,
+            "line": 1895,
             "description": "Tells gabarito to say something.",
             "itemtype": "method",
             "name": "say",
@@ -3015,7 +3036,23 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1900,
+            "line": 1907,
+            "description": "Tells gabarito to send a message. Messages wont be shown on the\nconsole output, they are useful for sending specific messages to\nthe reporters.",
+            "itemtype": "method",
+            "name": "message",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "",
+                    "type": "Mixed",
+                    "multiple": true
+                }
+            ],
+            "class": "gabarito.Gabarito"
+        },
+        {
+            "file": "lib/gabarito.js",
+            "line": 1921,
             "description": "Reference containing the various assert utils.",
             "itemtype": "property",
             "name": "assert",
@@ -3024,7 +3061,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1909,
+            "line": 1930,
             "description": "Creates an instance of\n{{#crossLink \"gabarito.Spy\"}}{{/crossLink}}",
             "itemtype": "method",
             "name": "spy",
@@ -3043,7 +3080,7 @@
         },
         {
             "file": "lib/gabarito.js",
-            "line": 1921,
+            "line": 1942,
             "description": "Creates a custom matcher using the function as a matching\ncriteria.\n\nThe function will receive a value to examinate and should return\na boolean indicating whether the criteria is met.",
             "itemtype": "method",
             "name": "matcher",
@@ -3202,11 +3239,11 @@
     "warnings": [
         {
             "message": "Missing item type\nTells gabarito that the preparations will be async.\n\nThis method returns a function that should be called when all\ntests are ready.",
-            "line": " lib/gabarito.js:1778"
+            "line": " lib/gabarito.js:1785"
         },
         {
             "message": "Missing item type\nRemoves an event listener for a given event.",
-            "line": " lib/gabarito.js:1839"
+            "line": " lib/gabarito.js:1846"
         }
     ]
 }

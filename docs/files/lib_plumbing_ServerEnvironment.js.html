@@ -117,12 +117,11 @@
 var root = &quot;../..&quot;;
 var parts = require(root + &quot;/deps/parts&quot;);
 var ilk = require(root + &quot;/deps/ilk&quot;);
+var Gabarito = require(root + &quot;/lib/gabarito&quot;);
 
 var Environment = require(&quot;./Environment&quot;);
 var url = require(&quot;url&quot;);
 var path = require(&quot;path&quot;);
-
-var events = &quot;init,complete,begin,end,enter,pass,fail,say&quot;.split(&quot;,&quot;);
 
 module.exports = ilk.tokens(function (
     results,
@@ -261,7 +260,8 @@ module.exports = ilk.tokens(function (
                 &quot;xhr.send(JSON.stringify(normalize(args)));&quot; +
             &quot;};&quot; +
 
-            &quot;var events = &quot; + JSON.stringify(events) + &quot;;&quot; +
+            &quot;var events = &quot; +
+                    JSON.stringify(Gabarito.constant(&quot;EVENTS&quot;)) + &quot;;&quot; +
 
             &quot;parts.forEach(events, function (e) {&quot; +
                 &quot;gabarito.on(e, parts.args(function (args) {&quot; +

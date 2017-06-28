@@ -1834,6 +1834,19 @@
             }
         })).
 
+        constant(&quot;EVENTS&quot;, [
+            &quot;init&quot;,
+            &quot;begin&quot;,
+            &quot;enter&quot;,
+            &quot;end&quot;,
+            &quot;pass&quot;,
+            &quot;fail&quot;,
+            &quot;complete&quot;,
+            &quot;say&quot;,
+            &quot;message&quot;,
+            &quot;error&quot;
+        ]).
+
         proto(emit, function (e) {
             var args = parts.slice(arguments, 1);
             parts.forEach(this[listeners][e],
@@ -1871,23 +1884,17 @@
              * @method reset
              * @for gabarito.Gabarito
              */
-            reset: function () {
+            reset: parts.that(function (that) {
                 this[preparing] = false;
                 this[tests] = [];
                 this[results] = [];
                 this[currentResult] = undefined;
-                this[listeners] = {
-                    &quot;init&quot;: [],
-                    &quot;begin&quot;: [],
-                    &quot;enter&quot;: [],
-                    &quot;end&quot;: [],
-                    &quot;pass&quot;: [],
-                    &quot;fail&quot;: [],
-                    &quot;complete&quot;: [],
-                    &quot;say&quot;: [],
-                    &quot;error&quot;: []
-                };
-            },
+
+                this[listeners] = {};
+                parts.forEach(Gabarito.EVENTS, function (event) {
+                    that[listeners][event] = [];
+                });
+            }),
 
             /**
              * Tells gabarito that the preparations will be async.
@@ -2009,6 +2016,20 @@
              */
             say: parts.args(function (args) {
                 this[emit].apply(this, [&quot;say&quot;].concat(args));
+            }),
+
+            /**
+             * Tells gabarito to send a message. Messages wont be shown on the
+             * console output, they are useful for sending specific messages to
+             * the reporters.
+             *
+             * @method message
+             * @for gabarito.Gabarito
+             *
+             * @param {mixed} args*
+             */
+            message: parts.args(function (args) {
+                this[emit].apply(this, [&quot;message&quot;].concat(args));
             }),
 
             /**

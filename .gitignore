@@ -1,4 +1,5 @@
 test/result/
+test/coverage/
 coverage.xml
 lcov-report/
 lcov.info

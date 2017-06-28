@@ -2,10 +2,16 @@
 
 var path = require("path");
 
+var cwd = process.cwd();
+var root = cwd + "/test/coverage/instrument";
+if (!require("fs").existsSync(root)) {
+    root = cwd;
+}
+
 var gabarito = require("../../../lib/gabarito");
 var parts = require("../../../deps/parts");
 
-var Runner = require("../../../lib/plumbing/Runner");
+var Runner = require(root + "/lib/plumbing/Runner");
 
 var assert = gabarito.assert;
 var spy = gabarito.spy;

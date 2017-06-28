@@ -1,9 +1,15 @@
 "use strict";
 
+var cwd = process.cwd();
+var root = cwd + "/test/coverage/instrument";
+if (!require("fs").existsSync(root)) {
+    root = cwd;
+}
+
 var gabarito = require("../../../lib/gabarito");
 var parts = require("../../../deps/parts");
 
-var ConsoleReporter = require("../../../lib/plumbing/ConsoleReporter");
+var ConsoleReporter = require(root + "/lib/plumbing/ConsoleReporter");
 var Environment = require("../../../lib/plumbing/Environment");
 
 var assert = gabarito.assert;

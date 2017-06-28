@@ -266,9 +266,20 @@ proto({
      * @for gabarito.plumbing.Reporter
      *
      * @param {gabarito.plumbing.Environment} env The environment
-     * @param {string} args*
+     * @param {mixed} args*
      */
     say: function (env) {},
+
+    /**
+     * Issued when an environment emits a message
+     *
+     * @method message
+     * @for gabarito.plumbing.Reporter
+     *
+     * @param {gabarito.plumbing.Environment} env The environemnt
+     * @param {mixed} args*
+     */
+    message: function (env) {},
 
     /**
      * Issued when an error outside a given clause happens

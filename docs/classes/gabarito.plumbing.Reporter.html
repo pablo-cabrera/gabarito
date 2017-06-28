@@ -111,6 +111,8 @@
             
                 <li><a href="#methods_init">init</a></li>
             
+                <li><a href="#methods_message">message</a></li>
+            
                 <li><a href="#methods_pass">pass</a></li>
             
                 <li><a href="#methods_say">say</a></li>
@@ -465,7 +467,7 @@ implementation does nothing.</p>
     
         
     
-        <a href="../files/lib_plumbing_Reporter.js.html#l159"><code>lib&#x2F;plumbing&#x2F;Reporter.js:159</code></a>
+        <a href="../files/lib_plumbing_Reporter.js.html#l170"><code>lib&#x2F;plumbing&#x2F;Reporter.js:170</code></a>
     </span><br>
     <p>Issued when an error outside a given clause happens</p>
 
@@ -639,6 +641,50 @@ implementation does nothing.</p>
 </div>
 
             
+                <a name="methods_message"></a>
+<div class="method item">
+     <strong class="name"><code>message</code></strong>( <code>env, args </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_plumbing_Reporter.js.html#l159"><code>lib&#x2F;plumbing&#x2F;Reporter.js:159</code></a>
+    </span><br>
+    <p>Issued when an environment emits a message</p>
+
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>env</code> <strong>&lt;<a href="../classes/gabarito.plumbing.Environment.html" class="crosslink">gabarito.plumbing.Environment</a>&gt;</strong>
+        
+        
+        <p>The environemnt</p>
+
+            
+        </li>
+    
+        <li>
+        
+            <code>args</code> <strong>&lt;Mixed&gt;</strong>
+        
+        
+            <abbr title="Denotes that this argument can contain (n) number">(*..n)</abbr>
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+</div>
+
+            
                 <a name="methods_pass"></a>
 <div class="method item">
      <strong class="name"><code>pass</code></strong>( <code>env, test, clause, result </code> ) 
@@ -731,7 +777,7 @@ implementation does nothing.</p>
     
         <li>
         
-            <code>args</code> <strong>&lt;String&gt;</strong>
+            <code>args</code> <strong>&lt;Mixed&gt;</strong>
         
         
             <abbr title="Denotes that this argument can contain (n) number">(*..n)</abbr>

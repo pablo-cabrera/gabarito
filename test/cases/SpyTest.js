@@ -7,7 +7,12 @@
     var parts;
 
     if (node) {
-        gabarito = require("../../lib/gabarito");
+        var root = "../../test/coverage/instrument";
+        if (!require("fs").existsSync(root)) {
+            root = "../..";
+        }
+
+        gabarito = require(root + "/test/coverage/instrument/lib/gabarito");
         parts = require("../../deps/parts");
     } else {
         gabarito = main.gabarito;

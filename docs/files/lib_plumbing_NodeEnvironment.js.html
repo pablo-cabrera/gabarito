@@ -117,9 +117,8 @@
 var root = &quot;../..&quot;;
 var parts = require(root + &quot;/deps/parts&quot;);
 var ilk = require(root + &quot;/deps/ilk&quot;);
+var Gabarito = require(root + &quot;/lib/gabarito&quot;);
 var Environment = require(&quot;./Environment&quot;);
-
-var events = &quot;init,complete,begin,end,enter,pass,fail,say,error&quot;.split(&quot;,&quot;);
 
 module.exports = ilk.tokens(function (
     gabarito,
@@ -147,7 +146,7 @@ module.exports = ilk.tokens(function (
     }).
 
     proto(attachReporter, parts.that(function (that, reporter) {
-        events.forEach(function (e) {
+        Gabarito.constant(&quot;EVENTS&quot;).forEach(function (e) {
             that[gabarito].on(e, parts.args(function (args) {
                 reporter[e].apply(reporter, [that].concat(args));
             }));

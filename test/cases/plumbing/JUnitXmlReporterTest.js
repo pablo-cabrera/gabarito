@@ -1,9 +1,15 @@
 "use strict";
 
+var cwd = process.cwd();
+var root = cwd + "/test/coverage/instrument";
+if (!require("fs").existsSync(root)) {
+    root = cwd;
+}
+
 var gabarito = require("../../../lib/gabarito");
 var parts = require("../../../deps/parts");
 
-var JUnitXmlReporter = require("../../../lib/plumbing/JUnitXmlReporter");
+var JUnitXmlReporter = require(root + "/lib/plumbing/JUnitXmlReporter");
 var Environment = require("../../../lib/plumbing/Environment");
 
 var DummyEnvironment = Environment.descend().

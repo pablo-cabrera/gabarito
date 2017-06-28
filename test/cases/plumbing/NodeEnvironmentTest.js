@@ -1,9 +1,15 @@
 "use strict";
 
+var cwd = process.cwd();
+var root = cwd + "/test/coverage/instrument";
+if (!require("fs").existsSync(root)) {
+    root = cwd;
+}
+
 var gabarito = require("../../../lib/gabarito");
 var parts = require("../../../deps/parts");
 
-var NodeEnvironment = require("../../../lib/plumbing/NodeEnvironment");
+var NodeEnvironment = require(root + "/lib/plumbing/NodeEnvironment");
 
 var assert = gabarito.assert;
 var spy = gabarito.spy;
@@ -20,7 +26,7 @@ clause(
 "dispatch should reset gabarito, " +
 "attach the reporters into gabarito, " +
 "load files into gabarito and call gabarito's verify", function () {
-    var events = "init,complete,begin,end,enter,pass,fail,say,error".split(",");
+    var events = gabarito.constant("EVENTS");
 
     var files = ["a", "b", "c"];
 

@@ -45,6 +45,25 @@ module.exports = function (grunt) {
         var jUnitReporter = new plumbing.JUnitXmlReporter(jUnitFile);
         runner.addReporter(jUnitReporter);
 
+
+        var IstanbulReporter = plumbing.Reporter.descend().
+        proto({
+            message: function (env, msg, coverage) {
+                if (msg !== "grunt-istanbul") {
+                    return;
+                }
+
+                var target = grunt.task.current.nameArgs;
+                var json = "coverage-" + target + "-" + env.getName() + ".json";
+
+                grunt.file.write(
+                    "test/coverage/reports/" + json,
+                    coverage);
+            }
+        });
+
+        var istanbulReporter = new IstanbulReporter();
+        runner.addReporter(istanbulReporter);
     };
 
     grunt.registerMultiTask("test", "gabarito test runner", function () {
