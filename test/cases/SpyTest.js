@@ -12,7 +12,7 @@
             root = "../..";
         }
 
-        gabarito = require(root + "/test/coverage/instrument/lib/gabarito");
+        gabarito = require(root + "/lib/gabarito");
         parts = require("../../deps/parts");
     } else {
         gabarito = main.gabarito;
