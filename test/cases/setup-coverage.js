@@ -13,7 +13,8 @@
     }
 
     gabarito.on("complete", function () {
-        gabarito.message("grunt-istanbul", JSON.stringify(main.__coverage__));
+        gabarito.message("grunt-istanbul",
+                JSON.stringify(main["__coverage__"]));
     });
 
 }(typeof exports !== "undefined" && global.exports !== exports));
