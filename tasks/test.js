@@ -45,7 +45,6 @@ module.exports = function (grunt) {
         var jUnitReporter = new plumbing.JUnitXmlReporter(jUnitFile);
         runner.addReporter(jUnitReporter);
 
-
         var IstanbulReporter = plumbing.Reporter.descend().
         proto({
             message: function (env, msg, coverage) {
